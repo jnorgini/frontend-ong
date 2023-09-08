@@ -1,0 +1,54 @@
+<form>
+    <img src="assets/logo.png">
+    <input type="text" placeholder="Nome" class="form-control" name="nome" [(ngModel)]="Dog.nome">
+    <input type="text" placeholder="Espécie" class="form-control" name="especie" [(ngModel)]="Dog.especie">
+    <input type="text" placeholder="Gênero" class="form-control" name="genero" [(ngModel)]="Dog.genero">
+    <input type="text" placeholder="Idade" class="form-control" name="idade" [(ngModel)]="Dog.idade">
+    <input type="text" placeholder="Raça" class="form-control" name="raca" [(ngModel)]="Dog.raca">
+    <input type="text" placeholder="Porte" class="form-control" name="porte" [(ngModel)]="Dog.porte">
+    <input type="text" placeholder="Peso" class="form-control" name="peso" [(ngModel)]="Dog.peso">
+    <input type="text" placeholder="Castrado" class="form-control" name="castrado" [(ngModel)]="Dog.castrado">
+    <input type="text" placeholder="Vacinado" class="form-control" name="vacinado" [(ngModel)]="Dog.vacinado">
+    <input type="text" placeholder="Descrição" class="form-control" name="descricaoPet" [(ngModel)]="Dog.descricaoPet">
+
+    <input type="button" value="Cadastrar" *ngIf="btnCadastro" class="btn btn-primary" (click)="cadastrar()">
+    <input type="button" value="Alterar" *ngIf="!btnCadastro" class="btn btn-warning" (click)="editar()">
+    <input type="button" value="Remover" *ngIf="!btnCadastro" class="btn btn-danger" (click)="remover()">
+    <input type="button" value="Cancelar" *ngIf="!btnCadastro" class="btn btn-secondary" (click)="cancelar()">
+
+</form>
+
+<table class="table" *ngIf="tabela">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Espécie</th>
+            <th>Gênero</th>
+            <th>Idade</th>
+            <th>Raça</th>
+            <th>Porte</th>
+            <th>Peso</th>
+            <th>Castrado</th>
+            <th>Vacinado</th>
+            <th>Descrição</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let c of Dogs; index as i">
+            <td>{{i+1}}</td>
+            <td>{{c.nome}}</td>
+            <td>{{c.especie}}</td>
+            <td>{{c.genero}}</td>
+            <td>{{c.idade}}</td>
+            <td>{{c.raca}}</td>
+            <td>{{c.porte}}</td>
+            <td>{{c.peso}}</td>
+            <td>{{c.castrado}}</td>
+            <td>{{c.vacinado}}</td>
+            <td>{{c.descricaoPet}}</td>
+            <td><button class="btn btn-success" (click)="selecionarDog(i)">Selecionar</button></td>
+        </tr>
+    </tbody>
+</table>
