@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Dog } from '../modelo/Dog';
-import { DogService } from '../service/dog.service';
+import { Pet } from '../modelo/Pet';
+import { PetService } from '../service/pet.service';
 
 @Component({
   selector: 'app-principal',
@@ -10,7 +10,7 @@ import { DogService } from '../service/dog.service';
 export class PrincipalComponent {
 
   // Objeto do tipo Dog
-  Dog = new Dog();
+  Pet = new Pet();
 
   // Variável para visibilidade dos botões
   btnCadastro: boolean = true;
@@ -18,28 +18,28 @@ export class PrincipalComponent {
   // Variável para visibilidade da tabela
   tabela: boolean = true;
 
-  // JSON de Dogs
-  Dogs: Dog[] = [];
+  // JSON de Pets
+  Pets: Pet[] = [];
 
   // Construtor
-  constructor(private service: DogService) { }
+  constructor(private service: PetService) { }
 
   // Método de seleção
   selecionar(): void {
     this.service.selecionar()
-      .subscribe(retorno => this.Dogs = retorno);
+      .subscribe(retorno => this.Pets = retorno);
   }
 
   // Método de cadastro
   cadastrar(): void {
-    this.service.cadastrar(this.Dog)
+    this.service.cadastrar(this.Pet)
       .subscribe(retorno => {
 
         // Cadastrar o dog no vetor
-        this.Dogs.push(retorno);
+        this.Pets.push(retorno);
 
         // Limpar formulário
-        this.Dog = new Dog();
+        this.Pet = new Pet();
 
         // Mensagem
         alert('Pet cadastrado com sucesso!');
@@ -47,10 +47,10 @@ export class PrincipalComponent {
   }
 
   // Método para selecionar um cliente específico
-  selecionarDog(posicao: number): void {
+  selecionarPet(posicao: number): void {
 
     // Selecionar dog no vetor
-    this.Dog = this.Dogs[posicao];
+    this.Pet = this.Pets[posicao];
 
     // Visibilidade dos botões
     this.btnCadastro = false;
@@ -61,18 +61,18 @@ export class PrincipalComponent {
 
   // Método para atualizar dogs
   editar(): void {
-    this.service.editar(this.Dog)
+    this.service.editar(this.Pet)
       .subscribe(retorno => {
         // Obter posição do vetor onde está o dog
-        let posicao = this.Dogs.findIndex(obj => {
+        let posicao = this.Pets.findIndex(obj => {
           return obj.id == retorno.id;
         });
 
         // Alterar os dados do dog no vetor
-        this.Dogs[posicao] = retorno;
+        this.Pets[posicao] = retorno;
 
         // Limpar formulário
-        this.Dog = new Dog();
+        this.Pet = new Pet();
 
         // Visibilidade dos botões
         this.btnCadastro = true;
@@ -86,20 +86,20 @@ export class PrincipalComponent {
       });
   }
 
-   // Método para remover dogs
-   remover(): void {
-    this.service.remover(this.Dog.id)
+  // Método para atualizar dogs
+  remover(): void {
+    this.service.remover(this.Pet.id)
       .subscribe(retorno => {
         // Obter posição do vetor onde está o dog
-        let posicao = this.Dogs.findIndex(obj => {
-          return obj.id == this.Dog.id;
+        let posicao = this.Pets.findIndex(obj => {
+          return obj.id == this.Pet.id;
         });
 
         // Remover o dog do vetor
-        this.Dogs.splice(posicao, 1);
+        this.Pets.splice(posicao, 1);
 
         // Limpar formulário
-        this.Dog = new Dog();
+        this.Pet = new Pet();
 
         // Visibilidade dos botões
         this.btnCadastro = true;
@@ -108,16 +108,19 @@ export class PrincipalComponent {
         this.tabela = true;
 
         // Mensagem
-        alert('Pet removido com sucesso!');
+        alert('Pet alterado com sucesso!');
 
       });
   }
+
+
+   
 
   // Método para cancelar
   cancelar():void{
 
     // Limpar o formulário
-    this.Dog = new Dog();
+    this.Pet = new Pet();
 
     // Visibilidade dos botões
     this.btnCadastro = true;

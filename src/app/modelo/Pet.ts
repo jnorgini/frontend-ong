@@ -1,4 +1,4 @@
-export class Dog{
+export class Pet{
     id:number = 0;
     nome:string = '';
     especie:string = '';

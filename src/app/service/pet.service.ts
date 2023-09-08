@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Dog } from '../modelo/Dog';
+import { Pet } from '../modelo/Pet';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DogService {
+export class PetService {
 
   // URL da API
   private selectUrl:string = 'http://localhost:8080/dogs/all';
@@ -18,18 +18,18 @@ export class DogService {
   constructor(private http:HttpClient) { }
 
   // Método para selecionar todos 
-  selecionar():Observable<Dog[]>{
-    return this.http.get<Dog[]>(this.selectUrl);
+  selecionar():Observable<Pet[]>{
+    return this.http.get<Pet[]>(this.selectUrl);
   }
 
   // Método para cadastrar 
-  cadastrar(obj:Dog):Observable<Dog>{
-    return this.http.post<Dog>(this.addUrl, obj);
+  cadastrar(obj:Pet):Observable<Pet>{
+    return this.http.post<Pet>(this.addUrl, obj);
   }
 
   // Método para atualizar 
-  editar(obj:Dog):Observable<Dog>{
-    return this.http.put<Dog>(this.updateUrl, obj);
+  editar(obj:Pet):Observable<Pet>{
+    return this.http.put<Pet>(this.updateUrl, obj);
   }
 
   // Método para remover
