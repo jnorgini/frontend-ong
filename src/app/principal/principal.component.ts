@@ -116,7 +116,7 @@ export class PrincipalComponent {
         this.tabela = true;
 
         // Mensagem
-        alert('Pet alterado com sucesso!');
+        alert('Pet removido com sucesso!');
 
       });
   }

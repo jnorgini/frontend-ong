@@ -23,37 +23,23 @@
 </div>
 </form>
 
-<table class="table" *ngIf="tabela">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Nome</th>
-            <th>Espécie</th>
-            <th>Gênero</th>
-            <th>Idade</th>
-            <th>Raça</th>
-            <th>Porte</th>
-            <th>Peso</th>
-            <th>Castrado</th>
-            <th>Vacinado</th>
-            <th>Descrição</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr *ngFor="let c of Pets; index as i">
-            <td>{{i+1}}</td>
-            <td>{{c.name}}</td>
-            <td>{{c.species}}</td>
-            <td>{{c.gender}}</td>
-            <td>{{ formatarData(c.birthdate) }}</td>
-            <td>{{c.breed}}</td>
-            <td>{{c.size}}</td>
-            <td>{{c.weight}}</td>
-            <td>{{ c.neutered ? 'Sim' : 'Não' }}</td>
-            <td>{{ c.vaccinated ? 'Sim' : 'Não' }}</td>
-            <td>{{c.description}}</td>
-            <td><button class="btn btn-outline-success" (click)="selecionarPet(i)">Selecionar</button></td>
-        </tr>
-    </tbody>
-</table>
+<div class="card-container-wrapper">
+    <div class="card-container" *ngIf="tabela">
+    <div class="card card-item" *ngFor="let c of Pets; index as i">
+        <div class="card-body">
+            <h1 class="card-title">{{c.name}}</h1>
+            <p class="card-text">
+                <strong>Espécie:</strong> {{c.species}}<br>
+                <strong>Gênero:</strong> {{c.gender}}<br>
+                <strong>Idade:</strong> {{ formatarData(c.birthdate) }}<br>
+                <strong>Raça:</strong> {{c.breed}}<br>
+                <strong>Porte:</strong> {{c.size}}<br>
+                <strong>Peso:</strong> {{c.weight}}<br>
+                <strong>Castrado:</strong> {{ c.neutered ? 'Sim' : 'Não' }}<br>
+                <strong>Vacinado:</strong> {{ c.vaccinated ? 'Sim' : 'Não' }}<br>
+                <strong>Descrição:</strong> {{c.description}}
+            </p>
+            <button class="btn btn-outline-success" (click)="selecionarPet(i)">Selecionar</button>
+        </div>
+    </div>
+</div>
