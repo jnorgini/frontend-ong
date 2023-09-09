@@ -9,10 +9,10 @@ import { Pet } from '../modelo/Pet';
 export class PetService {
 
   // URL da API
-  private selectUrl:string = 'http://localhost:8080/dogs/all';
-  private addUrl:string = 'http://localhost:8080/dogs/add';
-  private updateUrl:string = 'http://localhost:8080/dogs/update';
-  private deleteUrl:string = 'http://localhost:8080/dogs';
+  private selectUrl:string = 'http://localhost:8080/pets/all';
+  private addUrl:string = 'http://localhost:8080/pets/add';
+  private updateUrl:string = 'http://localhost:8080/pets/update';
+  private deleteUrl:string = 'http://localhost:8080/pets';
 
   // Construtor
   constructor(private http:HttpClient) { }
