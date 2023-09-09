@@ -19,12 +19,13 @@ input{
 }
 
 input[type="button"]{
+    margin-bottom: 20px;
     margin-top: 10px;
     margin-right: 10px;
 }
 
 .card-container-wrapper {
-    display: flex;
+    display: inline-flex;
     justify-content: center; /* Centraliza horizontalmente */
     align-items: flex-start; /* Alinha os cards no topo verticalmente */
   }
