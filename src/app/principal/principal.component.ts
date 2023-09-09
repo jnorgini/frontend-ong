@@ -9,6 +9,14 @@ import { PetService } from '../service/pet.service';
 })
 export class PrincipalComponent {
 
+  formatarData(data: string): string {
+    const dataFormatada = new Date(data);
+    const dia = dataFormatada.getDate().toString().padStart(2, '0');
+    const mes = (dataFormatada.getMonth() + 1).toString().padStart(2, '0');
+    const ano = dataFormatada.getFullYear().toString();
+    return `${dia}/${mes}/${ano}`;
+  }
+
   // Objeto do tipo Dog
   Pet = new Pet();
 

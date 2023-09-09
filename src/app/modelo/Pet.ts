@@ -3,11 +3,11 @@ export class Pet{
     name:string = '';
     species:string = '';
     gender:string = '';
-    birthdate:number = 0;
+    birthdate:string = '';
     breed:string = '';
     size:string = '';
     weight:string = '';
-    is_neutered:boolean = false;
-    is_vaccinated:boolean = false;
+    neutered:string = '';
+    vaccinated:string = '';
     description:string = '';
 }

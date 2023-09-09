@@ -9,10 +9,16 @@ form{
     text-align: center;
 }
 
+label {
+    display: flex;
+    margin-bottom: 5px; 
+}
+
 input{
     margin-bottom: 10px;
 }
 
 input[type="button"]{
+    margin-top: 10px;
     margin-right: 10px;
 }
