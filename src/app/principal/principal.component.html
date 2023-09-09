@@ -23,11 +23,11 @@
 </div>
 </form>
 
-<div class="card-container-wrapper">
+<div class="card-container-wrapper h-100">
     <div class="card-container" *ngIf="tabela">
     <div class="card card-item" *ngFor="let c of Pets; index as i">
         <div class="card-body">
-            <h1 class="card-title">{{c.name}}</h1>
+            <h1 class="display-1">{{c.name}}</h1>
             <p class="card-text">
                 <strong>Espécie:</strong> {{c.species}}<br>
                 <strong>Gênero:</strong> {{c.gender}}<br>
