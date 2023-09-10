@@ -6,7 +6,7 @@
     <input type="text" placeholder="Nome" class="form-control" name="nome" [(ngModel)]="Pet.name">
     <input type="text" placeholder="Espécie" class="form-control" name="especie" [(ngModel)]="Pet.species">
     <input type="text" placeholder="Gênero" class="form-control" name="genero" [(ngModel)]="Pet.gender">
-    <input type="date" placeholder="Data de nascimento" class="form-control" name="idade" [(ngModel)]="Pet.birthdate">
+    <input type="date" placeholder="Data de chegada" class="form-control" name="idade" [(ngModel)]="Pet.birthdate">
     <input type="text" placeholder="Raça" class="form-control" name="raca" [(ngModel)]="Pet.breed">
     <input type="text" placeholder="Porte" class="form-control" name="porte" [(ngModel)]="Pet.size">
     <input type="number" placeholder="Peso" class="form-control" name="peso" [(ngModel)]="Pet.weight">
@@ -23,23 +23,27 @@
 </div>
 </form>
 
-<div class="card-container-wrapper h-100">
-    <div class="card-container" *ngIf="tabela">
+<div class="card-container" *ngIf="tabela">
     <div class="card card-item" *ngFor="let c of Pets; index as i">
-        <div class="card-body">
-            <h1 class="display-1">{{c.name}}</h1>
-            <p class="card-text">
-                <strong>Espécie:</strong> {{c.species}}<br>
-                <strong>Gênero:</strong> {{c.gender}}<br>
-                <strong>Nascimento:</strong> {{ formatarData(c.birthdate) }}<br>
-                <strong>Raça:</strong> {{c.breed}}<br>
-                <strong>Porte:</strong> {{c.size}}<br>
-                <strong>Peso:</strong> {{c.weight}}<br>
-                <strong>Castrado:</strong> {{ c.neutered ? 'Sim' : 'Não' }}<br>
-                <strong>Vacinado:</strong> {{ c.vaccinated ? 'Sim' : 'Não' }}<br>
-                <strong>Descrição:</strong> {{c.description}}
-            </p>
-            <button class="btn btn-outline-success" (click)="selecionarPet(i)">Selecionar</button>
-        </div>
+      <div class="card-body">
+        <h1 class="display-1">{{c.name}}</h1>
+        <p class="card-text">
+          <strong>Espécie:</strong> {{c.species}}<br>
+          <strong>Gênero:</strong> {{c.gender}}<br>
+          <strong>Raça:</strong> {{c.breed}}<br>
+          <strong>Entrada na ong:</strong> {{ formatarData(c.birthdate) }}<br>
+       
+          <ng-container *ngIf="showDetailedInfo; else summaryInfo">
+         
+          </ng-container>
+          <ng-template #summaryInfo>
+            {{c.summary}}
+          </ng-template>
+        </p>
+        <button class="btn btn-outline-success" (click)="selecionarPet(i)">Selecionar</button>
+        <span style="margin-right: 5px;"></span>
+        <button class="btn btn-outline-secondary" (click)="mostrarMaisInfos(i)">Mais Infos</button> 
+      </div>
     </div>
-</div>
+  </div>
+  

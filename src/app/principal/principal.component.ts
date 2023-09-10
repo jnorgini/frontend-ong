@@ -1,13 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Pet } from '../modelo/Pet';
 import { PetService } from '../service/pet.service';
+import * as moment from 'moment-timezone';
 
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
   styleUrls: ['./principal.component.css']
 })
-export class PrincipalComponent {
+export class PrincipalComponent implements OnInit {
+  Pet = new Pet();
+  btnCadastro = true;
+  tabela = true;
+  Pets: Pet[] = [];
+  showDetailedInfo = false;
+
+  constructor(
+    private service: PetService
+  ) {}
 
   formatarData(data: string): string {
     const dataFormatada = new Date(data);
@@ -17,129 +27,79 @@ export class PrincipalComponent {
     return `${dia}/${mes}/${ano}`;
   }
 
-  // Objeto do tipo Dog
-  Pet = new Pet();
-
-  // Variável para visibilidade dos botões
-  btnCadastro: boolean = true;
-
-  // Variável para visibilidade da tabela
-  tabela: boolean = true;
-
-  // JSON de Pets
-  Pets: Pet[] = [];
-
-  // Construtor
-  constructor(private service: PetService) { }
-
-  // Método de seleção
-  selecionar(): void {
-    this.service.selecionar()
-      .subscribe(retorno => this.Pets = retorno);
+  toggleInfo(): void {
+    this.showDetailedInfo = !this.showDetailedInfo;
   }
 
-  // Método de cadastro
-  cadastrar(): void {
-    this.service.cadastrar(this.Pet)
-      .subscribe(retorno => {
-
-        // Cadastrar o dog no vetor
-        this.Pets.push(retorno);
-
-        // Limpar formulário
-        this.Pet = new Pet();
-
-        // Mensagem
-        alert('Pet cadastrado com sucesso!');
-      });
-  }
-
-  // Método para selecionar um cliente específico
-  selecionarPet(posicao: number): void {
-
-    // Selecionar dog no vetor
-    this.Pet = this.Pets[posicao];
-
-    // Visibilidade dos botões
-    this.btnCadastro = false;
-
-    // Visibilidade da tabela
-    this.tabela = false;
-  }
-
-  // Método para atualizar dogs
-  editar(): void {
-    this.service.editar(this.Pet)
-      .subscribe(retorno => {
-        // Obter posição do vetor onde está o dog
-        let posicao = this.Pets.findIndex(obj => {
-          return obj.id == retorno.id;
-        });
-
-        // Alterar os dados do dog no vetor
-        this.Pets[posicao] = retorno;
-
-        // Limpar formulário
-        this.Pet = new Pet();
-
-        // Visibilidade dos botões
-        this.btnCadastro = true;
-
-        // Visibilidade da tabela
-        this.tabela = true;
-
-        // Mensagem
-        alert('Pet alterado com sucesso!');
-
-      });
-  }
-
-  // Método para atualizar dogs
-  remover(): void {
-    this.service.remover(this.Pet.id)
-      .subscribe(retorno => {
-        // Obter posição do vetor onde está o dog
-        let posicao = this.Pets.findIndex(obj => {
-          return obj.id == this.Pet.id;
-        });
-
-        // Remover o dog do vetor
-        this.Pets.splice(posicao, 1);
-
-        // Limpar formulário
-        this.Pet = new Pet();
-
-        // Visibilidade dos botões
-        this.btnCadastro = true;
-
-        // Visibilidade da tabela
-        this.tabela = true;
-
-        // Mensagem
-        alert('Pet removido com sucesso!');
-
-      });
-  }
-
-
-   
-
-  // Método para cancelar
-  cancelar():void{
-
-    // Limpar o formulário
-    this.Pet = new Pet();
-
-    // Visibilidade dos botões
-    this.btnCadastro = true;
-
-    // Visibilidade da tabela
-    this.tabela = true;
-  }
-
-  // Método de inicialização
-  ngOnInit() {
+  ngOnInit(): void {
     this.selecionar();
   }
 
+  selecionar(): void {
+    this.service.selecionar().subscribe(retorno => {
+      this.Pets = retorno;
+      this.Pets.forEach(pet => {
+        pet.summary = `Nome: ${pet.name}, ${
+          pet.species ? `Espécie: ${pet.species}, ` : ''
+        }${pet.gender ? `Gênero: ${pet.gender}, ` : ''}${
+          pet.breed ? `Raça: ${pet.breed}, ` : ''
+        }`;
+        pet.birthdate = this.formatarData(pet.birthdate); // Formatar a data de nascimento
+      });
+    });
+  }
+
+  mostrarMaisInfos(i: number): void {
+    const pet = this.Pets[i];
+    const detalhes = `
+      ${pet.size ? `Porte: ${pet.size}` : ''}
+      ${pet.weight ? `Peso: ${pet.weight}` : ''}
+      ${pet.neutered ? `Castrado: Sim` : `Castrado: Não`}
+      ${pet.vaccinated ? `Vacinado: Sim` : `Vacinado: Não`}
+      ${pet.description ? `Descrição: ${pet.description}` : ''}
+    `;
+    alert(`Informações detalhadas do pet ${pet.name}:\n${detalhes}`);
+  }
+
+  cadastrar(): void {
+    this.service.cadastrar(this.Pet).subscribe(retorno => {
+      this.Pets.push(retorno);
+      this.Pet = new Pet();
+      alert('Pet cadastrado com sucesso!');
+    });
+  }
+
+  selecionarPet(posicao: number): void {
+    this.Pet = this.Pets[posicao];
+    this.btnCadastro = false;
+    this.tabela = false;
+  }
+
+  editar(): void {
+    this.service.editar(this.Pet).subscribe(retorno => {
+      const posicao = this.Pets.findIndex(obj => obj.id == retorno.id);
+      this.Pets[posicao] = retorno;
+      this.Pet = new Pet();
+      this.btnCadastro = true;
+      this.tabela = true;
+      alert('Pet alterado com sucesso!');
+    });
+  }
+
+  remover(): void {
+    this.service.remover(this.Pet.id).subscribe(() => {
+      const posicao = this.Pets.findIndex(obj => obj.id == this.Pet.id);
+      this.Pets.splice(posicao, 1);
+      this.Pet = new Pet();
+      this.btnCadastro = true;
+      this.tabela = true;
+      alert('Pet removido com sucesso!');
+    });
+  }
+
+  cancelar(): void {
+    this.Pet = new Pet();
+    this.btnCadastro = true;
+    this.tabela = true;
+  }
 }

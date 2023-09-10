@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { MomentModule } from 'ngx-moment'; // Importe o MomentModule
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { PrincipalComponent } from './principal/principal.component';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MomentModule // Adicione o MomentModule aos imports
   ],
   providers: [],
   bootstrap: [AppComponent]
