@@ -1,48 +1,45 @@
 <div class="background py-1">
 
-<form>
-    <div class="form-group">
-    <img src="assets/logo.png">
+    <form>
+        <div class="form-group">
+        <img src="assets/logo.png">
+        
+       
+        <input type="text" placeholder="Nome" class="form-control" name="nome" [(ngModel)]="Pet.name">
+        <input type="text" placeholder="Espécie" class="form-control" name="especie" [(ngModel)]="Pet.species">
+        <input type="text" placeholder="Gênero" class="form-control" name="genero" [(ngModel)]="Pet.gender">
+        <input type="date" placeholder="Data de nascimento" class="form-control" name="idade" [(ngModel)]="Pet.birthdate">
+        <input type="text" placeholder="Raça" class="form-control" name="raca" [(ngModel)]="Pet.breed">
+        <input type="text" placeholder="Porte" class="form-control" name="porte" [(ngModel)]="Pet.size">
+        <input type="number" placeholder="Peso" class="form-control" name="peso" [(ngModel)]="Pet.weight">
+        <input type="checkbox" name="castrado" [ngModel]="Pet.neutered" (ngModelChange)="Pet.neutered = $event"> Castrado
+        <input type="checkbox" name="vacinado" [ngModel]="Pet.vaccinated" (ngModelChange)="Pet.vaccinated = $event">
+        Vacinado
+        <textarea type="text" placeholder="Descrição" class="form-control" name="descricao-pet" [(ngModel)]="Pet.description" ></textarea>
     
-   
-    <input type="text" placeholder="Nome" class="form-control" name="nome" [(ngModel)]="Pet.name">
-    <input type="text" placeholder="Espécie" class="form-control" name="especie" [(ngModel)]="Pet.species">
-    <input type="text" placeholder="Gênero" class="form-control" name="genero" [(ngModel)]="Pet.gender">
-    <input type="date" placeholder="Data de nascimento" class="form-control" name="idade" [(ngModel)]="Pet.birthdate">
-    <input type="text" placeholder="Raça" class="form-control" name="raca" [(ngModel)]="Pet.breed">
-    <input type="text" placeholder="Porte" class="form-control" name="porte" [(ngModel)]="Pet.size">
-    <input type="number" placeholder="Peso" class="form-control" name="peso" [(ngModel)]="Pet.weight">
-    <input type="checkbox" name="castrado" [ngModel]="Pet.neutered" (ngModelChange)="Pet.neutered = $event"> Castrado
-    <input type="checkbox" name="vacinado" [ngModel]="Pet.vaccinated" (ngModelChange)="Pet.vaccinated = $event">
-    Vacinado
-    <textarea type="text" placeholder="Descrição" class="form-control" name="descricao-pet" [(ngModel)]="Pet.description" ></textarea>
-
-
-    <input type="button" value="Cadastrar" *ngIf="btnCadastro" class="btn btn-success" (click)="cadastrar()">
-    <input type="button" value="Alterar" *ngIf="!btnCadastro" class="btn btn-warning" (click)="editar()">
-    <input type="button" value="Remover" *ngIf="!btnCadastro" class="btn btn-danger" (click)="remover()">
-    <input type="button" value="Cancelar" *ngIf="!btnCadastro" class="btn btn-secondary" (click)="cancelar()">
-</div>
-</form>
-
-<div class="card-container-wrapper">
+    
+        <input type="button" value="Cadastrar" *ngIf="btnCadastro" class="btn btn-success" (click)="cadastrar()">
+        <input type="button" value="Alterar" *ngIf="!btnCadastro" class="btn btn-warning" (click)="editar()">
+        <input type="button" value="Remover" *ngIf="!btnCadastro" class="btn btn-danger" (click)="remover()">
+        <input type="button" value="Cancelar" *ngIf="!btnCadastro" class="btn btn-secondary" (click)="cancelar()">
+    </div>
+    </form>
+    
+    
     <div class="card-container" *ngIf="tabela">
-    <div class="card card-item" *ngFor="let c of Pets; index as i">
-        <div class="card-body">
+        <div class="card card-item" *ngFor="let c of Pets; index as i">
+          <div class="card-body">
             <h1 class="card-title">{{c.name}}</h1>
             <p class="card-text">
-                <strong>Espécie:</strong> {{c.species}}<br>
-                <strong>Gênero:</strong> {{c.gender}}<br>
-                <strong>Idade:</strong> {{ formatarData(c.birthdate) }}<br>
-                <strong>Raça:</strong> {{c.breed}}<br>
-                <strong>Porte:</strong> {{c.size}}<br>
-                <strong>Peso:</strong> {{c.weight}}<br>
-                <strong>Castrado:</strong> {{ c.neutered ? 'Sim' : 'Não' }}<br>
-                <strong>Vacinado:</strong> {{ c.vaccinated ? 'Sim' : 'Não' }}<br>
-                <strong>Descrição:</strong> {{c.description}}
+              <strong>Espécie:</strong> {{c.species}}<br>
+              <strong>Gênero:</strong> {{c.gender}}<br>
+              <strong>Raça:</strong> {{c.breed}}<br>
+              <strong>Porte:</strong> {{c.size}}<br>
             </p>
-            <button class="btn btn-outline-success" (click)="selecionarPet(i)">Selecionar</button>
+            <button class="btn btn-primary" (click)="selecionarPet(i)">Editar Pet</button>
+            <span style="margin-right: 5px;"></span>
+            <button class="btn btn-secondary" (click)="mostrarMaisInformacoes(c)">Mais informações</button>
+          </div>
         </div>
+      </div>
     </div>
-  </div>
-</div>
