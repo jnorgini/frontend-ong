@@ -49,7 +49,7 @@ input[type="button"]{
   
 .background {
   background-image: url('/assets/img.jpg');
-  background-position: center;
+  background-position: top;
   background-size: cover;
   color: white;
 }
