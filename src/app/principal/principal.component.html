@@ -1,3 +1,7 @@
+
+     
+<div class="background">
+
 <form>
     <div class="form-group">
     <img src="assets/logo.png">
@@ -16,30 +20,28 @@
     <textarea type="text" placeholder="Descrição" class="form-control" name="descricao-pet" [(ngModel)]="Pet.description" ></textarea>
 
 
-    <input type="button" value="Cadastrar" *ngIf="btnCadastro" class="btn btn-outline-primary" (click)="cadastrar()">
-    <input type="button" value="Alterar" *ngIf="!btnCadastro" class="btn btn-outline-warning" (click)="editar()">
-    <input type="button" value="Remover" *ngIf="!btnCadastro" class="btn btn-outline-danger" (click)="remover()">
-    <input type="button" value="Cancelar" *ngIf="!btnCadastro" class="btn btn-outline-secondary" (click)="cancelar()">
+    <input type="button" value="Cadastrar" *ngIf="btnCadastro" class="btn btn-success" (click)="cadastrar()">
+    <input type="button" value="Alterar" *ngIf="!btnCadastro" class="btn btn-warning" (click)="editar()">
+    <input type="button" value="Remover" *ngIf="!btnCadastro" class="btn btn-danger" (click)="remover()">
+    <input type="button" value="Cancelar" *ngIf="!btnCadastro" class="btn btn-secondary" (click)="cancelar()">
 </div>
 </form>
 
-<div class="card-container-wrapper">
-    <div class="card-container" *ngIf="tabela">
+
+<div class="card-container" *ngIf="tabela">
     <div class="card card-item" *ngFor="let c of Pets; index as i">
-        <div class="card-body">
-            <h1 class="card-title">{{c.name}}</h1>
-            <p class="card-text">
-                <strong>Espécie:</strong> {{c.species}}<br>
-                <strong>Gênero:</strong> {{c.gender}}<br>
-                <strong>Idade:</strong> {{ formatarData(c.birthdate) }}<br>
-                <strong>Raça:</strong> {{c.breed}}<br>
-                <strong>Porte:</strong> {{c.size}}<br>
-                <strong>Peso:</strong> {{c.weight}}<br>
-                <strong>Castrado:</strong> {{ c.neutered ? 'Sim' : 'Não' }}<br>
-                <strong>Vacinado:</strong> {{ c.vaccinated ? 'Sim' : 'Não' }}<br>
-                <strong>Descrição:</strong> {{c.description}}
-            </p>
-            <button class="btn btn-outline-success" (click)="selecionarPet(i)">Selecionar</button>
-        </div>
+      <div class="card-body">
+        <h1 class="card-title">{{c.name}}</h1>
+        <p class="card-text">
+          <strong>Espécie:</strong> {{c.species}}<br>
+          <strong>Gênero:</strong> {{c.gender}}<br>
+          <strong>Raça:</strong> {{c.breed}}<br>
+          <strong>Porte:</strong> {{c.size}}<br>
+        </p>
+        <button class="btn btn-primary" (click)="selecionarPet(i)">Editar Pet</button>
+        <span style="margin-right: 5px;"></span>
+        <button class="btn btn-secondary" (click)="mostrarMaisInformacoes(c)">Mais informações</button>
+      </div>
     </div>
+  </div>
 </div>

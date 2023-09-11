@@ -7,32 +7,36 @@ form{
     width: 500px;
     margin: 30px auto;
     text-align: center;
+    
 }
 
 label {
     display: flex;
     margin-bottom: 5px; 
+    
 }
 
 input{
     margin-bottom: 10px;
+    
 }
 
 input[type="button"]{
     margin-top: 10px;
     margin-right: 10px;
+    
 }
 
 .card-container-wrapper {
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: flex-start; /* Alinha os cards no topo verticalmente */
+    justify-content: center;
+    align-items: flex-start;
   }
   
   .card-container {
     display: flex;
-    flex-wrap: wrap; /* Permite que os cards quebrem para a próxima linha quando não couberem mais na largura da tela */
-    justify-content: center; /* Centraliza os cards horizontalmente dentro do container */
+    flex-wrap: wrap; 
+    justify-content: center; 
   }
   
   .card-item {
@@ -43,3 +47,14 @@ input[type="button"]{
     border-radius: 5px;
   }
   
+.background {
+  background-image: url('/assets/img.jpg');
+  background-position: center;
+  background-size: cover;
+  color: white;
+}
+
+.form-content {
+  background-color: rgba(255, 255, 255, 0.8); 
+  padding: 20px; 
+}

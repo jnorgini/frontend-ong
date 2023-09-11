@@ -9,6 +9,18 @@ import { PetService } from '../service/pet.service';
 })
 export class PrincipalComponent {
 
+  mostrarMaisInformacoes(pet: Pet): void {
+    const mensagem = `Mais informações sobre o pet: ${pet.name}
+    Data de Nascimento: ${this.formatarData(pet.birthdate)}
+    Peso: ${pet.weight}
+    Castrado: ${pet.neutered ? 'Sim' : 'Não'}
+    Vacinado: ${pet.vaccinated ? 'Sim' : 'Não'}
+    Descrição: ${pet.description}
+    `;
+
+    alert(mensagem);
+  }
+
   formatarData(data: string): string {
     const dataFormatada = new Date(data);
     const dia = dataFormatada.getDate().toString().padStart(2, '0');
@@ -122,10 +134,10 @@ export class PrincipalComponent {
   }
 
 
-   
+
 
   // Método para cancelar
-  cancelar():void{
+  cancelar(): void {
 
     // Limpar o formulário
     this.Pet = new Pet();
