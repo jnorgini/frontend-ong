@@ -48,8 +48,8 @@ input[type="button"]{
 }
 
 .background {
-background-image: url('/assets/img.jpg');
-background-position: top;
+background-image: url('/assets/2.jpg');
+background-position: center;
 background-size: cover;
 color: white;
 }
