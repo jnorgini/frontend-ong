@@ -10,4 +10,5 @@ export class Pet{
     neutered:string = '';
     vaccinated:string = '';
     description:string = '';
+
 }
