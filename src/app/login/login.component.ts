@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { EventEmitter, Component, Output } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -6,14 +6,31 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  username: string = '';
-  password: string = '';
 
-  onSubmit() {
-    // Aqui você pode adicionar a lógica para verificar o nome de usuário e senha.
-    // Por exemplo, você pode fazer uma chamada de serviço para autenticação.
-    console.log('Username:', this.username);
-    console.log('Password:', this.password);
-    // Lógica de autenticação aqui
+  @Output() onSubmitLoginEvent = new EventEmitter();
+  @Output() onSubmitRegisterEvent = new EventEmitter();
+
+  active: string = "login";
+  username: string = "";
+  password: string = "";
+  login: string = "";
+
+	onLoginTab(): void {
+		this.active = "login";
+	}
+
+	onRegisterTab(): void {
+		this.active = "register";
+	}
+
+  onSubmitLogin(): void {
+    this.onSubmitLoginEvent.emit({"login": this.login, "password": this.password});
   }
+
+  onSubmitRegister(): void {
+    this.onSubmitRegisterEvent.emit({"firstName": this.username, "login": this.login, "password": this.password});
+  }
+
 }
+
+

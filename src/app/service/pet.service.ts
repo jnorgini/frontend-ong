@@ -9,32 +9,29 @@ import { Pet } from '../modelo/Pet';
 export class PetService {
 
   // URL da API
-  private selectUrl:string = 'http://localhost:8080/pets/all';
-  private addUrl:string = 'http://localhost:8080/pets/add';
-  private updateUrl:string = 'http://localhost:8080/pets/update';
-  private deleteUrl:string = 'http://localhost:8080/pets';
+  private url:string = 'http://localhost:8080/pets';
 
   // Construtor
   constructor(private http:HttpClient) { }
 
   // Método para selecionar todos 
   selecionar():Observable<Pet[]>{
-    return this.http.get<Pet[]>(this.selectUrl);
+    return this.http.get<Pet[]>(this.url);
   }
 
   // Método para cadastrar 
   cadastrar(obj:Pet):Observable<Pet>{
-    return this.http.post<Pet>(this.addUrl, obj);
+    return this.http.post<Pet>(this.url, obj);
   }
 
   // Método para atualizar 
   editar(obj:Pet):Observable<Pet>{
-    return this.http.put<Pet>(this.updateUrl, obj);
+    return this.http.put<Pet>(this.url, obj + '/');
   }
 
   // Método para remover
   remover(id:number):Observable<void>{
-    return this.http.delete<void>(this.deleteUrl + '/' + id)
+    return this.http.delete<void>(this.url + '/' + id)
   }
 
 }

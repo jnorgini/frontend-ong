@@ -1,52 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="row justify-content-center">
+	<div class="col-4">
+	<ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+	  <li class="nav-item" role="presentation">
+	    <button [ngClass]="active == 'login' ? 'nav-link active' : 'nav-link'" id="tab-login"
+	      (click)="onLoginTab()" >Login</button>
+	  </li>
+	  <li class="nav-item" role="presentation">
+	    <button [ngClass]="active == 'register' ? 'nav-link active' : 'nav-link'" id="tab-register"
+	      (click)="onRegisterTab()" >Register</button>
+	  </li>
+	</ul>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Login</title>
-    <!-- Adicione os links para os estilos do Bootstrap (CDN) -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
+	<div class="tab-content">
+	  <div [ngClass]="active == 'login' ? 'tab-pane fade show active' : 'tab-pane fade'">
+	    <form (ngSubmit)="onSubmitLogin()" #loginForm="ngForm">
 
-<body>
+	      <div class="form-outline mb-4">
+	        <input type="login" id="loginName" name= "login" class="form-control" [(ngModel)]="login" />
+	        <label class="form-label" for="loginName">Username</label>
+	      </div>
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="text-center">Login</h2>
-                    </div>
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="username">Nome de usuário:</label>
-                                <input type="text" class="form-control" id="username"
-                                    placeholder="Digite seu nome de usuário">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Senha:</label>
-                                <input type="password" class="form-control" id="password"
-                                    placeholder="Digite sua senha">
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-                        </form>
-                        <!-- Adicione o link para a página de signin abaixo do formulário -->
-                        <p class="mt-3 text-center">Não tem uma conta? <a
-                                href="file:///C:/Users/jnorg/Desktop/ADS/api-front/src/app/signup/signup.component.html">Crie
-                                uma agora</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	      <div class="form-outline mb-4">
+	        <input type="password" id="loginPassword" name="password" class="form-control" [(ngModel)]="password" />
+	        <label class="form-label" for="loginPassword">Password</label>
+	      </div>
 
-    <!-- Adicione os scripts do Bootstrap (CDN) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	      <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
 
-</body>
+	    </form>
+	  </div>
+	  <div [ngClass]="active == 'register' ? 'tab-pane fade show active' : 'tab-pane fade'">
+	    <form (ngSubmit)="onSubmitRegister()" #registerForm="ngForm">
 
-</html>
+	      <div class="form-outline mb-4">
+	        <input type="text" id="username" name="username" class="form-control" [(ngModel)]="username" />
+	        <label class="form-label" for="firstName">Username</label>
+	      </div>
+
+	      <div class="form-outline mb-4">
+	        <input type="text" id="login" name="login" class="form-control" [(ngModel)]="login" />
+	        <label class="form-label" for="login">Username</label>
+	      </div>
+
+	      <div class="form-outline mb-4">
+	        <input type="password" id="registerPassword" name="password" class="form-control" [(ngModel)]="password" />
+	        <label class="form-label" for="registerPassword">Password</label>
+	      </div>
+
+	      <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+	    </form>
+	  </div>
+	</div>
+	</div>
+</div>
