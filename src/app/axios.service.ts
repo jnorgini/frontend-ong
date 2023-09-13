@@ -7,22 +7,21 @@ import axios from 'axios';
 export class AxiosService {
 
   constructor() {
-    axios.defaults.baseURL = 'http://localhost:8080/auth';
-    axios.defaults.headers.post['Content-Type'] = 'application/json';
+    axios.defaults.baseURL = 'http://localhost:8080';
+    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
   }
 
   getAuthToken(): string | null {
-    return window.localStorage.getItem("auth_token");
+    return window.localStorage.getItem("token");
   }
 
   setAuthToken(token: string | null): void {
     if (token !== null) {
-      window.localStorage.setItem("auth_token", token);
+      window.localStorage.setItem("token", token);
     } else {
-      window.localStorage.removeItem("auth_token");
+      window.localStorage.removeItem("token");
     }
   }
-
 
   request(method: string, url: string, data: any): Promise<any> {
       let headers: any = {};
@@ -33,9 +32,9 @@ export class AxiosService {
 
       return axios({
           method: method,
-          url: url,
+          headers: headers,
           data: data,
-          headers: headers
+          url: url
       });
   }
 }
