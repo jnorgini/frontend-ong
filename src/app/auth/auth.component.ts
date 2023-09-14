@@ -12,6 +12,8 @@ export class AuthComponent {
   constructor(private axiosService: AxiosService) {}
 
   // Função para fazer a chamada de API quando necessário, por exemplo, em resposta a um botão clicado
+
+  
   makeAPICall() {
     this.axiosService.request(
       "POST",

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Pet } from '../modelo/Pet';
 import { PetService } from '../service/pet.service';
 
@@ -7,11 +7,11 @@ import { PetService } from '../service/pet.service';
   templateUrl: './principal.component.html',
   styleUrls: ['./principal.component.css']
 })
-export class PrincipalComponent {
+export class PrincipalComponent implements OnInit {
 
   mostrarMaisInformacoes(pet: Pet): void {
     const mensagem = `Mais informações sobre o pet: ${pet.name}
-    Data de Nascimento: ${this.formatarData(pet.birthdate)}
+    Idade: ${pet.age}
     Peso: ${pet.weight}
     Castrado: ${pet.neutered ? 'Sim' : 'Não'}
     Vacinado: ${pet.vaccinated ? 'Sim' : 'Não'}
@@ -20,14 +20,7 @@ export class PrincipalComponent {
 
     alert(mensagem);
   }
-
-  formatarData(data: string): string {
-    const dataFormatada = new Date(data);
-    const dia = dataFormatada.getDate().toString().padStart(2, '0');
-    const mes = (dataFormatada.getMonth() + 1).toString().padStart(2, '0');
-    const ano = dataFormatada.getFullYear().toString();
-    return `${dia}/${mes}/${ano}`;
-  }
+  
 
   // Objeto do tipo Dog
   Pet = new Pet();
@@ -79,32 +72,32 @@ export class PrincipalComponent {
     this.tabela = false;
   }
 
-  // Método para atualizar dogs
-  editar(): void {
+   // Método para atualizar pets
+   editar(): void {
     this.service.editar(this.Pet)
-      .subscribe(retorno => {
-        // Obter posição do vetor onde está o dog
-        let posicao = this.Pets.findIndex(obj => {
-          return obj.id == retorno.id;
-        });
+    .subscribe(retorno => {
 
-        // Alterar os dados do dog no vetor
-        this.Pets[posicao] = retorno;
-
-        // Limpar formulário
-        this.Pet = new Pet();
-
-        // Visibilidade dos botões
-        this.btnCadastro = true;
-
-        // Visibilidade da tabela
-        this.tabela = true;
-
-        // Mensagem
-        alert('Pet alterado com sucesso!');
-
+      // Obter posição do vetor onde está o pet
+      let posicao = this.Pets.findIndex(obj => {
+        return obj.id == retorno.id;
       });
-  }
+
+      // Alterar os dados do pet no vetor
+      this.Pets[posicao] = retorno;
+
+      // Limpar formulário
+      this.Pet = new Pet();
+
+      // Visibilidade dos botões
+      this.btnCadastro = true;
+
+      // Visibilidade da tabela
+      this.tabela = true;
+
+      // Mensagem
+      alert('Pet alterado com sucesso!');
+    })
+   }
 
   // Método para atualizar dogs
   remover(): void {
