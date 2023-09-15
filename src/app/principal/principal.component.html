@@ -15,7 +15,7 @@
         <input type="checkbox" name="castrado" [ngModel]="Pet.neutered" (ngModelChange)="Pet.neutered = $event"> Castrado
         <input type="checkbox" name="vacinado" [ngModel]="Pet.vaccinated" (ngModelChange)="Pet.vaccinated = $event">
         Vacinado
-        <textarea type="text" placeholder="Descrição" class="form-control" name="descricao-pet" [(ngModel)]="Pet.description" ></textarea>
+        <textarea type="text" placeholder="Descrição" class="form-control" name="descricao-pet" [(ngModel)]="Pet.description"></textarea>
     
     
         <input type="button" value="Cadastrar" *ngIf="btnCadastro" class="btn btn-success" (click)="cadastrar()">

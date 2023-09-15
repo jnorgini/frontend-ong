@@ -1,13 +1,61 @@
-<div class="content" role="main">
-    <h2>Register</h2>
-    <div>name: <input [(ngModel)]="registerDto.username" />
-        <div>password: <input [(ngModel)]="registerDto.password" />
-            <div>role: <input [(ngModel)]="registerDto.role" />
-                <button (click)="register(registerDto)">Register</button>
+<section class="vh-100">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 text-black">
+        <div class="px-5 ms-xl-4">
+          <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
+          <span class="h1 fw-bold mb-0">Logo</span>
+        </div>
 
-                <hr />
+        <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+          <form style="width: 23rem;">
+            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">{{ isLogin ? 'Log in' : 'Registro' }}</h3>
 
-                <div>name: <input [(ngModel)]="loginDto.username" />
-                    <div>password: <input [(ngModel)]="loginDto.password" />
-                        <button (click)="login(loginDto)">Login</button>
-                    </div>
+            <!-- Formulário de login -->
+            <form *ngIf="isLogin" (ngSubmit)="login(loginDto)">
+              <div class="form-outline mb-4">
+                <input type="text" id="username" name="username" [(ngModel)]="loginDto.username" class="form-control form-control-lg" required>
+                <label class="form-label" for="username">Usuário</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="password" id="password" name="password" [(ngModel)]="loginDto.password" class="form-control form-control-lg" required>
+                <label class="form-label" for="password">Senha</label>
+              </div>
+
+              <div class="pt-1 mb-4">
+                <button class="btn btn-info btn-lg btn-block" type="button" (click)="login(loginDto)">Login</button>
+              </div>
+
+              <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Esqueceu a senha?</a></p>
+              <p>Não possui uma conta? <a href="#!" class="link-info" (click)="toggleForm()">Registre-se aqui</a></p>
+            </form>
+
+            <!-- Formulário de registro -->
+            <form *ngIf="!isLogin" (ngSubmit)="register(registerDto)">
+              <div class="form-outline mb-4">
+                <input type="text" id="newUsername" name="newUsername" [(ngModel)]="registerDto.username" class="form-control form-control-lg" required>
+                <label class="form-label" for="newUsername">Novo Usuário</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="password" id="newPassword" name="newPassword" [(ngModel)]="registerDto.password" class="form-control form-control-lg" required>
+                <label class="form-label" for="newPassword">Nova Senha</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="text" id="role" name="role" [(ngModel)]="registerDto.role" class="form-control form-control-lg" required>
+                <label class="form-label" for="role">Role</label>
+              </div>
+
+              <button type="submit" class="btn btn-success btn-lg btn-block" (click)="register(registerDto)">Registrar</button>
+            </form>
+          </form>
+        </div>
+      </div>
+      <div class="col-sm-6 px-0 d-none d-sm-block">
+        <img src="/assets/b.jpg"
+          alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+      </div>
+    </div>
+  </div>

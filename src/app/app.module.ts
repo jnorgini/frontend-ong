@@ -12,11 +12,13 @@ import { LoginComponent } from './login/login.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     PrincipalComponent,
-    LoginComponent,
+    LoginComponent
+
 
   ],
   imports: [

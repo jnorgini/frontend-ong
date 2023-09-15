@@ -17,6 +17,7 @@ export class LoginComponent {
   loginDto = new Login();
   registerDto = new Register();
   jwtDto = new JwtAuth();
+  isLogin: boolean = true;
 
   constructor(
     private authService: AuthenticationService,
@@ -25,12 +26,18 @@ export class LoginComponent {
 
   register(registerDto: Register) {
     this.authService.register(registerDto).subscribe();
+    this.router.navigate(['/login'])
   }
+  
 
   login(loginDto: Login) {
     this.authService.login(loginDto).subscribe((jwtDto => {
       localStorage.setItem('jwtToken', jwtDto.token);
       this.router.navigate(['/pets']);
     }));
+  }
+
+  toggleForm() {
+    this.isLogin = !this.isLogin;
   }
 }
