@@ -9,5 +9,5 @@
 
                 <div>name: <input [(ngModel)]="loginDto.username" />
                     <div>password: <input [(ngModel)]="loginDto.password" />
-                        <button [routerLink]="'/pets'" (click)="login(loginDto)">Login</button>
+                        <button (click)="login(loginDto)">Login</button>
                     </div>
