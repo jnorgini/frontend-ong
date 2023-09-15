@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './login/login.component';
 
 
@@ -17,9 +16,7 @@ import { LoginComponent } from './login/login.component';
   declarations: [
     AppComponent,
     PrincipalComponent,
-    AuthComponent,
     LoginComponent,
-
 
   ],
   imports: [

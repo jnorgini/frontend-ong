@@ -1,4 +1,9 @@
-import { EventEmitter, Component, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { Login } from '../models/login';
+import { Register } from '../models/register';
+import { JwtAuth } from '../models/jwtAuth';
+import { AuthenticationService } from '../services/authentication.service';
+
 
 @Component({
   selector: 'app-login',
@@ -6,29 +11,20 @@ import { EventEmitter, Component, Output } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  title = 'api-front';
+  loginDto = new Login();
+  registerDto = new Register();
+  jwtDto = new JwtAuth();
 
-  @Output() onSubmitLoginEvent = new EventEmitter();
-  @Output() onSubmitRegisterEvent = new EventEmitter();
+  constructor(private authService: AuthenticationService) {}
 
-  active: string = "login";
-  username: string = "";
-  password: string = "";
-  role: string = "";
-
-	onLoginTab(): void {
-		this.active = "login";
-	}
-
-	onRegisterTab(): void {
-		this.active = "register";
-	}
-
-  onSubmitLogin(): void {
-    this.onSubmitLoginEvent.emit({"username": this.username, "password": this.password});
+  register(registerDto: Register) {
+    this.authService.register(registerDto).subscribe();
   }
 
-  onSubmitRegister(): void {
-    this.onSubmitRegisterEvent.emit({"username": this.username, "password": this.password, "role": this.role, });
+  login(loginDto: Login) {
+    this.authService.login(loginDto).subscribe((jwtDto => {
+      localStorage.setItem('jwtToken', jwtDto.token);
+    }));
   }
-
 }
