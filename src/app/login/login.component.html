@@ -28,6 +28,9 @@
                 </div>
                 <button class="btn" type="button" (click)="login(loginDto)">Login</button>
             </form>
+            <div class="register-link">
+                <p>Don't have an account? <a href="#" (click)="toggleForm()">Register</a></p>
+            </div>
         </div>
 
         <!-- Register -->
@@ -52,9 +55,7 @@
         </div>
 
         <!-- Link para alternar entre os formulários -->
-        <div class="register-link">
-            <p>Don't have an account? <a href="#" (click)="toggleForm()">Register</a></p>
-        </div>
+       
     </div>
 </body>
 </html>
