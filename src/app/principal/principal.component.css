@@ -41,17 +41,20 @@ input[type="button"]{
 
 .card-item {
   width: 300px;
-  border: 1px solid #ccc;
   margin: 10px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
+  background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    color: #fff;
+    
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
 }
 
 .background {
-background-image: url('/assets/4.jpg');
+background-image: url('/assets/b.jpg');
 background-position: center;
 background-size: cover;
-color: white;
 }
 
 .form-content {
@@ -76,3 +79,14 @@ padding: 20px;
     margin-right: 10px; 
   }
 }
+
+div.form-group {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+

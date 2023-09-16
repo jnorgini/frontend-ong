@@ -27,6 +27,8 @@ export class LoginComponent {
   register(registerDto: Register) {
     this.authService.register(registerDto).subscribe();
     this.router.navigate(['/login'])
+    this.registerDto = new Register();
+   
   }
   
 
@@ -34,6 +36,8 @@ export class LoginComponent {
     this.authService.login(loginDto).subscribe((jwtDto => {
       localStorage.setItem('jwtToken', jwtDto.token);
       this.router.navigate(['/pets']);
+      this.loginDto = new Login();
+      
     }));
   }
 
