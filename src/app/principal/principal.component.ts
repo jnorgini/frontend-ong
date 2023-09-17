@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Pet } from '../models/Pet';
 import { PetService } from '../services/pet.service';
+import { catchError, tap, throwError } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-principal',
@@ -8,6 +11,8 @@ import { PetService } from '../services/pet.service';
   styleUrls: ['./principal.component.css']
 })
 export class PrincipalComponent implements OnInit {
+
+  constructor(private service: PetService, private toastr: ToastrService, private router: Router) { }
 
   mostrarMaisInformacoes(pet: Pet): void {
     const mensagem = `Mais informações sobre o pet: ${pet.name}
@@ -34,8 +39,6 @@ export class PrincipalComponent implements OnInit {
   // JSON de Pets
   Pets: Pet[] = [];
 
-  // Construtor
-  constructor(private service: PetService) { }
 
   // Método de seleção
   selecionar(): void {
@@ -46,6 +49,14 @@ export class PrincipalComponent implements OnInit {
   // Método de cadastro
   cadastrar(): void {
     this.service.cadastrar(this.Pet)
+    .pipe(
+      catchError((error) => {
+        this.toastr.warning('Erro ao tentar cadastrar novo pet. Verifique sua conexão com a internet e tente novamente.');
+        throw error;
+      }), tap(() => {
+        this.toastr.success('Novo pet cadastrado com sucesso!')
+      })
+    )
       .subscribe(retorno => {
 
         // Cadastrar o dog no vetor
@@ -54,8 +65,6 @@ export class PrincipalComponent implements OnInit {
         // Limpar formulário
         this.Pet = new Pet();
 
-        // Mensagem
-        alert('Pet cadastrado com sucesso!');
       });
   }
 
@@ -75,6 +84,14 @@ export class PrincipalComponent implements OnInit {
    // Método para atualizar pets
    editar(): void {
     this.service.editar(this.Pet)
+    .pipe(
+      catchError((error) => {
+        this.toastr.warning('Erro ao tentar editar o pet. Verifique sua conexão com a internet e tente novamente.');
+        throw error;
+      }), tap(() => {
+        this.toastr.success('Pet atualizado com sucesso!')
+      })
+    )
     .subscribe(retorno => {
 
       // Obter posição do vetor onde está o pet
@@ -94,14 +111,20 @@ export class PrincipalComponent implements OnInit {
       // Visibilidade da tabela
       this.tabela = true;
 
-      // Mensagem
-      alert('Pet alterado com sucesso!');
     })
    }
 
   // Método para atualizar dogs
   remover(): void {
     this.service.remover(this.Pet.id)
+    .pipe(
+      catchError((error) => {
+        this.toastr.warning('Erro ao tentar excluir cadastro de pet. Verifique sua conexão com a internet e tente novamente.');
+        throw error;
+      }), tap(() => {
+        this.toastr.success('Cadastro de pet removido com sucesso!')
+      })
+    )
       .subscribe(retorno => {
         // Obter posição do vetor onde está o dog
         let posicao = this.Pets.findIndex(obj => {
@@ -120,13 +143,8 @@ export class PrincipalComponent implements OnInit {
         // Visibilidade da tabela
         this.tabela = true;
 
-        // Mensagem
-        alert('Pet removido com sucesso!');
-
       });
   }
-
-
 
 
   // Método para cancelar
@@ -145,6 +163,10 @@ export class PrincipalComponent implements OnInit {
   // Método de inicialização
   ngOnInit() {
     this.selecionar();
+  }
+
+  routeLogin() {
+    this.router.navigate(['/login']);
   }
 
 }

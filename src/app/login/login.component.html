@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form in HTML and CSS | Codehal</title>
+    <title>Login/Register</title>
     <link rel="" href=""> 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -15,46 +15,47 @@
             <form (ngSubmit)="login(loginDto)">
                 <h1>Login</h1>
                 <div class="input-box">
-                    <input type="text" id="username" name="username" placeholder="Username" [(ngModel)]="loginDto.username" required>
+                    <input type="text" id="username" name="username" placeholder="Usuário" [(ngModel)]="loginDto.username" required>
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" id="password" name="password" placeholder="Password" [(ngModel)]="loginDto.password" required>
+                    <input type="password" id="password" name="password" placeholder="Senha" [(ngModel)]="loginDto.password" required>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
-                <div class="remember-forgot">
-                    <label><input type="checkbox">Remember me</label>
+                <!--<div class="remember-forgot">
+                    <label><input type="checkbox">Lembrar de mim</label>
                  
-                </div>
+                </div>-->
                 <button class="btn" type="button" (click)="login(loginDto)">Login</button>
+
+           
             </form>
+            <!--<div class="register-link">
+                <p>Não tem uma conta? <a href="javascript:void(0)" (click)="toggleForm()">Registre-se</a></p>
+            </div>-->
         </div>
 
-        <!-- Register -->
+        <!-- Register 
         <div class="register-form" *ngIf="!isLogin">
             <form (ngSubmit)="register(registerDto)">
-                <h1>Register</h1>
+                <h1>Cadastro</h1>
                 <div class="input-box">
-                    <input type="text" id="username" name="username" placeholder="Username" [(ngModel)]="registerDto.username" required>
+                    <input type="text" id="username" name="username" placeholder="Usuário" [(ngModel)]="registerDto.username" required>
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" id="password" name="password" placeholder="Password" [(ngModel)]="registerDto.password" required>
+                    <input type="password" id="password" name="password" placeholder="Senha" [(ngModel)]="registerDto.password" required>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
                 <div class="input-box">
-                    <input type="text" id="role" name="role" placeholder="Role" [(ngModel)]="registerDto.role" required>
+                    <input type="text" id="role" name="role" placeholder="Código de segurança" [(ngModel)]="registerDto.role" required>
                     <i class='bx bx-shield-quarter'></i>
+                    <span class="a">Login</span>
                 </div>
-                <button class="btn" type="button" (click)="register(registerDto)">Register</button>
-            </form>
-            
-        </div>
-
-        <!-- Link para alternar entre os formulários -->
-        <div class="register-link">
-            <p>Don't have an account? <a href="#" (click)="toggleForm()">Register</a></p>
-        </div>
+                <button class="btn" type="button" (click)="register(registerDto)">Criar conta</button>
+            </form>   
+        </div>-->
+        
     </div>
 </body>
 </html>
