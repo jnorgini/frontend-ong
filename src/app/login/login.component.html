@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form in HTML and CSS | Codehal</title>
+    <link rel="" href=""> 
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Login -->
+        <div class="login-form" *ngIf="isLogin">
+            <form (ngSubmit)="login(loginDto)">
+                <h1>Login</h1>
+                <div class="input-box">
+                    <input type="text" id="username" name="username" placeholder="Username" [(ngModel)]="loginDto.username" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="password" name="password" placeholder="Password" [(ngModel)]="loginDto.password" required>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Remember me</label>
+                 
+                </div>
+                <button class="btn" type="button" (click)="login(loginDto)">Login</button>
+            </form>
+        </div>
+
+        <!-- Register -->
+        <div class="register-form" *ngIf="!isLogin">
+            <form (ngSubmit)="register(registerDto)">
+                <h1>Register</h1>
+                <div class="input-box">
+                    <input type="text" id="username" name="username" placeholder="Username" [(ngModel)]="registerDto.username" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="password" name="password" placeholder="Password" [(ngModel)]="registerDto.password" required>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="role" name="role" placeholder="Role" [(ngModel)]="registerDto.role" required>
+                    <i class='bx bx-shield-quarter'></i>
+                </div>
+                <button class="btn" type="button" (click)="register(registerDto)">Register</button>
+            </form>
+            
+        </div>
+
+        <!-- Link para alternar entre os formulários -->
+        <div class="register-link">
+            <p>Don't have an account? <a href="#" (click)="toggleForm()">Register</a></p>
+        </div>
+    </div>
+</body>
+</html>

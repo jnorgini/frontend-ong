@@ -1,22 +1,32 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { MomentModule } from 'ngx-moment'; // Importe o MomentModule
-import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { PrincipalComponent } from './principal/principal.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    PrincipalComponent
+    PrincipalComponent,
+    LoginComponent,
+
+
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    MomentModule // Adicione o MomentModule aos imports
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
