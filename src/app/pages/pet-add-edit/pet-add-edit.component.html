@@ -1,0 +1,98 @@
+<div mat-dialog-title>
+  <h1>Pet Form</h1>
+</div>
+  <div mat-dialog-content class="content">
+    <div class="rowe">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" placeholder="Ex. Totó" [(ngModel)]="Pet.name">
+      </mat-form-field>
+    </div>
+
+    <div class="rowe">
+      <mat-form-field appearance="outline">
+        <mat-label>Raça</mat-label>
+        <input matInput type="text" placeholder="Ex. pitbull" [(ngModel)]="Pet.breed">
+      </mat-form-field>
+    </div>
+
+    <div class="rowe">
+      <mat-form-field appearance="outline">
+        <mat-label>Vacinação</mat-label>
+        <input matInput type="text" placeholder="Ex. 1ª dose vacina 'x'" [(ngModel)]="Pet.vaccination">
+      </mat-form-field>
+    </div>
+
+    <div class="rowe">
+      <mat-form-field appearance="outline">
+        <mat-label>Peso</mat-label>
+        <input matInput type="number" placeholder="Ex. 25" [(ngModel)]="Pet.weight">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Nascimento</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="Pet.birthdate">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="rowe">
+      <mat-form-field appearance="outline">
+        <mat-label>Espécie</mat-label>
+        <mat-select [(ngModel)]="Pet.species">
+          <mat-option value="Cachorro">Cachorro</mat-option>
+          <mat-option value="Gato">Gato</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Gênero</mat-label>
+        <mat-select [(ngModel)]="Pet.gender">
+          <mat-option value="Fêmea">Fêmea</mat-option>
+          <mat-option value="Macho">Macho</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+    <div class="rowe">
+      <mat-form-field appearance="outline">
+        <mat-label>Castrado</mat-label>
+        <mat-select [(ngModel)]="Pet.neutered">
+          <mat-option value=true>Sim</mat-option>
+          <mat-option value=false>Não</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Porte</mat-label>
+        <mat-select [(ngModel)]="Pet.size">
+          <mat-option value="Pequeno">Pequeno</mat-option>
+          <mat-option value="Médio">Médio</mat-option>
+          <mat-option value="Grande">Grande</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="rowe">
+      <mat-form-field appearance="outline">
+        <mat-label>Microchip</mat-label>
+        <input matInput type="text" placeholder="Ex. 123A" [(ngModel)]="Pet.microchip">
+      </mat-form-field>
+    </div>
+
+    <div class="rowe">
+      <mat-form-field>
+        <mat-label>Descrição</mat-label>
+        <textarea matInput placeholder="Ex. agitado" [(ngModel)]="Pet.description"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button (click)="cancel()">Cancel</button>
+      <button mat-raised-button color="primary" (click)="add()">Save</button>
+    </div>
+    <div mat-dialog-actions class="action2">
+      <button mat-raised-button [ngClass]="{'blue-button': editMode}" (click)="edit()">Edit</button>
+      <button mat-raised-button color="warn" (click)="remove()">Remove</button>
+    </div>
+  </div>

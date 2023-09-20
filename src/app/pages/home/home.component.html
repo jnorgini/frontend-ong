@@ -1,40 +1,21 @@
-<form>
-  <div class="form-group">
-
-  <input type="text" placeholder="Nome" class="form-control" name="nome" [(ngModel)]="Pet.name">
-  <input type="text" placeholder="Espécie" class="form-control" name="especie" [(ngModel)]="Pet.species">
-  <input type="text" placeholder="Gênero" class="form-control" name="genero" [(ngModel)]="Pet.gender">
-  <input type="text" placeholder="Idade" class="form-control" name="idade" [(ngModel)]="Pet.age">
-  <input type="text" placeholder="Raça" class="form-control" name="raca" [(ngModel)]="Pet.breed">
-  <input type="text" placeholder="Porte" class="form-control" name="porte" [(ngModel)]="Pet.size">
-  <input type="number" placeholder="Peso" class="form-control" name="peso" [(ngModel)]="Pet.weight">
-  <input type="checkbox" name="castrado" [ngModel]="Pet.neutered" (ngModelChange)="Pet.neutered = $event"> Castrado
-  <input type="checkbox" name="vacinado" [ngModel]="Pet.vaccinated" (ngModelChange)="Pet.vaccinated = $event">
-  Vacinado
-  <textarea type="text" placeholder="Descrição" class="form-control" name="descricao-pet" [(ngModel)]="Pet.description"></textarea>
+<button mat-raised-button color="primary" (click)="openAddEditPetForm()">ADD PET</button>
 
 
-  <input type="button" value="Cadastrar" *ngIf="showButton" class="btn btn-success" (click)="add()">
-  <input type="button" value="Alterar" *ngIf="!showButton" class="btn btn-warning" (click)="update()">
-  <input type="button" value="Remover" *ngIf="!showButton" class="btn btn-danger" (click)="remove()">
-  <input type="button" value="Cancelar" *ngIf="!showButton" class="btn btn-secondary" (click)="cancel()">
-</div>
-</form>
-
-
-<div class="card-container" *ngIf="table">
-  <div class="card card-item" *ngFor="let c of Pets; index as i">
-    <div class="card-body">
-      <h1 class="card-title">{{c.name}}</h1>
-      <p class="card-text">
-        <strong>Espécie:</strong> {{c.species}}<br>
-        <strong>Gênero:</strong> {{c.gender}}<br>
-        <strong>Raça:</strong> {{c.breed}}<br>
-        <strong>Porte:</strong> {{c.size}}<br>
-      </p>
-      <button class="btn btn-primary" (click)="findById(i)">Editar Pet</button>
-      <span style="margin-right: 5px;"></span>
-      <button class="btn btn-secondary" (click)="showMoreInfo(c)">Mais informações</button>
-    </div>
-  </div>
-</div>
+<table class="table table-hover">
+  <thead>
+    <tr *ngFor="let c of Pets">
+      <th th scope="col">#</th>
+      <th th scope="col">{{c.name}}</th>
+      <th th scope="col">{{c.species}}</th>
+      <th th scope="col">{{c.gender}}</th>
+      <th th scope="col">{{c.birthdate}}</th>
+      <th th scope="col">{{c.breed}}</th>
+      <th th scope="col">{{c.size}}</th>
+      <th th scope="col">{{c.weight}}</th>
+      <th th scope="col">{{c.neutered}}</th>
+      <th th scope="col">{{c.vaccination}}</th>
+      <th th scope="col">{{c.description}}</th>
+      <td><button class="btn btn-success" (click)="openAddEditPetForm()">Selecionar</button></td>
+    </tr>
+  </thead>
+</table>

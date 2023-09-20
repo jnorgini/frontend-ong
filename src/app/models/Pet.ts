@@ -3,12 +3,13 @@ export class Pet {
     name: string = '';
     species: string = '';
     gender: string = '';
-    age: string = ''; 
+    birthdate: string | null = null;
     breed: string = '';
     size: string = '';
-    weight: string = '';
+    weight: number | null = null; 
     neutered: string = '';
-    vaccinated: string = '';
+    microchip: string = '';
+    vaccination: string = '';
     description: string = '';
   }
   

@@ -1,0 +1,24 @@
+.h1 {
+    text-align: center;
+}
+
+.content {
+    padding-top: 10px;
+}
+
+.rowe {
+    display: flex;
+    gap: 10px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.action button {
+    flex: 1;
+}
+
+.action2 button {
+    flex: 1;
+}
