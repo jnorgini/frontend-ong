@@ -27,11 +27,11 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule} from '@angular/material/radio';
-import { PetAddEditComponent } from './pages/pet-add-edit/pet-add-edit.component';
 import { MatInputModule } from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { AddPetComponent } from './pages/add-pet/add-pet.component';
 
 
 
@@ -44,7 +44,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     AboutComponent,
     HelpComponent,
     NotFoundComponent,
-    PetAddEditComponent,
+    AddPetComponent,
 
   ],
   imports: [

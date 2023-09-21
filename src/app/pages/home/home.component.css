@@ -1,0 +1,33 @@
+.content {
+    width: 90%;
+    margin: 1.4rem auto auto auto;
+}
+
+.button {
+    margin-bottom: .8rem;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.title h1 {
+    font-size: 2rem;
+    color: rgb(212, 207, 207);
+    font-weight: 500;
+}
+
+.table {
+    width: 100%;
+}
+
+.icon-edit {
+    color: rgb(29, 29, 238); 
+  }
+
+  .icon-delete {
+    color: rgb(214, 28, 28); 
+    margin-left: .5rem;
+  }
+

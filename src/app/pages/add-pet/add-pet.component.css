@@ -1,5 +1,7 @@
-.h1 {
+.title-h1 {
     text-align: center;
+    margin-bottom: 3rem;
+    font-weight: 500;
 }
 
 .content {
@@ -19,6 +21,8 @@ mat-form-field {
     flex: 1;
 }
 
-.action2 button {
-    flex: 1;
+.button-create.mat-elevation-z8 {
+    color: green;
 }
+
+
