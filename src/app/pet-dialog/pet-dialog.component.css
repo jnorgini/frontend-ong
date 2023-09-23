@@ -1,7 +1,13 @@
 .title-h1 {
     text-align: center;
-    margin-bottom: 3rem;
-    font-weight: 500;
+}
+
+.mat-mdc-slide-toggle {
+    display: inline-block;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    outline: 0;
+    position: relative;
+    bottom: 10px;
 }
 
 .content {

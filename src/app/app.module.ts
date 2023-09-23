@@ -31,8 +31,9 @@ import { MatInputModule } from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { AddPetComponent } from './pages/add-pet/add-pet.component';
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { PetDialogComponent } from './pet-dialog/pet-dialog.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -44,7 +45,7 @@ import { AddPetComponent } from './pages/add-pet/add-pet.component';
     AboutComponent,
     HelpComponent,
     NotFoundComponent,
-    AddPetComponent,
+    PetDialogComponent,
 
   ],
   imports: [
@@ -69,6 +70,8 @@ import { AddPetComponent } from './pages/add-pet/add-pet.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
     ToastrModule.forRoot({
       "closeButton": true,
       "newestOnTop": false,

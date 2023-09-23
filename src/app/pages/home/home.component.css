@@ -23,11 +23,13 @@
 }
 
 .icon-edit {
-    color: rgb(29, 29, 238); 
-  }
+    color: darkblue;
+}
 
-  .icon-delete {
-    color: rgb(214, 28, 28); 
-    margin-left: .5rem;
-  }
+.icon-delete {
+    color: rgb(156, 54, 54);
+}
 
+.icon-info {
+    color: darkgray;
+}

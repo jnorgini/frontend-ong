@@ -1,55 +1,39 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Pet } from '../models/Pet';
 import { Subject } from 'rxjs';
-import { tap } from 'rxjs/operators';
-
+import { map } from 'rxjs/operators';
+import { Pet } from '../models/Pet';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PetService {
-
-  private url: string = 'http://localhost:8080/pets';
+  private apiUrl: string = 'http://localhost:8080/pets';
 
   constructor(private http: HttpClient) { }
 
-  findAll(): Observable<Pet[]> {
-    return this.http.get<Pet[]>(this.url);
+  getPets(): Observable<Pet[]> {
+    return this.http
+        .get(this.apiUrl)
+        .pipe<Pet[]>(map((data: any) => data));
   }
 
-  create(obj: Pet): Observable<Pet> {
-    return this.http.post<Pet>(this.url, obj)
-    .pipe(
-      tap(() => {
-        this._refreshNeeded$.next();
-      })
-    );
+  addPet(pet: Pet): Observable<Pet> {
+    return this.http.post<Pet>(this.apiUrl, pet);
   }
 
-  
-  edit(obj: Pet): Observable<Pet> {
-    const editUrl = `${this.url}/${obj.id}`;
-    return this.http.put<Pet>(editUrl, obj);
+  updatePet(pet: Pet): Observable<Pet> {
+    return this.http.put<Pet>(`${this.apiUrl}/${pet.id}`, pet);
   }
 
-  remove(id: number): Observable<void> {
-    return this.http.delete<void>(this.url + '/' + id)
+  deletePet(id: number): Observable<Pet> {
+    return this.http.delete<Pet>(`${this.apiUrl}/${id}`);
   }
 
   private _listners = new Subject<any>();
   listen(): Observable<any>{
     return this._listners.asObservable();
-  }
-  filter(filterBy: string) {
-    this._listners.next(filterBy);
-  }
-
-  private _refreshNeeded$ = new Subject<void>();
-
-  get refreshNeeded$() {
-    return this._refreshNeeded$;
   }
 
 }
