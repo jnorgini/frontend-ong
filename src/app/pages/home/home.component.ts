@@ -78,5 +78,5 @@ export class HomeComponent implements OnInit {
 
     this.toastr.info(mensagem)
   }
-
+     
 }
