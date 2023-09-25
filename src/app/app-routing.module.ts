@@ -1,24 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './pages/home/home.component';
-import { ProfileComponent } from './pages/profile/profile.component';
 import { AboutComponent } from './pages/about/about.component';
-import { HelpComponent } from './pages/help/help.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { HomeComponent } from './pages/home/home.component';
+import { adminGuard } from './auth/admin.guard';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
-  { path: 'full', redirectTo: 'home'},
-  { path: 'home', component: HomeComponent},
-  { path: 'profile', component: ProfileComponent},
-  { path: 'about', component: AboutComponent},
-  { path: 'help', component: HelpComponent},
-  { path: 'login', component: LoginComponent},
-  { path: '**', component: NotFoundComponent},
-
+  {
+    path: '', component: LoginComponent 
+  },
+  {
+    path: 'home', component: HomeComponent, canActivate: [adminGuard]
+  },
+  {
+    path: 'login', component: LoginComponent 
+  },
+  {
+    path: 'profile', component: ProfileComponent, canActivate: [adminGuard]
+  },
+  {
+    path: 'about', component: AboutComponent, canActivate: [adminGuard]
+  },
+  {
+    path: '**', component: NotFoundComponent
+  }
 ];
 
 @NgModule({

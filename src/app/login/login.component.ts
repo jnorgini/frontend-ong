@@ -7,8 +7,6 @@ import { Router } from '@angular/router';
 import { catchError, tap, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -40,13 +38,12 @@ export class LoginComponent {
     ).subscribe();
 
     // router para a página de login pós register
-    this.router.navigate(['/login'])
+    this.router.navigate(['/home'])
 
     // limpar o formulário
     this.registerDto = new Register();
 
   }
-  
 
   login(loginDto: Login) {
     this.authService.login(loginDto).
@@ -62,10 +59,9 @@ export class LoginComponent {
     .subscribe((jwtDto => {
       localStorage.setItem('jwtToken', jwtDto.token);
       
-      // limpar o formulário
       this.loginDto = new Login();
       
-      this.router.navigate(['/pets']);
+      this.router.navigate(['/home']);
     }));
   }
 

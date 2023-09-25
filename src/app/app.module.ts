@@ -28,12 +28,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule} from '@angular/material/radio';
 import { MatInputModule } from '@angular/material/input';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { PetDialogComponent } from './pet-dialog/pet-dialog.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { PetInfosComponent } from './pet-infos/pet-infos.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     HelpComponent,
     NotFoundComponent,
     PetDialogComponent,
+    PetInfosComponent,
 
   ],
   imports: [

@@ -1,12 +1,13 @@
-import {Component, OnInit, Input, ViewChild, ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {MatTable, MatTableDataSource} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { Pet } from 'src/app/models/Pet';
 import { PetService } from 'src/app/services/pet.service';
 import { catchError, tap } from "rxjs";
 import { ToastrService } from 'ngx-toastr';
 import { PetDialogComponent } from 'src/app/pet-dialog/pet-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { PetInfosComponent } from 'src/app/pet-infos/pet-infos.component';
 
 @Component({
   selector: 'app-home',
@@ -69,14 +70,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  showMoreInfo(pet: Pet): void {
-    const mensagem = `Informações complementares sobre o pet: ${pet.name}
-    Castrado: ${pet.neutered ? 'Sim' : 'Não'}
-    Vacinação: ${pet.vaccination}
-    Descrição: ${pet.description}
-    `;
-
-    this.toastr.info(mensagem)
-  }
+  showMoreInfo(pet: Pet) {
+    this.dialog.open(PetInfosComponent, {
+      data: Object.assign({}, pet)
+    })
+  };
      
 }

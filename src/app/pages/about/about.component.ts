@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 
+
 @Component({
-  selector: 'app-about',
+  selector: 'app-root',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent {
+
 
 }

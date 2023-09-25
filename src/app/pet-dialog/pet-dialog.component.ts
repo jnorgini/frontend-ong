@@ -1,11 +1,10 @@
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { PetService } from 'src/app/services/pet.service';
 import { Pet } from 'src/app/models/Pet';
 import { MatDialog } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { catchError, tap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { FormControl, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-add-pet',
@@ -66,6 +65,5 @@ export class PetDialogComponent {
     closeForm() {
       this.dialog.closeAll();
     }
-
     
 }

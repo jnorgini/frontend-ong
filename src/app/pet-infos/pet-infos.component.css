@@ -26,7 +26,3 @@ mat-form-field {
 .action button {
     flex: 1;
 }
-
-.button-create.mat-elevation-z8 {
-    color: green;
-}

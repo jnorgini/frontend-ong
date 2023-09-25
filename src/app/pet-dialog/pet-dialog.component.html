@@ -56,7 +56,6 @@
     </mat-form-field>
   </div>
 
-
   <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label>Castrado</mat-label>
@@ -67,7 +66,7 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Porte</mat-label>
-      <mat-select [(ngModel)]="pet.size">
+      <mat-select  [(ngModel)]="pet.size">
         <mat-option value="Pequeno">Pequeno</mat-option>
         <mat-option value="Médio">Médio</mat-option>
         <mat-option value="Grande">Grande</mat-option>
@@ -91,7 +90,7 @@
 
   <div mat-dialog-actions class="action">
     <ng-template [ngIf]="editMode" [ngIfElse]="createMode">
-      <button (click)="editPet(pet)" class="button-create mat-elevation-z8" mat-stroked-button>EDITAR</button>
+      <button (click)="editPet(pet)" class="mat-elevation-z8" mat-stroked-button color="primary">EDITAR</button>
     </ng-template>
     <ng-template #createMode>
       <button (click)="createPet()" class="button-create mat-elevation-z8" mat-stroked-button>CRIAR</button>
