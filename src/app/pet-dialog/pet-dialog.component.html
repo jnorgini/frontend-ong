@@ -3,6 +3,9 @@
 </div>
 <div mat-dialog-content class="content">
 
+  <mat-slide-toggle>Disponível</mat-slide-toggle>
+
+
   <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label for="validationDefault01">Nome</mat-label>
@@ -66,7 +69,7 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Porte</mat-label>
-      <mat-select  [(ngModel)]="pet.size">
+      <mat-select [(ngModel)]="pet.size">
         <mat-option value="Pequeno">Pequeno</mat-option>
         <mat-option value="Médio">Médio</mat-option>
         <mat-option value="Grande">Grande</mat-option>
@@ -81,11 +84,17 @@
     </mat-form-field>
   </div>
 
+  
   <div class="rowe">
     <mat-form-field>
       <mat-label>Descrição</mat-label>
       <textarea matInput placeholder="Ex. agitado" [(ngModel)]="pet.description"></textarea>
     </mat-form-field>
+  </div>
+
+  <div class="rowe">
+    <label class="form-label" for="customFile"></label>
+    <input type="file" class="form-control" id="customFile" />
   </div>
 
   <div mat-dialog-actions class="action">
@@ -98,4 +107,3 @@
     <button (click)="closeForm()" class="mat-elevation-z8" mat-stroked-button color="basic">CANCELAR</button>
   </div>
 </div>
-   

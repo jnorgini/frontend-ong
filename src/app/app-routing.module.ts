@@ -10,8 +10,9 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
-    path: '', component: LoginComponent 
+    path: '', component: LoginComponent
   },
+  
   {
     path: 'home', component: HomeComponent, canActivate: [adminGuard]
   },

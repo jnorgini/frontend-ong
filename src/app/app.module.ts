@@ -35,6 +35,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { PetDialogComponent } from './pet-dialog/pet-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PetInfosComponent } from './pet-infos/pet-infos.component';
+import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 
 
 @NgModule({
@@ -80,6 +81,9 @@ import { PetInfosComponent } from './pet-infos/pet-infos.component';
       "progressBar": true,
       "positionClass": "toast-top-right",
       "preventDuplicates": true,
+    }),
+    BackButtonDisableModule.forRoot({
+      preserveScroll: true
     })
   ],
   providers: [

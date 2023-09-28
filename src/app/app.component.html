@@ -1,11 +1,12 @@
-<mat-toolbar>
+<mat-toolbar> 
+    <!-- *ngIf="authService.isAuthenticated" -->
     <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
         <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
         <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
     </button>
     Dashboard
 </mat-toolbar>
-<mat-sidenav-container>
+<mat-sidenav-container> 
     <mat-sidenav #sidenav="matSidenav">
 
         <img class="avatar mat-elevation-z8" src="assets/logo.png" />
@@ -41,4 +42,3 @@
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
-

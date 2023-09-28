@@ -62,6 +62,11 @@ export class LoginComponent {
       this.loginDto = new Login();
       
       this.router.navigate(['/home']);
+
+      // teste
+      const token = localStorage.getItem(jwtDto.token);
+      this.authService.authenticate(loginDto);
+      console.log('uhu');
     }));
   }
 

@@ -30,3 +30,29 @@ mat-form-field {
 .button-create.mat-elevation-z8 {
     color: green;
 }
+
+.form-control[type=file]:not(:disabled):not([readonly]) {
+    position: relative;
+    bottom: 10px;
+    cursor: pointer;
+    right: 5px;
+}
+
+.mat-mdc-slide-toggle.mat-accent {
+    --mdc-switch-selected-focus-state-layer-color: rgb(126, 253, 126);
+    --mdc-switch-selected-handle-color: green;
+    --mdc-switch-selected-hover-state-layer-color: rgb(126, 253, 126);
+    --mdc-switch-selected-pressed-state-layer-color: rgb(126, 253, 126);
+    --mdc-switch-selected-focus-handle-color: green;
+    --mdc-switch-selected-hover-handle-color: green;
+    --mdc-switch-selected-pressed-handle-color: green;
+    --mdc-switch-selected-focus-track-color: rgb(100, 207, 100);
+    --mdc-switch-selected-hover-track-color: rgb(69, 235, 69);
+    --mdc-switch-selected-pressed-track-color: rgb(99, 225, 99);
+    --mdc-switch-selected-track-color: rgb(81, 225, 81);
+}
+
+.mdc-dialog__content>:first-child {
+    margin-top: 8px;
+    margin-bottom: 5px;
+}

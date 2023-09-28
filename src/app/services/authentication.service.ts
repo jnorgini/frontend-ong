@@ -14,6 +14,9 @@ export class AuthenticationService {
   registerUrl = "auth/register"
   loginUrl = "auth/login"
 
+  // teste
+  isAuthenticated = false;
+
   constructor(private http: HttpClient) { }
 
   public register(user: Register): Observable<JwtAuth> {
@@ -22,6 +25,16 @@ export class AuthenticationService {
 
   public login(user: Login): Observable<JwtAuth> {
     return this.http.post<JwtAuth>(`${environment.apiUrl}/${this.loginUrl}`, user);
+  }
+
+  // teste
+  authenticate(login: Login): boolean {
+    if(localStorage.getItem !== null) {
+      this.isAuthenticated = true;
+      return true;
+    }
+    this.isAuthenticated = false;
+    return false;
   }
 
 }
