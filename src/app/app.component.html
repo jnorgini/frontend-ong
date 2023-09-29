@@ -1,5 +1,4 @@
-<mat-toolbar> 
-    <!-- *ngIf="authService.isAuthenticated" -->
+<mat-toolbar > 
     <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
         <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
         <mat-icon *ngIf="sidenav.opened"> close </mat-icon>

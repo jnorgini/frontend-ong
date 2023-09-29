@@ -5,6 +5,7 @@ import { Register } from '../models/register';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { JwtAuth } from '../models/jwtAuth';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,9 @@ export class AuthenticationService {
   registerUrl = "auth/register"
   loginUrl = "auth/login"
 
-  // teste
   isAuthenticated = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   public register(user: Register): Observable<JwtAuth> {
     return this.http.post<JwtAuth>(`${environment.apiUrl}/${this.registerUrl}`, user);
@@ -27,13 +27,14 @@ export class AuthenticationService {
     return this.http.post<JwtAuth>(`${environment.apiUrl}/${this.loginUrl}`, user);
   }
 
-  // teste
   authenticate(login: Login): boolean {
     if(localStorage.getItem !== null) {
       this.isAuthenticated = true;
+      this.router.navigate(['/home']);
       return true;
     }
     this.isAuthenticated = false;
+    this.router.navigate(['/login']);
     return false;
   }
 
