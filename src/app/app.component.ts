@@ -56,7 +56,7 @@ export class AppComponent {
 
     if (localStorage.getItem('jwtToken')) {
       this.router.navigate(['/home']);
-      this.toastr.warning('Clique em logout para sair.')
+      this.toastr.warning('Clique em Logout para sair.')
     }
   }
 

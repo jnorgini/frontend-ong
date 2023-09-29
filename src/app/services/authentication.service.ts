@@ -30,11 +30,11 @@ export class AuthenticationService {
   authenticate(login: Login): boolean {
     if(localStorage.getItem !== null) {
       this.isAuthenticated = true;
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home']); 
       return true;
     }
     this.isAuthenticated = false;
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login']); 
     return false;
   }
 

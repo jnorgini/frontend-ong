@@ -62,7 +62,7 @@ export class LoginComponent {
       this.loginDto = new Login();
       
       const token = localStorage.getItem(jwtDto.token);
-      this.authService.authenticate(loginDto);
+      this.authService.authenticate(loginDto);  
     }));
   }
 
