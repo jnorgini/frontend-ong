@@ -129,14 +129,16 @@ html, body {
     height: 98%;
 }
 
-/* body[_ngcontent-ng-c3688887920]::before {
+body[_ngcontent-ng-c3688887920]::before {
     content: "";
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: #ffc107;
+    /* background-color: #ffc107; */
+    /* background-color: #07fff6; */
+    background-color: #ffb500;
     opacity: 1.5;
     mix-blend-mode: soft-light;
-} */
+}
