@@ -2,40 +2,12 @@
   <h1 class="title-h1">Pet Form</h1>
 </div>
 <div mat-dialog-content class="content">
-
+  
   <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label>Nome</mat-label>
       <input value="Mark" matInput type="text"
       ngModel readonly [(ngModel)]="pet.name">
-    </mat-form-field>
-  </div>
-
-  <div class="rowe">
-    <mat-form-field appearance="outline">
-      <mat-label>Raça</mat-label>
-      <input matInput type="text" ngModel readonly [(ngModel)]="pet.breed">
-    </mat-form-field>
-  </div>
-
-  <div class="rowe">
-    <mat-form-field appearance="outline">
-      <mat-label>Microchip</mat-label>
-      <input matInput type="text" ngModel readonly [(ngModel)]="pet.microchip">
-    </mat-form-field>
-  </div>
-
-  <div class="rowe">
-    <mat-form-field appearance="outline">
-      <mat-label>Peso</mat-label>
-      <input matInput type="number" ngModel readonly [(ngModel)]="pet.weight">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Nascimento</mat-label>
-      <input matInput [matDatepicker]="picker" ngModel readonly [(ngModel)]="pet.birthdate">
-      <mat-hint>DD/MM/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </div>
 
@@ -52,12 +24,35 @@
 
   <div class="rowe">
     <mat-form-field appearance="outline">
-      <mat-label>Castrado</mat-label>
-      <input matInput type="text" [ngModel]="pet.neutered ? 'Sim' : 'Não'" readonly>
-    </mat-form-field>  
+      <mat-label>Idade</mat-label>
+      <input matInput type="number" ngModel readonly [(ngModel)]="pet.age">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Raça</mat-label>
+      <input matInput type="text" ngModel readonly [(ngModel)]="pet.breed">
+    </mat-form-field>
+  </div>
+
+  
+  <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label>Porte</mat-label>
       <input matInput type="text" ngModel readonly [(ngModel)]="pet.size">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Peso</mat-label>
+      <input matInput type="number" ngModel readonly [(ngModel)]="pet.weight">
+    </mat-form-field>
+  </div>
+  
+    <div class="rowe">
+      <mat-form-field appearance="outline">
+        <mat-label>Castrado</mat-label>
+        <input matInput type="text" [ngModel]="pet.neutered ? 'Sim' : 'Não'" readonly>
+      </mat-form-field>  
+    <mat-form-field appearance="outline">
+      <mat-label>Microchip</mat-label>
+      <input matInput type="text" ngModel readonly [(ngModel)]="pet.microchip">
     </mat-form-field>
   </div>
 
@@ -74,7 +69,6 @@
       <textarea matInput ngModel readonly [(ngModel)]="pet.description"></textarea>
     </mat-form-field>
   </div>
-
 
   <div mat-dialog-actions class="action">
     <button (click)="closeForm()" class="mat-elevation-z8" mat-stroked-button color="basic">FECHAR</button>

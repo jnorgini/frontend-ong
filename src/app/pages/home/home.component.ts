@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Pet } from 'src/app/models/Pet';
@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { PetDialogComponent } from 'src/app/pet-dialog/pet-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PetInfosComponent } from 'src/app/pet-infos/pet-infos.component';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,8 @@ export class HomeComponent implements OnInit {
   displayedColumns: string[] =
     ['id', 'name', 'species', 'gender', 'birthdate', 'breed', 'size',
      'weight', 'microchip', 'acoes'];
+
+     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private dialog: MatDialog,
@@ -67,6 +70,7 @@ export class HomeComponent implements OnInit {
   private listPets() {
     this.service.getPets().subscribe(res => {
       this.dataSource.data = res;
+      this.dataSource.paginator = this.paginator;
     });
   }
 
