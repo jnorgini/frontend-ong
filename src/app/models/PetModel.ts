@@ -1,4 +1,4 @@
-export class Pet {
+export class PetModel {
     id: number = 0;
     name: string = '';
     species: string = '';
@@ -8,7 +8,7 @@ export class Pet {
     size: string = '';
     weight: number | null = null; 
     neutered: boolean = false;
-    microchip: number = 0;
+    microchip: string = '';
     vaccination: string = '';
     description: string = '';
-  }
+}

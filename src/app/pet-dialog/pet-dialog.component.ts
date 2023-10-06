@@ -15,6 +15,11 @@ export class PetDialogComponent {
     pet = <Pet>{};
     editMode: boolean = false;
 
+    ageOptions: number[] = Array.from({ length: 100 }, (_, i) => i + 1);
+
+    selectedUnit: string = 'months';
+
+
     constructor(
         @Inject(MAT_DIALOG_DATA) data: Pet,
         private dialog: MatDialog,
@@ -29,6 +34,13 @@ export class PetDialogComponent {
             this.pet = data;
             this.editMode = true;
         }
+    }
+
+    ageOptionsMonths: number[] = Array.from({ length: 100 }, (_, i) => i + 1);
+    ageOptionsYears: number[] = Array.from({ length: 100 }, (_, i) => i + 1);
+  
+    getAgeOptions(): number[] {
+      return this.selectedUnit === 'months' ? this.ageOptionsMonths : this.ageOptionsYears;
     }
 
     createPet(): Pet {

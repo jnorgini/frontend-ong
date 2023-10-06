@@ -1,4 +1,5 @@
-<button class="button mat-elevation-z8" mat-stroked-button color="primary" (click)="showCreatePetForm()">Adicionar Pet</button>
+<button class="button mat-elevation-z8" mat-stroked-button color="primary" (click)="showCreatePetForm()">Adicionar
+  Pet</button>
 
 <div class="mat-elevation-z8 content-table">
   <table class="table" mat-table [dataSource]="dataSource">
@@ -15,16 +16,17 @@
 
     <ng-container matColumnDef="species">
       <th mat-header-cell *matHeaderCellDef> espécie </th>
-      <td mat-cell *matCellDef="let pet"> {{ pet.species }} </td>
+      <td mat-cell *matCellDef="let pet"> {{ pet.species ? 'Cachorro' : 'Gato' }} </td>
     </ng-container>
 
     <ng-container matColumnDef="gender">
       <th mat-header-cell *matHeaderCellDef> gênero </th>
-      <td mat-cell *matCellDef="let pet"> {{ pet.gender }} </td>
+      <td mat-cell *matCellDef="let pet"> {{ pet.gender ? 'Fêmea' : 'Macho' }} </td>
     </ng-container>
 
-    <ng-container matColumnDef="birthdate">
+    <ng-container matColumnDef="age">
       <th mat-header-cell *matHeaderCellDef> idade </th>
+      <td mat-cell *matCellDef="let pet">{{ pet.ageInMonths | ageFormat }}</td>
       <td mat-cell *matCellDef="let pet">
       </td>
     </ng-container>
@@ -36,7 +38,8 @@
 
     <ng-container matColumnDef="size">
       <th mat-header-cell *matHeaderCellDef> porte </th>
-      <td mat-cell *matCellDef="let pet"> {{ pet.size }} </td>
+      <td mat-cell *matCellDef="let pet"> {{ pet.size === 'SMALL' ? 'Pequeno' : pet.size === 'MEDIUM' ? 'Médio' :
+        pet.size === 'LARGE' ? 'Grande' : 'Desconhecido' }} </td>
     </ng-container>
 
     <ng-container matColumnDef="weight">
@@ -67,11 +70,12 @@
     <ng-container matColumnDef="acoes">
       <th mat-header-cell *matHeaderCellDef> opções </th>
       <td mat-cell *matCellDef="let pet">
-        
-        <mat-icon class="icon-info" fontIcon="visibilityoutlined" (click)="showMoreInfo(pet)">visibilityoutlined</mat-icon>
+
+        <mat-icon class="icon-info" fontIcon="visibilityoutlined"
+          (click)="showMoreInfo(pet)">visibilityoutlined</mat-icon>
         <mat-icon class="icon-edit" fontIcon="edit" (click)="showEditPetForm(pet)">edit</mat-icon>
-        <mat-icon class="icon-delete" fontIcon="delete" (click)="removePet(pet.id)">delete</mat-icon>
-        
+        <mat-icon class="icon-delete" fontIcon="delete" (click)="openDeleteConfirmationDialog(pet.id)">delete</mat-icon>
+
       </td>
     </ng-container>
 
@@ -81,4 +85,3 @@
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
-    

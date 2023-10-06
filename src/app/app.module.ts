@@ -36,6 +36,9 @@ import { PetDialogComponent } from './pet-dialog/pet-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PetInfosComponent } from './pet-infos/pet-infos.component';
 import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
+import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { AgeFormatPipe } from './age-format.pipe';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -49,6 +52,8 @@ import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
     NotFoundComponent,
     PetDialogComponent,
     PetInfosComponent,
+    DeleteConfirmationDialogComponent,
+    AgeFormatPipe,
 
   ],
   imports: [
@@ -69,6 +74,7 @@ import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
     MatDatepickerModule,
     MatNativeDateModule,
     MatPaginatorModule,
+    MatAutocompleteModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,

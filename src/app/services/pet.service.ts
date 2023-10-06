@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Pet } from '../models/Pet';
+import { PetModel } from '../models/PetModel';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +36,17 @@ export class PetService {
   listen(): Observable<any>{
     return this._listners.asObservable();
   }
+
+  turnAvailable(id: number): Observable<Pet> {
+    return this.http.put<Pet>(`${this.apiUrl}/${id}/available`, {});
+  }  
+
+  getUnavailablePets(): Observable<PetModel[]> {
+    return this.http.get<PetModel[]>(`${this.apiUrl}/unavailable`);
+  }
+
+  turnUnavailable(id: number): Observable<Pet> {
+    return this.http.delete<Pet>(`${this.apiUrl}/${id}/available`, {});
+  }  
 
 }

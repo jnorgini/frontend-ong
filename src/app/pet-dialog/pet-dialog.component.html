@@ -15,47 +15,55 @@
     <mat-form-field appearance="outline">
       <mat-label for="validationDefault02">Espécie</mat-label>
       <mat-select id="validationDefault02" required [(ngModel)]="pet.species">
-        <mat-option value="Cachorro">Cachorro</mat-option>
-        <mat-option value="Gato">Gato</mat-option>
+        <mat-option value="DOG">Cachorro</mat-option>
+        <mat-option value="CAT">Gato</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label for="validationDefault03">Gênero</mat-label>
       <mat-select id="validationDefault03" required [(ngModel)]="pet.gender">
-        <mat-option value="Fêmea">Fêmea</mat-option>
-        <mat-option value="Macho">Macho</mat-option>
+        <mat-option value="FEMALE">Fêmea</mat-option>
+        <mat-option value="MALE">Macho</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
 
   <div class="rowe">
     <mat-form-field appearance="outline">
-      <mat-label for="validationDefault04">Idade</mat-label>
-      <input id="validationDefault04" required matInput type="number" placeholder="Ex. 2" [(ngModel)]="pet.age">
-    </mat-form-field>
+      <mat-label for="getAgeOptions">Idade</mat-label>
+      <mat-select id="getAgeOptions" required [(ngModel)]="pet.ageInMonths">
+        <mat-option *ngFor="let age of getAgeOptions()" [value]="age">{{ age }}</mat-option>
+    </mat-select>
+  </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label for="validationDefault05">Raça</mat-label>
-      <input id="validationDefault05" required matInput type="text" placeholder="Ex. pitbull" [(ngModel)]="pet.breed">
+        <mat-label for="unitSelect">Meses/Anos</mat-label>
+        <mat-select id="unitSelect" [(ngModel)]="selectedUnit">
+          <mat-option value="months">Meses</mat-option>
+        <mat-option value="years">Anos</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
 
   <div class="rowe">
-  <mat-form-field appearance="outline">
-    <mat-label for="validationDefault06">Porte</mat-label>
-    <mat-select id="validationDefault06" required [(ngModel)]="pet.size">
-      <mat-option value="Pequeno">Pequeno</mat-option>
-      <mat-option value="Médio">Médio</mat-option>
-      <mat-option value="Grande">Grande</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="validationDefault05">Raça</mat-label>
+      <input id="validationDefault05" required matInput type="text" placeholder="Ex. pitbull" [(ngModel)]="pet.breed">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="validationDefault06">Porte</mat-label>
+      <mat-select id="validationDefault06" required [(ngModel)]="pet.size">
+        <mat-option value="SMALL">Pequeno</mat-option>
+        <mat-option value="MEDIUM">Médio</mat-option>
+        <mat-option value="LARGE">Grande</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label for="validationDefault07">Peso</mat-label>
       <input id="validationDefault07" required matInput type="number" placeholder="Ex. 25" [(ngModel)]="pet.weight">
     </mat-form-field>
-  </div>
-    
-  
-  <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label>Castrado</mat-label>
       <mat-select [(ngModel)]="pet.neutered">
@@ -63,21 +71,25 @@
         <mat-option value=false>Não</mat-option>
       </mat-select>
     </mat-form-field>
+  </div>
+    
+  
+  <div class="rowe">
+    
     
     <div class="rowe">
       <mat-form-field appearance="outline">
         <mat-label>Microchip</mat-label>
         <input matInput type="text" placeholder="Ex. 123A" [(ngModel)]="pet.microchip">
       </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Vacinação</mat-label>
+        <input matInput type="text" placeholder="Ex. 1ª dose vacina 'x'" [(ngModel)]="pet.vaccination">
+      </mat-form-field>
     </div>
   </div>
 
-  <div class="rowe">
-    <mat-form-field appearance="outline">
-      <mat-label>Vacinação</mat-label>
-      <input matInput type="text" placeholder="Ex. 1ª dose vacina 'x'" [(ngModel)]="pet.vaccination">
-    </mat-form-field>
-  </div>
+
   
   <div class="rowe">
     <mat-form-field>
