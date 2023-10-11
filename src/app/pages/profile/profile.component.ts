@@ -21,6 +21,8 @@ export class ProfileComponent {
 
      @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+     searchTerm: string = '';
+
   constructor(private service: PetService, private dialog: MatDialog, private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -44,11 +46,11 @@ export class ProfileComponent {
     this.service.deletePet(id)
       .pipe(
         catchError((error) => {
-          this.toastr.warning('Erro ao tentar remover o pet. Verifique sua conexão com a internet e tente novamente.');
+          this.toastr.error('Erro ao tentar remover o pet. Verifique sua conexão com a internet e tente novamente.');
           throw error;
         }),
           tap(() => {
-            this.toastr.success('Pet permanentemente removido.')
+            this.toastr.warning('Pet permanentemente removido.')
           })
       )
       .subscribe(() => {
@@ -72,5 +74,18 @@ export class ProfileComponent {
         this.turnAvailable;
       });
     }
+
+    searchPets() {
+      const key = this.searchTerm.toLowerCase();
+      this.dataSource.filter = key;
+      
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
+  
+      if (key === '') {
+        this.getUnavailablePets();
+      }
+  }
   
 }

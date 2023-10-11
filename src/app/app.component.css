@@ -1,3 +1,5 @@
+@import '~font-awesome/css/font-awesome.css';
+
 .mat-toolbar {
     background: #004a9f;
     color: white;
@@ -77,4 +79,24 @@ span {
 .mat-elevation-z8,
 .mat-mdc-elevation-specific.mat-elevation-z8 {
     box-shadow: none;
+}
+
+.social-media {
+    color: white;
+    position: absolute;
+    right: 20px;
+    font-size: 1.8rem;
+}
+
+.social-media i {
+    margin-right: 10px; 
+    transition: transform 0.2s ease-in-out;
+}
+
+a {
+    color: white;
+}
+
+.social-media i:hover {
+    transform: translateY(-3px);
 }

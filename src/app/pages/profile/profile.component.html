@@ -1,4 +1,10 @@
-<h2>PETS INDISPONÍVEIS</h2>
+<h2>PETS INDISPONÍVEIS/ADOTADOS</h2>
+
+<div class="search-container">
+  <input type="text" class="search-input" placeholder="Pesquisar" [(ngModel)]="searchTerm" (input)="searchPets()">
+  <i class="fas fa-search search-icon"></i>
+</div>
+
 <div class="mat-elevation-z8 content-table">
   <table class="table" mat-table [dataSource]="dataSource">
 
@@ -14,17 +20,17 @@
 
     <ng-container matColumnDef="species">
       <th mat-header-cell *matHeaderCellDef> espécie </th>
-      <td mat-cell *matCellDef="let pet"> {{ pet.species ? 'Cachorro' : 'Gato' }} </td>
+      <td mat-cell *matCellDef="let pet"> {{ pet.species === 'DOG' ? 'Canina' : 'Felina' }} </td>
     </ng-container>
 
     <ng-container matColumnDef="gender">
       <th mat-header-cell *matHeaderCellDef> gênero </th>
-      <td mat-cell *matCellDef="let pet"> {{ pet.gender ? 'Fêmea' : 'Macho' }} </td>
+      <td mat-cell *matCellDef="let pet"> {{ pet.gender === 'MALE' ? 'Macho' : 'Fêmea' }} </td>
     </ng-container>
 
     <ng-container matColumnDef="age">
       <th mat-header-cell *matHeaderCellDef> idade </th>
-      <td mat-cell *matCellDef="let pet">{{ pet.ageInMonths }}</td>
+      <td mat-cell *matCellDef="let pet"> {{ pet.ageInMonths | ageFormat }}</td>
       <td mat-cell *matCellDef="let pet">
       </td>
     </ng-container>
@@ -80,6 +86,6 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     

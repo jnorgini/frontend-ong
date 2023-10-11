@@ -22,7 +22,9 @@ export class HomeComponent implements OnInit {
     ['id', 'name', 'species', 'gender', 'age', 'breed', 'size',
      'weight', 'microchip', 'acoes'];
 
-     @ViewChild(MatPaginator) paginator!: MatPaginator;
+     @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+
+     searchTerm: string = '';
 
   constructor(
     private dialog: MatDialog,
@@ -33,17 +35,31 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.listPets();
+    this.paginator._intl.itemsPerPageLabel = 'Itens por página';
+    this.paginator._intl.nextPageLabel = 'Próxima';
+    this.paginator._intl.previousPageLabel = 'Anterior';
+    this.paginator._intl.firstPageLabel = 'Primeira página';
+    this.paginator._intl.lastPageLabel = 'Última página';
+    this.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
+      if (length == 0 || pageSize == 0) {
+        return `0 de ${length}`;
+      }
+      length = Math.max(length, 0);
+      const startIndex = page * pageSize;
+      const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
+      return `${startIndex + 1} - ${endIndex} de ${length}`;
+    };
   }
 
   removePet(id: number) {
     this.service.deletePet(id)
       .pipe(
         catchError((error) => {
-          this.toastr.warning('Erro ao tentar remover o pet. Verifique sua conexão com a internet e tente novamente.');
+          this.toastr.error('Erro ao tentar remover o pet. Verifique sua conexão com a internet e tente novamente.');
           throw error;
         }),
           tap(() => {
-            this.toastr.success('Pet permanentemente removido.')
+            this.toastr.warning('Pet permanentemente removido.')
           })
       )
       .subscribe(() => {
@@ -85,11 +101,11 @@ export class HomeComponent implements OnInit {
     this.service.turnUnavailable(id)
     .pipe(
       catchError((error) => {
-        this.toastr.warning('Erro ao tentar mover o pet para a lixeira');
+        this.toastr.warning('Erro ao tentar mover o pet para indisponível');
         throw error;
       }),
       tap(() => {
-        this.toastr.success('Pet movido para a lixeira com sucesso!')
+        this.toastr.success('Pet movido para indisponível com sucesso!')
       })
     )
     .subscribe(() => {
@@ -111,6 +127,20 @@ export class HomeComponent implements OnInit {
         this.removePet(id);
       }
     });
+  }
+
+  searchPets() {
+      const key = this.searchTerm.toLowerCase();
+      
+      this.dataSource.filter = key;
+      
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
+
+      if (key === '') {
+        this.listPets();
+      }
   }
 
      

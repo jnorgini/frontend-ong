@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Pet } from '../models/Pet';
 import { PetModel } from '../models/PetModel';
 
@@ -47,6 +47,6 @@ export class PetService {
 
   turnUnavailable(id: number): Observable<Pet> {
     return this.http.delete<Pet>(`${this.apiUrl}/${id}/available`, {});
-  }  
-
+  }
+  
 }
