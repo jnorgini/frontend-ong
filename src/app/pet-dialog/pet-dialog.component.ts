@@ -1,10 +1,9 @@
-import { Component, Inject } from '@angular/core';
-import { PetService } from 'src/app/services/pet.service';
-import { Pet } from 'src/app/models/Pet';
-import { MatDialog } from '@angular/material/dialog';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { catchError, tap } from 'rxjs';
-import { ToastrService } from 'ngx-toastr';
+import {Component, Inject} from '@angular/core';
+import {PetService} from 'src/app/services/pet.service';
+import {Pet} from 'src/app/models/Pet';
+import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
+import {catchError, tap} from 'rxjs';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-add-pet',
@@ -12,13 +11,10 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./pet-dialog.component.css']
 })
 export class PetDialogComponent {
-    pet = <Pet>{};
+    pet: Pet = <Pet>{};
     editMode: boolean = false;
-
-    ageOptions: number[] = Array.from({ length: 100 }, (_, i) => i + 1);
-
-    selectedUnit: string = 'months';
-
+    inputAge: number = 0;
+    selectedUnit: string | undefined;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) data: Pet,
@@ -34,13 +30,9 @@ export class PetDialogComponent {
             this.pet = data;
             this.editMode = true;
         }
-    }
 
-    ageOptionsMonths: number[] = Array.from({ length: 100 }, (_, i) => i + 1);
-    ageOptionsYears: number[] = Array.from({ length: 100 }, (_, i) => i + 1);
-  
-    getAgeOptions(): number[] {
-      return this.selectedUnit === 'months' ? this.ageOptionsMonths : this.ageOptionsYears;
+        this.setInputAge();
+        this.setSelectedUnit();
     }
 
     createPet(): Pet {
@@ -77,5 +69,25 @@ export class PetDialogComponent {
     closeForm() {
       this.dialog.closeAll();
     }
-    
+
+    setInputAge(): void {
+        let age = this.pet.ageInMonths;
+        this.inputAge = age >= 12
+            ? Math.floor(age / 12)
+            : age;
+    }
+
+    setSelectedUnit(): void {
+        let age = this.pet.ageInMonths;
+        this.selectedUnit = age >= 12
+            ? "years"
+            : "months";
+    }
+
+    calculateAgeInMonths() {
+        let age = this.inputAge;
+        this.pet.ageInMonths = this.selectedUnit === 'years'
+            ? age * 12
+            : age;
+    }
 }
