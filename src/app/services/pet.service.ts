@@ -48,5 +48,9 @@ export class PetService {
   turnUnavailable(id: number): Observable<Pet> {
     return this.http.delete<Pet>(`${this.apiUrl}/${id}/available`, {});
   }
+
+  getAllPets(): Observable<PetModel[]> {
+    return this.http.get<PetModel[]>(`${this.apiUrl}/all`);
+  }
   
 }

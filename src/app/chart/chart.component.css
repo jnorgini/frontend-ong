@@ -1,0 +1,90 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-height: 100vh; 
+  gap: 10px;
+  border-radius: 10px;
+}
+
+.top-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  overflow-y: auto; 
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  
+}
+
+.chart {
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 100%;
+  border-radius: 10px;
+  overflow-y: auto; 
+  overflow-y: auto; 
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.special-chart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  width: 50%; 
+  max-width: 50%;
+  border-radius: 10px;
+  flex: 1;
+  overflow-y: auto; 
+  max-height: 330px;
+}
+
+.task-list {
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  flex: 1; 
+  border-radius: 10px;
+  overflow-y: auto; 
+  max-height: 330px;
+}
+
+.content-row {
+  display: flex;
+  gap: 10px;
+  width: 100%; 
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .top-row, .content-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .chart, .special-chart, .task-list {
+    width: 100%; 
+    max-width: 100%; 
+    overflow: auto;
+  }
+}
+
+

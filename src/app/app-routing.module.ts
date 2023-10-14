@@ -6,6 +6,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { adminGuard } from './auth/admin.guard';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { PetTableComponent } from './pages/pet-table/pet-table.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,10 @@ const routes: Routes = [
     path: 'login', component: LoginComponent  
   },
   {
-    path: 'pets', component: ProfileComponent, canActivate: [adminGuard]
+    path: 'pets', component: PetTableComponent, canActivate: [adminGuard]
+  },
+  {
+    path: 'users', component: ProfileComponent, canActivate: [adminGuard]
   },
   {
     path: 'about', component: AboutComponent, canActivate: [adminGuard]

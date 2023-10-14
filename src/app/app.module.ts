@@ -39,6 +39,13 @@ import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { AgeFormatPipe } from './age-format.pipe';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { PetTableComponent } from './pages/pet-table/pet-table.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartComponent } from './chart/chart.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 
 @NgModule({
@@ -54,6 +61,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     PetInfosComponent,
     DeleteConfirmationDialogComponent,
     AgeFormatPipe,
+    PetTableComponent,
+    ChartComponent,
+    TodoListComponent,
 
   ],
   imports: [
@@ -75,12 +85,16 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatNativeDateModule,
     MatPaginatorModule,
     MatAutocompleteModule,
+    MatCardModule,
+    MatListModule,
+    MatCheckboxModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
     MatSlideToggleModule,
     MatSnackBarModule,
+    NgxChartsModule,
     ToastrModule.forRoot({
       "closeButton": true,
       "newestOnTop": false,

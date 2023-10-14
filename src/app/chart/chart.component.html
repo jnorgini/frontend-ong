@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="top-row">
+    <div class="chart">
+      <ngx-charts-bar-vertical [view]="[588, 281]" [scheme]="colorScheme" [results]="barData" [xAxis]="true"
+        [yAxis]="true" [legend]="true" [showXAxisLabel]="true" [showYAxisLabel]="true" xAxisLabel="Itens"
+        yAxisLabel="Quantidade">
+      </ngx-charts-bar-vertical>
+    </div>
+    <div class="chart">
+      <ngx-charts-pie-chart [view]="[588, 281]" [scheme]="colorScheme" [results]="pieData" [legend]="true"
+        [explodeSlices]="false">
+      </ngx-charts-pie-chart>
+    </div>
+  </div>
+  <div class="content-row">
+    <div class="special-chart">
+      <ngx-charts-bubble-chart [view]="[560, 281]" [results]="scatterData" [xAxis]="true" [yAxis]="true"
+        [showXAxisLabel]="true" [showYAxisLabel]="true" xAxisLabel="Eixo X" yAxisLabel="Eixo Y">
+      </ngx-charts-bubble-chart>
+    </div>
+    <div class="task-list">
+      <app-todo-list></app-todo-list>
+    </div>
+  </div>
+</div>
