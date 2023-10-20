@@ -45,7 +45,6 @@ import { ChartComponent } from './chart/chart.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { TodoListComponent } from './todo-list/todo-list.component';
 
 
 @NgModule({
@@ -63,8 +62,6 @@ import { TodoListComponent } from './todo-list/todo-list.component';
     AgeFormatPipe,
     PetTableComponent,
     ChartComponent,
-    TodoListComponent,
-
   ],
   imports: [
     BrowserModule,

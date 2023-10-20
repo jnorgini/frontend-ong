@@ -27,7 +27,7 @@ const routes: Routes = [
     path: 'users', component: ProfileComponent, canActivate: [adminGuard]
   },
   {
-    path: 'about', component: AboutComponent, canActivate: [adminGuard]
+    path: 'users', component: ProfileComponent, canActivate: [adminGuard]
   },
   {
     path: '**', component: NotFoundComponent

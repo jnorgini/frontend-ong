@@ -8,8 +8,38 @@ import { Color, ScaleType } from '@swimlane/ngx-charts';
 })
 export class ChartComponent {
 
+  stackedBarData: any[] = [
+    {
+      name: 'Grupo A',
+      series: [
+        {
+          name: 'Item 1',
+          value: 10,
+        },
+        {
+          name: 'Item 2',
+          value: 20,
+        },
 
-  // Resto do código permanece inalterado
+      ],
+    },
+    {
+      name: 'Grupo B',
+      series: [
+        {
+          name: 'Item 1',
+          value: 15,
+        },
+        {
+          name: 'Item 2',
+          value: 25,
+        },
+
+      ],
+    },
+
+  ];
+
   barData: any[] = [
     {
       name: 'Item 1',
@@ -78,11 +108,14 @@ export class ChartComponent {
       ],
     },
   ];
+  
 
   colorScheme: Color = {
     name: 'custom',
     selectable: true,
-    group: ScaleType.Ordinal, // Use ScaleType.Ordinal here
-    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7AA3E5'],
+    group: ScaleType.Ordinal, 
+    domain: ['#6441a5', '#c0c0c0', '#ffa500', '#228b22', '#191970'],
   };
+
+
 }

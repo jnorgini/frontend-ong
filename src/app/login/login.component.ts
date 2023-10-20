@@ -13,7 +13,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  title = 'api-front';
   loginDto = new Login();
   registerDto = new Register();
   jwtDto = new JwtAuth();
@@ -37,10 +36,8 @@ export class LoginComponent {
       })
     ).subscribe();
 
-    // router para a página de login pós register
     this.router.navigate(['/home'])
 
-    // limpar o formulário
     this.registerDto = new Register();
 
   }

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login/Register</title>
-    <link rel="" href=""> 
+    <link rel="" href="">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
 
     <div class="wrapper">
@@ -16,26 +18,37 @@
             <form (ngSubmit)="login(loginDto)">
                 <h1>Login</h1>
                 <div class="input-box">
-                    <input type="text" id="username" name="username" placeholder="Usuário" [(ngModel)]="loginDto.username" required>
+                    <input type="text" id="username" name="username" placeholder="Usuário"
+                        [(ngModel)]="loginDto.username" required>
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" id="password" name="password" placeholder="Senha" [(ngModel)]="loginDto.password" required>
+                    <input type="password" id="password" name="password" placeholder="Senha"
+                        [(ngModel)]="loginDto.password" required>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
+                <div *ngIf="loginDto.username && loginDto.username.length < 5" class="error-message"
+                    style="font-size: 13px; text-align: center;">
+                    Usuário deve ter no mínimo 5 caracteres.
+                </div>
+                <div *ngIf="loginDto.password && loginDto.password.length < 6" class="error-message"
+                    style="font-size: 13px; text-align: center;">
+                    Senha deve ter no mínimo 6 caracteres.
+                </div>
+
                 <!--<div class="remember-forgot">
                     <label><input type="checkbox">Lembrar de mim</label>
                  
                 </div>-->
                 <button class="btn" type="button" (click)="login(loginDto)">Login</button>
 
-           
+
             </form>
             <!--<div class="register-link">
                 <p>Não tem uma conta? <a href="javascript:void(0)" (click)="toggleForm()">Registre-se</a></p>
             </div>-->
         </div>
-    
+
 
         <!-- Register 
         <div class="register-form" *ngIf="!isLogin">
@@ -57,7 +70,7 @@
                 <button class="btn" type="button" (click)="register(registerDto)">Criar conta</button>
             </form>   
         </div> -->
-        
+
     </div>
 
     <!-- <div class="col-lg-0 col-md-0 mb-0 mb-md-0">
@@ -71,6 +84,7 @@
         <i class='bx bxl-instagram' ></i>
         <i class='bx bxl-facebook-circle' ></i>
     </div> -->
-    
+
 </body>
+
 </html>
