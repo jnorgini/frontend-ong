@@ -1,6 +1,12 @@
-<button mat-button (click)="showAllPets()">Todos os Pets</button>
-<button mat-button (click)="showAvailablePets()">Pets Disponíveis</button>
-<button mat-button (click)="showUnavailablePets()">Pets Indisponíveis</button>
+<mat-form-field>
+  <mat-label>Filtrar Pets</mat-label>
+  <mat-select [(ngModel)]="selectedOption" (ngModelChange)="onOptionChange()">
+    <mat-option value="showAll">Todos os Pets</mat-option>
+    <mat-option value="showAvailable">Pets Disponíveis</mat-option>
+    <mat-option value="showUnavailable">Pets Indisponíveis</mat-option>
+  </mat-select>
+</mat-form-field>
+
 
 <button *ngIf="isAvailablePets" class="button mat-elevation-z8" mat-stroked-button color="primary" (click)="showCreatePetForm()">Adicionar
     Pet</button>

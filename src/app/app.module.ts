@@ -20,7 +20,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { HomeComponent } from './pages/home/home.component';
-import { ProfileComponent } from './pages/profile/profile.component';
 import { AboutComponent } from './pages/about/about.component';
 import { HelpComponent } from './pages/help/help.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -38,13 +37,14 @@ import { PetInfosComponent } from './pet-infos/pet-infos.component';
 import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { AgeFormatPipe } from './age-format.pipe';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PetTableComponent } from './pages/pet-table/pet-table.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartComponent } from './chart/chart.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { UsersComponent } from './pages/users/users.component';
 
 
 @NgModule({
@@ -52,7 +52,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ProfileComponent,
     AboutComponent,
     HelpComponent,
     NotFoundComponent,
@@ -62,6 +61,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     AgeFormatPipe,
     PetTableComponent,
     ChartComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,43 @@
+<button class="button mat-elevation-z8" mat-stroked-button color="primary" (click)="addNewUser()">Adicionar
+  Usuário</button>
+
+<div class="mat-elevation-z8 content-table">
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{ user.id }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Username </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{ user.username }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="password">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Password </mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        {{ formatPassword(user.password) }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{ user.role }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ações </mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <mat-icon class="icon-edit" fontIcon="edit" (click)="openEditForm()">
+        </mat-icon>
+        <mat-icon class="icon-delete" fontIcon="delete" (click)="removeUser()">
+        </mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+</div>

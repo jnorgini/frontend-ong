@@ -26,6 +26,7 @@ export class PetTableComponent implements OnInit {
 
   searchTerm: string = '';
   isAvailablePets = true;
+  selectedOption: string = 'showAll'; // Valor padrão
 
   constructor(
     private dialog: MatDialog,
@@ -181,6 +182,16 @@ export class PetTableComponent implements OnInit {
 
     if (key === '') {
       this.listPets();
+    }
+  }
+
+  onOptionChange() {
+    if (this.selectedOption === 'showAll') {
+      this.showAllPets();
+    } else if (this.selectedOption === 'showAvailable') {
+      this.showAvailablePets();
+    } else if (this.selectedOption === 'showUnavailable') {
+      this.showUnavailablePets();
     }
   }
 

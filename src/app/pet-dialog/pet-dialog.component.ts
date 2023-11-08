@@ -39,7 +39,7 @@ export class PetDialogComponent {
         this.service.addPet(this.pet)
             .pipe(
                 catchError((error) => {
-                    this.toastr.warning('Erro ao tentar cadastrar novo pet. Verifique sua conexão com a internet e tente novamente.');
+                    this.toastr.warning('Preencha todos os campos obrigatórios. (*)');
                     throw error;
                 }), tap(() => {
                     this.toastr.success('Novo pet adicionado com sucesso!')

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { JwtAuth } from '../models/jwtAuth';
 import { Router } from '@angular/router';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AuthenticationService {
 
   registerUrl = "auth/register"
   loginUrl = "auth/login"
+  usersUrl = "auth/users";
 
   isAuthenticated = false;
 
@@ -36,6 +38,10 @@ export class AuthenticationService {
     this.isAuthenticated = false;
     this.router.navigate(['/login']); 
     return false;
+  }
+
+  public getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${environment.apiUrl}/${this.usersUrl}`);
   }
 
 }

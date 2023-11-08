@@ -12,7 +12,7 @@ export const adminGuard: CanActivateFn = (route, state) => {
     
   } else {
     router.navigate(['login']);
-    alert('Você está desconectado.')
+    console.log('Unauthorized');
     return false;
   }
 };

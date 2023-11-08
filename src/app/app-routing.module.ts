@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { AboutComponent } from './pages/about/about.component';
-import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { adminGuard } from './auth/admin.guard';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PetTableComponent } from './pages/pet-table/pet-table.component';
+import { UsersComponent } from './pages/users/users.component';
 
 
 const routes: Routes = [
@@ -24,10 +23,7 @@ const routes: Routes = [
     path: 'pets', component: PetTableComponent, canActivate: [adminGuard]
   },
   {
-    path: 'users', component: ProfileComponent, canActivate: [adminGuard]
-  },
-  {
-    path: 'users', component: ProfileComponent, canActivate: [adminGuard]
+    path: 'users', component: UsersComponent, canActivate: [adminGuard]
   },
   {
     path: '**', component: NotFoundComponent
