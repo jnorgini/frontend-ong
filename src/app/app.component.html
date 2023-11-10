@@ -1,10 +1,15 @@
-<mat-toolbar > 
+<mat-toolbar> 
     <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
         <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
         <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
     </button>
     Dashboard
     <div class="social-media">
+        <button mat-icon-button (click)="toggleDarkMode()">
+            <mat-icon *ngIf="darkModeEnabled">wb_sunny</mat-icon>
+            <mat-icon *ngIf="!darkModeEnabled">nights_stay</mat-icon>
+          </button>
+          
         <a href="https://api.whatsapp.com/send?phone=5513997825737&text=Ol%C3%A1%2C%20gostaria%20de%20ajudar%20a%20ONG%2C%20poderia%20me%20informar%20como%3F" target="_blank"><i class="fa fa-whatsapp"></i></a>      
         <a href="https://www.instagram.com/ongpatinhasquebrilham/" target="_blank"><i class="fa fa-instagram"></i></a>
         <a href="https://www.facebook.com/ongpatinhasquebrilham" target="_blank"><i class="fa fa-facebook-square"></i></a>

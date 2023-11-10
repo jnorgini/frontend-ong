@@ -39,12 +39,14 @@ import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/
 import { AgeFormatPipe } from './age-format.pipe';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PetTableComponent } from './pages/pet-table/pet-table.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { ChartComponent } from './chart/chart.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { UsersComponent } from './pages/users/users.component';
+import { TopWidgetsComponent } from './charts/top-widgets/top-widgets.component';
+import { MonthsComponent } from './charts/months/months.component';
+import { CategoryComponent } from './charts/category/category.component';
+import { ChartModule } from 'angular-highcharts';
 
 
 @NgModule({
@@ -60,8 +62,10 @@ import { UsersComponent } from './pages/users/users.component';
     DeleteConfirmationDialogComponent,
     AgeFormatPipe,
     PetTableComponent,
-    ChartComponent,
     UsersComponent,
+    TopWidgetsComponent,
+    MonthsComponent,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,7 +95,7 @@ import { UsersComponent } from './pages/users/users.component';
     FontAwesomeModule,
     MatSlideToggleModule,
     MatSnackBarModule,
-    NgxChartsModule,
+    ChartModule,
     ToastrModule.forRoot({
       "closeButton": true,
       "newestOnTop": false,

@@ -22,9 +22,8 @@
     margin: 16px;
     margin-left: 32px;
     padding: 16px;
-
-
     overflow: auto;
+    border: 1px solid white;
 
 }
 
@@ -100,3 +99,11 @@ a {
 .social-media i:hover {
     transform: translateY(-3px);
 }
+
+.dark-mode {
+    background-color: #333; 
+    color: white;
+    
+  }
+  
+  

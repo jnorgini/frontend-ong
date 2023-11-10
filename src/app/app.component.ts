@@ -22,6 +22,7 @@ export class AppComponent {
   sidenav!: MatSidenav;
 
   jwtDto = new JwtAuth();
+  darkModeEnabled = false;
 
   constructor(
     private observer: BreakpointObserver,
@@ -85,5 +86,15 @@ export class AppComponent {
       })
   }
 
-  
+  toggleDarkMode() {
+    this.darkModeEnabled = !this.darkModeEnabled;
+    const container = document.querySelector('.mat-sidenav-container');
+
+    if (this.darkModeEnabled) {
+      container?.classList.add('dark-mode');
+    } else {
+      container?.classList.remove('dark-mode');
+    }
+  }
+
 }
