@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { adminGuard } from './auth/admin.guard';
+import { authGuard } from './auth/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { DashboardLayoutComponent } from "./dashboard-layout/dashboard-layout.component";
 import { HomeComponent } from './pages/home/home.component';
@@ -9,9 +9,9 @@ import { UsersComponent } from './pages/users/users.component';
 
 const routes: Routes = [
   { path: '', component: DashboardLayoutComponent, children: [
-      { path: 'home', component: HomeComponent, canActivate: [adminGuard] },
-      { path: 'pets', component: PetTableComponent, canActivate: [adminGuard] },
-      { path: 'users', component: UsersComponent, canActivate: [adminGuard] },
+      { path: 'home', component: HomeComponent, canActivate: [authGuard] },
+      { path: 'pets', component: PetTableComponent, canActivate: [authGuard] },
+      { path: 'users', component: UsersComponent, canActivate: [authGuard] },
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ]
   },
