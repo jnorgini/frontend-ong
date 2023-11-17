@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
 * {
-    margin: 0 0 12px;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
@@ -15,7 +15,6 @@ body {
     background: url('/assets/art.jpg') no-repeat;
     background-size: cover;
     background-position: bottom;
-
 }
 
 .wrapper {
@@ -27,7 +26,6 @@ body {
     color: #fff;
     border-radius: 10px;
     padding: 30px 40px;
-
 }
 
 .wrapper h1 {
@@ -53,12 +51,10 @@ body {
     font-size: 16px;
     color:#fff;
     padding: 20px 45px 20px 20px;
-    
 }
 
 .input-box input::placeholder {
     color: #fff;
-
 }
 
 .input-box i  {
@@ -67,7 +63,6 @@ body {
     top: 50%;
     transform: translateY(-50%);
     font-size: 20px;
-    
 }
 
 .wrapper .remember-forgot {
@@ -75,7 +70,6 @@ body {
     justify-content: space-between;
     font-size: 14.5px;
     margin: -15px 0 15px;
-
 }
 
 .remember-forgot label input {
@@ -86,12 +80,10 @@ body {
 .remember-forgot a {
     color: #fff;
     text-decoration: none;
-
 }
 
 .remember-forgot a:hover {
     text-decoration: underline;
-
 }
 
 .wrapper .btn {
@@ -112,7 +104,6 @@ body {
     font-size: 14.5px;
     text-align: center;
     margin-top: 20px 0 15px;
-
 }
 
 .register-link p a {
