@@ -9,7 +9,7 @@ import { TokenStorageService } from '../services/token-storage.service';
 
 @UntilDestroy()
 @Component({
-  selector: 'app-layout',
+  selector: 'app-dashboard-layout',
   templateUrl: './dashboard-layout.component.html',
   styleUrls: ['./dashboard-layout.component.css']
 })
