@@ -20,9 +20,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { HomeComponent } from './pages/home/home.component';
-import { AboutComponent } from './pages/about/about.component';
-import { HelpComponent } from './pages/help/help.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule} from '@angular/material/radio';
@@ -55,9 +52,6 @@ import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.co
     AppComponent,
     LoginComponent,
     HomeComponent,
-    AboutComponent,
-    HelpComponent,
-    NotFoundComponent,
     PetDialogComponent,
     PetInfosComponent,
     DeleteConfirmationDialogComponent,
