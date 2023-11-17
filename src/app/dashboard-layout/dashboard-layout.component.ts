@@ -1,10 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { ToastrService } from 'ngx-toastr';
-import { delay, filter } from "rxjs/operators";
+import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { delay, filter } from "rxjs/operators";
+import { ToastrService } from 'ngx-toastr';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @UntilDestroy()
 @Component({
@@ -19,12 +20,14 @@ export class DashboardLayoutComponent {
   darkModeEnabled = false;
 
   constructor(
+    private tokenStorageService: TokenStorageService,
     private toastr: ToastrService,
     private router: Router,
     private observer: BreakpointObserver
   ) { }
 
   logout() {
+    this.tokenStorageService.signOut();
     this.router.navigate(['/login']).then(() => {});
     this.toastr.info('Sessão encerrada.')
   }
