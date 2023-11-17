@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { ToastrModule } from 'ngx-toastr';
-import { TokenInterceptorService } from './services/token-interceptor.service';
+import { AuthInterceptor } from './auth/auth.interceptor';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
@@ -106,7 +106,7 @@ import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.co
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
+      useClass: AuthInterceptor,
       multi: true
     }
   ],

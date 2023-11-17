@@ -3,13 +3,13 @@ import { Router } from '@angular/router';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { catchError, filter, switchMap, take } from 'rxjs/operators';
-import { TokenStorageService } from './token-storage.service';
-import { AuthService } from './auth.service';
+import { TokenStorageService } from '../services/token-storage.service';
+import { AuthService } from '../services/auth.service';
 
 const TOKEN_HEADER_KEY = 'Authorization';
 
 @Injectable()
-export class TokenInterceptorService implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
   private isRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
