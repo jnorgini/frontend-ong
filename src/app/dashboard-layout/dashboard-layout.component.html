@@ -1,0 +1,53 @@
+<mat-toolbar>
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+        <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+    </button>
+    Dashboard
+    <div class="social-media">
+        <button mat-icon-button (click)="toggleDarkMode()">
+            <mat-icon *ngIf="darkModeEnabled">wb_sunny</mat-icon>
+            <mat-icon *ngIf="!darkModeEnabled">nights_stay</mat-icon>
+        </button>
+
+        <a href="https://api.whatsapp.com/send?phone=5513997825737&text=Ol%C3%A1%2C%20gostaria%20de%20ajudar%20a%20ONG%2C%20poderia%20me%20informar%20como%3F" target="_blank"><i class="fa fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/ongpatinhasquebrilham/" target="_blank"><i class="fa fa-instagram"></i></a>
+        <a href="https://www.facebook.com/ongpatinhasquebrilham" target="_blank"><i class="fa fa-facebook-square"></i></a>
+    </div>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav">
+
+        <img class="avatar mat-elevation-z8" src="assets/logo.png" />
+
+        <h4 class="name">ONG</h4>
+        <p class="designation">Patinhas que Brilham</p>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" routerLink="/home">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="/pets">
+            <mat-icon>pets</mat-icon>
+            <span>Pets</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="/users">
+            <mat-icon>people</mat-icon>
+            <span>Users</span>
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+        </button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content mat-elevation-z4">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

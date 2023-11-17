@@ -47,6 +47,7 @@ import { TopWidgetsComponent } from './charts/top-widgets/top-widgets.component'
 import { MonthsComponent } from './charts/months/months.component';
 import { CategoryComponent } from './charts/category/category.component';
 import { ChartModule } from 'angular-highcharts';
+import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { ChartModule } from 'angular-highcharts';
     TopWidgetsComponent,
     MonthsComponent,
     CategoryComponent,
+    DashboardLayoutComponent,
   ],
   imports: [
     BrowserModule,

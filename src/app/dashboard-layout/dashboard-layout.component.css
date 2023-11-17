@@ -1,0 +1,107 @@
+@import '~font-awesome/css/font-awesome.css';
+
+.mat-toolbar {
+    background: #004a9f;
+    color: white;
+}
+
+.mat-sidenav {
+    margin: 16px;
+    width: 200px;
+    border-right: none;
+    background: #002b5c;
+    color: white;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+}
+
+.content {
+    height: calc(100vh - 99px);
+    border-radius: 10px;
+    margin: 16px;
+    margin-left: 32px;
+    padding: 16px;
+    overflow: auto;
+    border: 1px solid white;
+
+}
+
+.mat-sidenav-container {
+    height: calc(100vh - 65px);
+}
+
+.menu-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem;
+}
+
+.mat-icon {
+    margin-right: 8px;
+}
+
+.avatar {
+    margin-top: 16px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.name {
+    margin-top: 8px;
+    font-weight: normal;
+}
+
+.designation {
+    margin-top: 2px;
+    font-size: 0.7rem;
+    color: lightgrey;
+}
+
+.mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+span {
+    color: #fff
+}
+
+.mat-icon {
+    color: white;
+}
+
+.mat-elevation-z8,
+.mat-mdc-elevation-specific.mat-elevation-z8 {
+    box-shadow: none;
+}
+
+.social-media {
+    color: white;
+    position: absolute;
+    right: 20px;
+    font-size: 1.8rem;
+}
+
+.social-media i {
+    margin-right: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+a {
+    color: white;
+}
+
+.social-media i:hover {
+    transform: translateY(-3px);
+}
+
+.dark-mode {
+    background-color: #333;
+    color: white;
+
+}
