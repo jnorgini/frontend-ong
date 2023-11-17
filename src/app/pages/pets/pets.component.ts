@@ -1,22 +1,21 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Pet } from 'src/app/models/Pet';
-import { PetService } from 'src/app/services/pet.service';
 import { catchError, tap } from "rxjs";
 import { ToastrService } from 'ngx-toastr';
+import { Pet } from 'src/app/models/Pet';
+import { PetService } from 'src/app/services/pet.service';
 import { PetDialogComponent } from 'src/app/pet-dialog/pet-dialog.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { PetInfosComponent } from 'src/app/pet-infos/pet-infos.component';
-import { MatPaginator } from '@angular/material/paginator';
 import { DeleteConfirmationDialogComponent } from 'src/app/delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 @Component({
-  selector: 'app-pet-table',
-  templateUrl: './pet-table.component.html',
-  styleUrls: ['./pet-table.component.css']
+  selector: 'app-pets',
+  templateUrl: './pets.component.html',
+  styleUrls: ['./pets.component.css']
 })
-export class PetTableComponent implements OnInit {
+export class PetsComponent implements OnInit {
   dataSource = new MatTableDataSource<Pet>();
   displayedColumns: string[] =
     ['id', 'name', 'species', 'gender', 'age', 'breed', 'size',
@@ -31,8 +30,7 @@ export class PetTableComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private service: PetService,
-    private toastr: ToastrService,
-    private snackBar: MatSnackBar
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -55,7 +53,7 @@ export class PetTableComponent implements OnInit {
 
   private listPets() {
     if (this.isAvailablePets) {
-      this.service.getPets().subscribe(res => {
+      this.service.getAvailablePets().subscribe(res => {
         this.dataSource.data = res;
         this.dataSource.paginator = this.paginator;
       });
@@ -68,7 +66,7 @@ export class PetTableComponent implements OnInit {
   }
 
   showAllPets() {
-    this.service.getAllPets().subscribe(res => {
+    this.service.getPets().subscribe(res => {
       this.isAvailablePets = true;
       this.dataSource.data = res;
       this.dataSource.paginator = this.paginator;
@@ -87,29 +85,33 @@ export class PetTableComponent implements OnInit {
 
   showMoreInfo(pet: Pet) {
     this.dialog.open(PetInfosComponent, {
+      closeOnNavigation: true,
       data: Object.assign({}, pet)
     })
   };
 
   showCreatePetForm() {
     this.dialog.open(PetDialogComponent, {
+      closeOnNavigation: true,
       data: new Pet()
     })
-      .afterClosed().subscribe(result => {
+      .afterClosed().subscribe(() => {
         this.listPets();
       });
   }
 
   showEditPetForm(pet: Pet) {
     this.dialog.open(PetDialogComponent, {
+      closeOnNavigation: true,
       data: Object.assign({}, pet)
-    }).afterClosed().subscribe(result => {
+    }).afterClosed().subscribe(() => {
       this.listPets();
     });
   }
 
   openDeleteConfirmationDialog(id: number) {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+      closeOnNavigation: true,
       data: 'Você deseja mover o pet para adotados ou excluí-lo permanentemente?'
     });
 
@@ -167,7 +169,7 @@ export class PetTableComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        this.showUnavailablePets(); 
+        this.showUnavailablePets();
       });
   }
 

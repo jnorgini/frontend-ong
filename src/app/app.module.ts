@@ -35,7 +35,7 @@ import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { AgeFormatPipe } from './age-format.pipe';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { PetTableComponent } from './pages/pet-table/pet-table.component';
+import { PetsComponent } from './pages/pets/pets.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -56,7 +56,7 @@ import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.co
     PetInfosComponent,
     DeleteConfirmationDialogComponent,
     AgeFormatPipe,
-    PetTableComponent,
+    PetsComponent,
     UsersComponent,
     TopWidgetsComponent,
     MonthsComponent,

@@ -4,13 +4,13 @@ import { authGuard } from './auth/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { DashboardLayoutComponent } from "./dashboard-layout/dashboard-layout.component";
 import { HomeComponent } from './pages/home/home.component';
-import { PetTableComponent } from './pages/pet-table/pet-table.component';
+import { PetsComponent } from './pages/pets/pets.component';
 import { UsersComponent } from './pages/users/users.component';
 
 const routes: Routes = [
   { path: '', component: DashboardLayoutComponent, children: [
       { path: 'home', component: HomeComponent, canActivate: [authGuard] },
-      { path: 'pets', component: PetTableComponent, canActivate: [authGuard] },
+      { path: 'pets', component: PetsComponent, canActivate: [authGuard] },
       { path: 'users', component: UsersComponent, canActivate: [authGuard] },
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ]
