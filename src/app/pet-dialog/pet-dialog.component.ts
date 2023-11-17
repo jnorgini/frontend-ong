@@ -1,16 +1,17 @@
-import {Component, Inject} from '@angular/core';
-import {PetService} from 'src/app/services/pet.service';
-import {Pet} from 'src/app/models/Pet';
-import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
-import {catchError, tap} from 'rxjs';
-import {ToastrService} from 'ngx-toastr';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { catchError, tap } from 'rxjs';
+import { Pet } from 'src/app/models/Pet';
+import { PetService } from 'src/app/services/pet.service';
 
 @Component({
     selector: 'app-add-pet',
     templateUrl: './pet-dialog.component.html',
     styleUrls: ['./pet-dialog.component.css']
 })
-export class PetDialogComponent {
+export class PetDialogComponent implements OnInit {
     pet: Pet = <Pet>{};
     editMode: boolean = false;
     inputAge: number = 0;
@@ -20,7 +21,8 @@ export class PetDialogComponent {
         @Inject(MAT_DIALOG_DATA) data: Pet,
         private dialog: MatDialog,
         private service: PetService,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private router: Router
     ) {
         this.service.listen().subscribe((m: any) => {
             console.log(m);
@@ -35,6 +37,13 @@ export class PetDialogComponent {
         this.setSelectedUnit();
     }
 
+    ngOnInit() {
+        this.router.events
+          .subscribe(() => {
+              this.dialog.closeAll();
+          });
+    }
+
     createPet(): Pet {
         this.service.addPet(this.pet)
             .pipe(
@@ -44,7 +53,7 @@ export class PetDialogComponent {
                 }), tap(() => {
                     this.toastr.success('Novo pet adicionado com sucesso!')
                 })
-            ).subscribe(res => {
+            ).subscribe(() => {
               this.closeForm();
             })
         return this.pet;
@@ -60,7 +69,7 @@ export class PetDialogComponent {
                     this.toastr.success('Pet alterado com sucesso!')
                 })
             )
-            .subscribe(res => {
+            .subscribe(() => {
                 this.closeForm();
             })
         return this.pet;
