@@ -11,8 +11,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class PetInfosComponent  {
   pet = <Pet>{};
-  infoMode: boolean = false;
-  editMode: boolean = false;
 
   constructor(
       @Inject(MAT_DIALOG_DATA) data: Pet,
@@ -25,7 +23,6 @@ export class PetInfosComponent  {
 
       if (data.id !== 0) {
           this.pet = data;
-          this.editMode = true;
       }
   }
 
