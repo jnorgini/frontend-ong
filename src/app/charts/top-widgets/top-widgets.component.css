@@ -4,7 +4,7 @@
 }
 
 .widget {
-  width: 275px; /* Reduzindo a largura padrão */
+  width: 275px; 
   height: 175px;
   background-color: #fff;
   color: #fff;
@@ -28,7 +28,6 @@
     background-color: rgb(105, 32, 251);
   }
 
-  /* Media Queries para ajustar a largura responsiva */
   @media only screen and (max-width: 1600px) {
     width: 290px;
   }

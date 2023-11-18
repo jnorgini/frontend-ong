@@ -1,64 +1,57 @@
-/* Estilos para diferentes seções */
-
-/* Definições específicas de cada seção */
 .top-section {
-  width: 50%; /* Porcentagem da largura do contêiner pai */
-  height: 200px; /* Altura aumentada */
+  width: 50%; 
+  height: 200px; 
 }
 
 .middle-section {
-  width: 100%; /* Ocupa 100% do espaço disponível */
-  height: 400px; /* Altura aumentada */
-  display: flex; /* Adicionando display flex para os widgets ficarem lado a lado */
+  width: 100%; 
+  height: 400px; 
+  display: flex; 
   justify-content: center; 
   align-items: center;
 }
 
-/* Estilos para widgets */
 .widget {
-  height: 350px; /* Altura padrão */
+  height: 350px;
   background-color: #fff;
   border-radius: 5px;
   margin: 10px;
   box-shadow: 5px 5px 5px #939393;
 }
 
-/* Estilos para widgets posicionados à esquerda */
 .widget.left {
-  flex: 1; /* Ocupa todo o espaço possível */
-  max-width: 50%; /* Limita a metade do espaço para widgets à esquerda */
+  flex: 1; 
+  max-width: 50%; 
 }
 
-/* Estilos para widgets posicionados à direita */
 .widget.right {
-  flex: 1; /* Ocupa todo o espaço possível */
-  max-width: 50%; /* Limita a metade do espaço para widgets à direita */
+  flex: 1; 
+  max-width: 50%; 
 }
 
-/* Ajustes de largura para diferentes tamanhos de tela */
 @media only screen and (max-width: 1200px) {
   .widget.left.left {
-    max-width: 60%; /* Alterando a largura máxima para widgets à esquerda */
+    max-width: 60%; 
   }
   .widget.right {
-    max-width: 40%; /* Alterando a largura máxima para widgets à direita */
+    max-width: 40%;
   }
 }
 
 @media only screen and (max-width: 1400px) {
   .widget.right {
-    max-width: 50%; /* Alterando a largura máxima para widgets à direita */
+    max-width: 50%; 
   }
 }
 
 @media only screen and (max-width: 1500px) {
   .widget.right {
-    max-width: 40%; /* Alterando a largura máxima para widgets à direita */
+    max-width: 40%; 
   }
 }
 
 @media only screen and (max-width: 1600px) {
   .widget.right {
-    max-width: 40%; /* Alterando a largura máxima para widgets à direita */
+    max-width: 40%; 
   }
 }

@@ -112,7 +112,7 @@ export class PetsComponent implements OnInit {
     });
   }
 
-  openDeleteConfirmationDialog(id: number) {
+  openConfirmationDialog(id: number) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       closeOnNavigation: true,
       data: 'Você deseja mover o pet para adotados ou excluí-lo permanentemente?'
@@ -123,6 +123,14 @@ export class PetsComponent implements OnInit {
         this.turnUnavailable(id);
       } else if (result === 'deletePermanently') {
         this.removePet(id);
+      }
+
+      if (this.selectedOption === 'showAll') {
+        this.showAllPets();
+      } else if (this.selectedOption === 'showAvailable') {
+        this.showAvailablePets();
+      } else if (this.selectedOption === 'showUnavailable') {
+        this.showUnavailablePets();
       }
     });
   }
@@ -156,7 +164,13 @@ export class PetsComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        this.listPets();
+        if (this.selectedOption === 'showAll') {
+          this.showAllPets();
+        } else if (this.selectedOption === 'showAvailable') {
+          this.showAvailablePets();
+        } else if (this.selectedOption === 'showUnavailable') {
+          this.showUnavailablePets();
+        }
       });
   }
 
