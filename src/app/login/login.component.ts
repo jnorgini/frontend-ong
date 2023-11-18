@@ -13,6 +13,7 @@ import { TokenStorageService } from '../services/token-storage.service';
 })
 export class LoginComponent implements OnInit {
   loginDto: Login = new Login();
+  formSubmitted = false;
 
   constructor(
     private authService: AuthService,
@@ -28,6 +29,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(loginDto: Login) {
+    this.formSubmitted = true;
+    if (loginDto.username === '' || loginDto.password === '') {
+     
+        this.toastr.warning('Por favor, preencha todos os campos.');
+      
+      return; 
+    }
+
     this.authService.login(loginDto)
       .pipe(
         catchError((error) => {
