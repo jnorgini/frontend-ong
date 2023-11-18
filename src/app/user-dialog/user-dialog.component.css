@@ -1,0 +1,35 @@
+.title-h1 {
+    text-align: center;
+}
+
+.mat-mdc-slide-toggle {
+    display: inline-block;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    outline: 0;
+    position: relative;
+    bottom: 10px;
+}
+
+.content {
+    padding-top: 10px;
+}
+
+.rowe {
+    display: flex;
+    gap: 10px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.action button {
+    flex: 1;
+}
+
+.form-control[type=file]:not(:disabled):not([readonly]) {
+    position: relative;
+    bottom: 10px;
+    cursor: pointer;
+    right: 5px;
+}

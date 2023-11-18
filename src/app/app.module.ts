@@ -45,6 +45,7 @@ import { MonthsComponent } from './charts/months/months.component';
 import { CategoryComponent } from './charts/category/category.component';
 import { ChartModule } from 'angular-highcharts';
 import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.component';
+import { UserDialogComponent } from './user-dialog/user-dialog.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.co
     MonthsComponent,
     CategoryComponent,
     DashboardLayoutComponent,
+    UserDialogComponent,
   ],
   imports: [
     BrowserModule,

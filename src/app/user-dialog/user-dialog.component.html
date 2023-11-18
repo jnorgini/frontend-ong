@@ -1,0 +1,37 @@
+<p>user-dialog works!</p>
+<div mat-dialog-title id="formModal">
+    <h1 class="title-h1">User Form</h1>
+  </div>
+  <div mat-dialog-content class="content">
+
+    <div class="rowe">
+      <mat-form-field appearance="outline">
+        <mat-label for="validationDefault01">E-mail</mat-label>
+        <input id="validationDefault01" value="email" required matInput type="text" placeholder="user@exemplo.com"
+          [(ngModel)]="user.username">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label for="validationDefault02">Password</mat-label>
+        <input id="validationDefault02" value="password" required matInput type="text" placeholder="senha123"
+          [(ngModel)]="user.password">
+      </mat-form-field>
+    </div>
+
+    <div class="rowe">
+      <mat-form-field appearance="outline">
+        <mat-label for="validationDefault01">Role</mat-label>
+        <input id="validationDefault01" value="role" required matInput type="text" placeholder="ADMIN"
+          [(ngModel)]="user.role">
+      </mat-form-field>
+    </div>
+  
+    <div mat-dialog-actions class="action">
+      <ng-template [ngIf]="editMode" [ngIfElse]="createMode">
+        <button (click)="editUser()" class="mat-elevation-z8" mat-stroked-button color="primary">EDITAR</button>
+      </ng-template>
+      <ng-template #createMode>
+        <button (click)="createUser()" class="button-create mat-elevation-z8" mat-stroked-button color="primary">CRIAR</button>
+      </ng-template>
+      <button (click)="closeForm()" class="mat-elevation-z8" mat-stroked-button color="primary">CANCELAR</button>
+    </div>
+  </div>
