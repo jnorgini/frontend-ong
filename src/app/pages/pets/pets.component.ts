@@ -51,36 +51,27 @@ export class PetsComponent implements OnInit {
     };
   }
 
-  private listPets() {
-    if (this.isAvailablePets) {
-      this.service.getAvailablePets().subscribe(res => {
-        this.dataSource.data = res;
-        this.dataSource.paginator = this.paginator;
-      });
-    } else {
-      this.service.getUnavailablePets().subscribe(res => {
-        this.dataSource.data = res;
-        this.dataSource.paginator = this.paginator;
-      });
-    }
+  private listPets(status?: string) {
+    this.service.getPets(status).subscribe(res => {
+      this.dataSource.data = res;
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
   showAllPets() {
-    this.service.getPets().subscribe(res => {
-      this.isAvailablePets = true;
-      this.dataSource.data = res;
-      this.dataSource.paginator = this.paginator;
-    })
+    this.listPets(); 
+    this.isAvailablePets = true;
+    this.dataSource.paginator = this.paginator;
   }
 
   showAvailablePets() {
+    this.listPets('available'); 
     this.isAvailablePets = true;
-    this.listPets();
   }
 
   showUnavailablePets() {
+    this.listPets('unavailable');
     this.isAvailablePets = false;
-    this.listPets();
   }
 
   showMoreInfo(pet: Pet) {

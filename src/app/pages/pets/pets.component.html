@@ -87,7 +87,7 @@
   
           <mat-icon class="icon-info" fontIcon="visibilityoutlined"
             (click)="showMoreInfo(pet)">visibilityoutlined</mat-icon>
-          <mat-icon class="icon-edit" fontIcon="edit" (click)="showEditPetForm(pet)">edit</mat-icon>
+          <mat-icon *ngIf="isAvailablePets" class="icon-edit" fontIcon="edit" (click)="showEditPetForm(pet)">edit</mat-icon>
           <mat-icon *ngIf="isAvailablePets" class="icon-delete" fontIcon="delete" (click)="openDeleteConfirmationDialog(pet.id)">delete</mat-icon>
           <mat-icon *ngIf="!isAvailablePets" class="icon-delete" fontIcon="delete" (click)="removePet(pet.id)">delete</mat-icon>
           <mat-icon *ngIf="!isAvailablePets" class="icon-restore" fontIcon="restore" (click)="turnAvailable(pet.id)">restore</mat-icon>

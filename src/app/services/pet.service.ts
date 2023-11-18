@@ -15,16 +15,9 @@ export class PetService {
 
   constructor(private http: HttpClient) { }
 
-  getPets(): Observable<PetModel[]> {
-    return this.http.get<PetModel[]>(PETS_API_URL);
-  }
-
-  getAvailablePets(): Observable<PetModel[]> {
-    return this.http.get<PetModel[]>(`${PETS_API_URL}?status=available`);
-  }
-
-  getUnavailablePets(): Observable<PetModel[]> {
-    return this.http.get<PetModel[]>(`${PETS_API_URL}?status=unavailable`);
+  getPets(status?: string): Observable<PetModel[]> {
+    const url = status ? `${PETS_API_URL}?status=${status}` : PETS_API_URL;
+    return this.http.get<PetModel[]>(url);
   }
 
   addPet(pet: Pet): Observable<Pet> {
