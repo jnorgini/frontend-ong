@@ -1,4 +1,4 @@
-<button class="button mat-elevation-z8" mat-raised-button color="primary" (click)="addNewUser()">Adicionar
+<button class="button mat-elevation-z8" mat-raised-button color="primary" (click)="showCreateUserForm()">Adicionar
   Usuário</button>
 
 <div class="mat-elevation-z8 content-table">
@@ -14,12 +14,12 @@
       <mat-cell *matCellDef="let user"> {{ user.username }} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="password">
+    <!-- <ng-container matColumnDef="password">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Password </mat-header-cell>
       <mat-cell *matCellDef="let user">
         {{ formatPassword(user.password) }}
       </mat-cell>
-    </ng-container>
+    </ng-container> -->
 
     <ng-container matColumnDef="role">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
@@ -29,9 +29,9 @@
     <ng-container matColumnDef="acoes">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Ações </mat-header-cell>
       <mat-cell *matCellDef="let user">
-        <mat-icon class="icon-edit" fontIcon="edit" (click)="openEditForm()">
+        <mat-icon class="icon-edit" fontIcon="edit" color="primary" (click)="openEditForm()">
         </mat-icon>
-        <mat-icon class="icon-delete" fontIcon="delete" (click)="removeUser()">
+        <mat-icon class="icon-delete" fontIcon="delete" color="primary" (click)="removeUser()">
         </mat-icon>
       </mat-cell>
     </ng-container>
