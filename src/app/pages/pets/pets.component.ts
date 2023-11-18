@@ -59,13 +59,13 @@ export class PetsComponent implements OnInit {
   }
 
   showAllPets() {
-    this.listPets(); 
+    this.listPets();
     this.isAvailablePets = true;
     this.dataSource.paginator = this.paginator;
   }
 
   showAvailablePets() {
-    this.listPets('available'); 
+    this.listPets('available');
     this.isAvailablePets = true;
   }
 
@@ -87,7 +87,13 @@ export class PetsComponent implements OnInit {
       data: new Pet()
     })
       .afterClosed().subscribe(() => {
-        this.listPets();
+        if (this.selectedOption === 'showAll') {
+          this.showAllPets();
+        } else if (this.selectedOption === 'showAvailable') {
+          this.showAvailablePets();
+        } else if (this.selectedOption === 'showUnavailable') {
+          this.showUnavailablePets();
+        }
       });
   }
 
@@ -96,7 +102,13 @@ export class PetsComponent implements OnInit {
       closeOnNavigation: true,
       data: Object.assign({}, pet)
     }).afterClosed().subscribe(() => {
-      this.listPets();
+      if (this.selectedOption === 'showAll') {
+        this.showAllPets();
+      } else if (this.selectedOption === 'showAvailable') {
+        this.showAvailablePets();
+      } else if (this.selectedOption === 'showUnavailable') {
+        this.showUnavailablePets();
+      }
     });
   }
 

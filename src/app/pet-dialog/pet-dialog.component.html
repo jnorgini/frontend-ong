@@ -76,7 +76,7 @@
     <div class="rowe">
       <mat-form-field appearance="outline">
         <mat-label>Microchip</mat-label>
-        <input matInput type="text" placeholder="Ex. 123A" [(ngModel)]="pet.microchip">
+        <input matInput type="number" placeholder="15 números (*)" [(ngModel)]="pet.microchip">
       </mat-form-field>
     </div>
       <div class="rowe">
@@ -100,6 +100,6 @@
     <ng-template #createMode>
       <button (click)="createPet()" class="button-create mat-elevation-z8" color="primary" mat-stroked-button>CRIAR</button>
     </ng-template>
-    <button (click)="closeForm()" class="mat-elevation-z8" mat-stroked-button color="primary">CANCELAR</button>
+    <button (click)="closeForm()" class="mat-elevation-z8" mat-stroked-button color="basic">CANCELAR</button>
   </div>
 </div>
