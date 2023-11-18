@@ -8,7 +8,7 @@ import { Pet } from 'src/app/models/Pet';
 import { PetService } from 'src/app/services/pet.service';
 import { PetDialogComponent } from 'src/app/pet-dialog/pet-dialog.component';
 import { PetInfosComponent } from 'src/app/pet-infos/pet-infos.component';
-import { DeleteConfirmationDialogComponent } from 'src/app/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { ConfirmationDialogComponent } from 'src/app/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-pets',
@@ -25,7 +25,7 @@ export class PetsComponent implements OnInit {
 
   searchTerm: string = '';
   isAvailablePets = true;
-  selectedOption: string = 'showAll'; // Valor padrão
+  selectedOption: string = 'showAll';
 
   constructor(
     private dialog: MatDialog,
@@ -101,7 +101,7 @@ export class PetsComponent implements OnInit {
   }
 
   openDeleteConfirmationDialog(id: number) {
-    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       closeOnNavigation: true,
       data: 'Você deseja mover o pet para adotados ou excluí-lo permanentemente?'
     });

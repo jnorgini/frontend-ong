@@ -32,7 +32,6 @@ import { PetDialogComponent } from './pet-dialog/pet-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PetInfosComponent } from './pet-infos/pet-infos.component';
 import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
-import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { AgeFormatPipe } from './age-format.pipe';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PetsComponent } from './pages/pets/pets.component';
@@ -46,6 +45,7 @@ import { CategoryComponent } from './charts/category/category.component';
 import { ChartModule } from 'angular-highcharts';
 import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.component';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({
@@ -55,7 +55,6 @@ import { UserDialogComponent } from './user-dialog/user-dialog.component';
     HomeComponent,
     PetDialogComponent,
     PetInfosComponent,
-    DeleteConfirmationDialogComponent,
     AgeFormatPipe,
     PetsComponent,
     UsersComponent,
@@ -64,6 +63,7 @@ import { UserDialogComponent } from './user-dialog/user-dialog.component';
     CategoryComponent,
     DashboardLayoutComponent,
     UserDialogComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
