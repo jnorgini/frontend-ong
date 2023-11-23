@@ -37,8 +37,7 @@ export class DashboardLayoutComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getAccessToken();
     if (this.isLoggedIn) {
-      const roles = this.tokenStorageService.getRoles();
-      this.hasAdminRole = roles.includes('ROLE_ADMIN');
+      this.hasAdminRole = this.tokenStorageService.hasRole('ROLE_ADMIN');
     }
   }
 

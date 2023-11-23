@@ -32,16 +32,17 @@ export class TokenStorageService {
     window.sessionStorage.setItem(REFRESH_TOKEN_KEY, token);
   }
 
+  public hasRole(role: string): boolean {
+    const roles = this.decodeToken(this.getAccessToken()!).payload.roles;
+    return roles.includes(role);
+  }
+
   private decodeToken(token: string): any {
     let [header, payload] = token.split('.').slice(0,2)
       .map(el => el.replace(/-/g, '+').replace(/_/g, '/'))
       .map(el => JSON.parse(window.atob(el)));
 
     return {header, payload};
-  }
-
-  public getRoles(): any {
-    return this.decodeToken(this.getAccessToken()!).payload.roles;
   }
 
 }

@@ -7,10 +7,9 @@ export const authGuard: CanActivateFn = (route) => {
   const tokenStorage = inject(TokenStorageService);
 
   if (tokenStorage.getAccessToken()) {
-    const tokenRoles = tokenStorage.getRoles();
     const routeRole = route.data['role'];
 
-    if (routeRole && !tokenRoles.includes(routeRole)) {
+    if (routeRole && !tokenStorage.hasRole(routeRole)) {
       router.navigate(['login']).then(() => {});
       return false;
     }
