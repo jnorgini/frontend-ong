@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -13,11 +13,13 @@ import { TokenStorageService } from '../services/token-storage.service';
   templateUrl: './dashboard-layout.component.html',
   styleUrls: ['./dashboard-layout.component.css']
 })
-export class DashboardLayoutComponent {
+export class DashboardLayoutComponent implements OnInit {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
   darkModeEnabled = false;
+  isLoggedIn = false;
+  hasAdminRole = false;
 
   constructor(
     private tokenStorageService: TokenStorageService,
@@ -30,6 +32,14 @@ export class DashboardLayoutComponent {
     this.tokenStorageService.signOut();
     this.router.navigate(['/login']).then(() => {});
     this.toastr.info('Sessão encerrada.')
+  }
+
+  ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenStorageService.getAccessToken();
+    if (this.isLoggedIn) {
+      const roles = this.tokenStorageService.getRoles();
+      this.hasAdminRole = roles.includes('ROLE_ADMIN');
+    }
   }
 
   toggleDarkMode() {
