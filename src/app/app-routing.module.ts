@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', component: DashboardLayoutComponent, children: [
       { path: 'home', component: HomeComponent, canActivate: [authGuard] },
       { path: 'pets', component: PetsComponent, canActivate: [authGuard] },
-      { path: 'users', component: UsersComponent, canActivate: [authGuard] },
+      { path: 'users', component: UsersComponent, canActivate: [authGuard], data: { role: 'ROLE_ADMIN' } },
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ]
   },
