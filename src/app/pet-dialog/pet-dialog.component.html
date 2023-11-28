@@ -6,7 +6,7 @@
   <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label for="validationDefault01">Nome</mat-label>
-      <input id="validationDefault01" value="Mark" required matInput type="text" placeholder="Ex. Totó"
+      <input id="validationDefault01" value="Mark" required matInput type="text"
         [(ngModel)]="pet.name">
     </mat-form-field>
   </div>
@@ -31,7 +31,7 @@
   <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label for="inputAge">Idade</mat-label>
-      <input [(ngModel)]="inputAge" type="number" id="inputAge" min="0" max="99" value="1" (change)="calculateAgeInMonths()" required matInput placeholder="Ex. Totó">
+      <input [(ngModel)]="inputAge" type="number" id="inputAge" min="0" max="99" value="1" (change)="calculateAgeInMonths()" required matInput>
       <input type="hidden" [(ngModel)]="pet.ageInMonths" />
     </mat-form-field>
     <mat-form-field appearance="outline">
@@ -46,7 +46,7 @@
   <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label for="validationDefault05">Raça</mat-label>
-      <input id="validationDefault05" required matInput type="text" placeholder="Ex. pitbull" [(ngModel)]="pet.breed">
+      <input id="validationDefault05" required matInput type="text" [(ngModel)]="pet.breed">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label for="validationDefault06">Porte</mat-label>
@@ -61,7 +61,7 @@
   <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label for="validationDefault07">Peso</mat-label>
-      <input id="validationDefault07" required matInput type="number" placeholder="Ex. 25" [(ngModel)]="pet.weight">
+      <input id="validationDefault07" required matInput type="number" [(ngModel)]="pet.weight">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Castrado</mat-label>
@@ -76,20 +76,20 @@
     <div class="rowe">
       <mat-form-field appearance="outline">
         <mat-label>Microchip</mat-label>
-        <input matInput type="number" placeholder="15 números (*)" [(ngModel)]="pet.microchip">
+        <input matInput type="number" placeholder="Mínimo 15 dígitos" [(ngModel)]="pet.microchip">
       </mat-form-field>
     </div>
       <div class="rowe">
       <mat-form-field appearance="outline">
         <mat-label>Vacinação</mat-label>
-        <input matInput type="text" placeholder="Ex. 1ª dose vacina 'x'" [(ngModel)]="pet.vaccination">
+        <input matInput type="text" [(ngModel)]="pet.vaccination">
       </mat-form-field>
     </div>
 
   <div class="rowe">
     <mat-form-field>
       <mat-label>Descrição</mat-label>
-      <textarea matInput placeholder="Ex. agitado" [(ngModel)]="pet.description"></textarea>
+      <textarea matInput [(ngModel)]="pet.description"></textarea>
     </mat-form-field>
   </div>
 
