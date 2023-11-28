@@ -2,10 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { catchError, tap } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 import { UserDialogComponent } from 'src/app/user-dialog/user-dialog.component';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-users',
@@ -17,9 +18,28 @@ export class UsersComponent implements OnInit {
   displayedColumns: string[] = ['id', 'username', 'role', 'acoes'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private userService: UserService, private dialog: MatDialog) { }
+  constructor(
+    private userService: UserService,
+    private dialog: MatDialog,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
+    this.userService.getUsers().subscribe(data => {
+      this.dataSource.data = data;
+      this.setupPaginator();
+      this.setupUserUpdateListener();
+    });
+  }
+
+  private setupUserUpdateListener() {
+    this.userService.onUpdate().subscribe(() => {
+      this.userService.getUsers().subscribe(data => {
+        this.dataSource.data = data;
+      });
+    });
+  }
+  private setupPaginator() {
     this.userService.getUsers().subscribe(data => {
       this.dataSource.data = data;
       this.paginator._intl.itemsPerPageLabel = 'Itens por página';
@@ -35,33 +55,62 @@ export class UsersComponent implements OnInit {
         const startIndex = page * pageSize;
         const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
         return `${startIndex + 1} - ${endIndex} de ${length}`;
+
       };
     });
   }
 
   showCreateUserForm() {
-    this.dialog.open(UserDialogComponent, {
+    const dialogRef = this.dialog.open(UserDialogComponent, {
       closeOnNavigation: true,
       data: new User()
-    })
-      .afterClosed().subscribe(() => {
-        this.userService.getUsers();
+    });
+
+    dialogRef.afterClosed().subscribe((result: User) => {
+      if (result) {
+        this.userService.postUser(result).subscribe(() => {
+          this.userService.getUsers().subscribe(data => {
+            this.dataSource.data = data;
+          });
+        });
+      }
+    });
+  }
+
+  showUpdateUserForm(user: User) {
+    const dialogRef = this.dialog.open(UserDialogComponent, {
+      closeOnNavigation: true,
+      data: { ...user }
+    });
+
+    dialogRef.afterClosed().subscribe((result: User) => {
+      if (result) {
+        result.id = user.id;
+        this.userService.putUser(result).subscribe(() => {
+          this.userService.emitUpdate();
+          this.userService.getUsers().subscribe(data => {
+            this.dataSource.data = data;
+          });
+        });
+      }
+    });
+  }
+
+  removeUser(id: number) {
+    this.userService.deleteUser(id)
+      .pipe(
+        catchError((error) => {
+          this.toastr.error('Erro ao tentar remover usuário.');
+          throw error;
+        }),
+        tap(() => {
+          this.toastr.success('Usuário removido com sucesso.');
+        })
+      )
+      .subscribe(() => {
+        this.userService.emitUpdate();
       });
+      
   }
 
-  addNewUser() {
-    //TODO
-  }
-
-  openEditForm() {
-    //TODO
-  }
-
-  removeUser() {
-    //TODO
-  }
-
-  // formatPassword(password: string): string {
-  //   return '•'.repeat(password.length);
-  // }
 }

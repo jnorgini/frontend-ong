@@ -29,9 +29,9 @@
     <ng-container matColumnDef="acoes">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Ações </mat-header-cell>
       <mat-cell *matCellDef="let user">
-        <mat-icon class="icon-edit" fontIcon="edit" color="primary" (click)="openEditForm()">
+        <mat-icon class="icon-edit" fontIcon="edit" color="primary" (click)="showUpdateUserForm(user)">
         </mat-icon>
-        <mat-icon class="icon-delete" fontIcon="delete" (click)="removeUser()">
+        <mat-icon class="icon-delete" fontIcon="delete" (click)="removeUser(user.id)">
         </mat-icon>
       </mat-cell>
     </ng-container>
