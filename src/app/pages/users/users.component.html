@@ -22,9 +22,12 @@
     </ng-container> -->
 
     <ng-container matColumnDef="role">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{ user.role }} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Permissão </mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        {{ user.role === 'USER' ? 'Usuário' : user.role === 'ADMIN' ? 'Administrador' : user.role }}
+      </mat-cell>
     </ng-container>
+    
 
     <ng-container matColumnDef="acoes">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Ações </mat-header-cell>
