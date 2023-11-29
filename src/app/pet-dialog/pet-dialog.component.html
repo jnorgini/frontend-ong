@@ -5,22 +5,23 @@
 
   <div class="rowe">
     <mat-form-field appearance="outline">
-      <mat-label for="validationDefault01">Nome</mat-label>
-      <input id="validationDefault01" value="Mark" required matInput type="text" [(ngModel)]="pet.name">
+      <mat-label>Nome
+      </mat-label>
+      <input id="name" value="name" required matInput type="text" [(ngModel)]="pet.name">
     </mat-form-field>
   </div>
 
   <div class="rowe">
     <mat-form-field appearance="outline">
-      <mat-label for="validationDefault02">Espécie</mat-label>
-      <mat-select id="validationDefault02" required [(ngModel)]="pet.species">
+      <mat-label>Espécie</mat-label>
+      <mat-select id="species" required [(ngModel)]="pet.species">
         <mat-option value="DOG">Cachorro</mat-option>
         <mat-option value="CAT">Gato</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label for="validationDefault03">Gênero</mat-label>
-      <mat-select id="validationDefault03" required [(ngModel)]="pet.gender">
+      <mat-label>Gênero</mat-label>
+      <mat-select id="gender" required [(ngModel)]="pet.gender">
         <mat-option value="FEMALE">Fêmea</mat-option>
         <mat-option value="MALE">Macho</mat-option>
       </mat-select>
@@ -29,13 +30,13 @@
 
   <div class="rowe">
     <mat-form-field appearance="outline">
-      <mat-label for="inputAge">Idade</mat-label>
+      <mat-label>Idade</mat-label>
       <input [(ngModel)]="inputAge" type="number" id="inputAge" min="0" max="99" value="1"
         (change)="calculateAgeInMonths()" required matInput>
       <input type="hidden" [(ngModel)]="pet.ageInMonths" />
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label for="unitSelect">Meses/Anos</mat-label>
+      <mat-label>Meses/Anos</mat-label>
       <mat-select id="unitSelect" [(ngModel)]="selectedUnit" (selectionChange)="calculateAgeInMonths()">
         <mat-option value="months">Meses</mat-option>
         <mat-option value="years">Anos</mat-option>
@@ -45,12 +46,12 @@
 
   <div class="rowe">
     <mat-form-field appearance="outline">
-      <mat-label for="validationDefault05">Raça</mat-label>
-      <input id="validationDefault05" required matInput type="text" [(ngModel)]="pet.breed">
+      <mat-label>Raça</mat-label>
+      <input id="breed" required matInput type="text" [(ngModel)]="pet.breed">
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label for="validationDefault06">Porte</mat-label>
-      <mat-select id="validationDefault06" required [(ngModel)]="pet.size">
+      <mat-label>Porte</mat-label>
+      <mat-select id="size" required [(ngModel)]="pet.size">
         <mat-option value="SMALL">Pequeno</mat-option>
         <mat-option value="MEDIUM">Médio</mat-option>
         <mat-option value="LARGE">Grande</mat-option>
@@ -60,8 +61,8 @@
 
   <div class="rowe">
     <mat-form-field appearance="outline">
-      <mat-label for="validationDefault07">Peso</mat-label>
-      <input id="validationDefault07" required matInput type="number" [(ngModel)]="pet.weight">
+      <mat-label>Peso</mat-label>
+      <input id="weight" required matInput type="number" [(ngModel)]="pet.weight">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Castrado</mat-label>
