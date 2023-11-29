@@ -48,7 +48,11 @@ export class PetDialogComponent implements OnInit {
         this.service.addPet(this.pet)
             .pipe(
                 catchError((error) => {
-                    this.toastr.warning('Falha ao tentar adicionar novo Pet.');
+                   if (error.status === 400) {
+                    this.toastr.warning('Erro. Certifique-se de preencher corretamente o formulário.');
+                   } else {
+                    this.toastr.error('Erro ao tentar adicionar novo Pet. Verifique sua conexão com a internet e tente novamente.');
+                   }
                     throw error;
                 }), tap(() => {
                     this.toastr.success('Pet adicionado com sucesso!')
@@ -63,7 +67,11 @@ export class PetDialogComponent implements OnInit {
         this.service.updatePet(pet)
             .pipe(
                 catchError((error) => {
-                    this.toastr.warning('Falha ao tentar alterar pet.');
+                    if (error.status === 400) {
+                        this.toastr.warning('Erro. Certifique-se de preencher corretamente o formulário.');
+                       } else {
+                        this.toastr.error('Erro ao alterar o Pet. Verifique sua conexão com a internet e tente novamente.');
+                       }
                     throw error;
                 }), tap(() => {
                     this.toastr.success('Pet alterado com sucesso!')

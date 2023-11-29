@@ -36,7 +36,11 @@ export class UserDialogComponent {
     this.service.postUser(this.user)
       .pipe(
         catchError((error) => {
-          this.toastr.error('Erro ao tentar criar novo usuário.');
+          if (error.status === 400) {
+            this.toastr.warning('Erro. Certifique-se de preencher corretamente o formulário.');
+           } else {
+            this.toastr.error('Erro ao tentar criar novo usuário. Verifique sua conexão com a internet e tente novamente.');
+           }
           throw error;
         }),
         tap(() => {
@@ -46,14 +50,17 @@ export class UserDialogComponent {
         })
       )
       .subscribe();
-      this.closeForm();
   }
 
   updateUser() {
+    if (!this.user.username || this.user.username.trim() === '') {
+      return;
+    }
+
     this.service.putUser(this.user)
       .pipe(
         catchError((error) => {
-          this.toastr.error('Erro ao tentar editar usuário.');
+            this.toastr.error('Erro ao tentar editar usuário. Verifique sua conexão com a internet e tente novamente.');
           throw error;
         }),
         tap(() => {
@@ -63,7 +70,6 @@ export class UserDialogComponent {
         })
       )
       .subscribe();
-      this.closeForm();
   }
 
   closeForm() {

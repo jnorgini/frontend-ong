@@ -6,8 +6,7 @@
   <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label for="validationDefault01">Nome</mat-label>
-      <input id="validationDefault01" value="Mark" required matInput type="text"
-        [(ngModel)]="pet.name">
+      <input id="validationDefault01" value="Mark" required matInput type="text" [(ngModel)]="pet.name">
     </mat-form-field>
   </div>
 
@@ -31,7 +30,8 @@
   <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label for="inputAge">Idade</mat-label>
-      <input [(ngModel)]="inputAge" type="number" id="inputAge" min="0" max="99" value="1" (change)="calculateAgeInMonths()" required matInput>
+      <input [(ngModel)]="inputAge" type="number" id="inputAge" min="0" max="99" value="1"
+        (change)="calculateAgeInMonths()" required matInput>
       <input type="hidden" [(ngModel)]="pet.ageInMonths" />
     </mat-form-field>
     <mat-form-field appearance="outline">
@@ -72,19 +72,26 @@
     </mat-form-field>
   </div>
 
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>
+        Microchip
+        <span *ngIf="microchip.touched && microchip.invalid">
+          (Necessário 15 dígitos)
+        </span>
+      </mat-label>
+      <input matInput type="number" [(ngModel)]="pet.microchip" #microchip="ngModel" pattern="[0-9]{15}" ngModel>
+      <mat-error *ngIf="microchip.touched && microchip.invalid">
+      </mat-error>
+    </mat-form-field>
 
-    <div class="rowe">
-      <mat-form-field appearance="outline">
-        <mat-label>Microchip</mat-label>
-        <input matInput type="number" placeholder="Mínimo 15 dígitos" [(ngModel)]="pet.microchip">
-      </mat-form-field>
-    </div>
-      <div class="rowe">
-      <mat-form-field appearance="outline">
-        <mat-label>Vacinação</mat-label>
-        <input matInput type="text" [(ngModel)]="pet.vaccination">
-      </mat-form-field>
-    </div>
+  </div>
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>Vacinação</mat-label>
+      <input matInput type="text" [(ngModel)]="pet.vaccination">
+    </mat-form-field>
+  </div>
 
   <div class="rowe">
     <mat-form-field>
@@ -98,7 +105,8 @@
       <button (click)="editPet(pet)" class="mat-elevation-z8" mat-stroked-button color="primary">EDITAR</button>
     </ng-template>
     <ng-template #createMode>
-      <button (click)="createPet()" class="button-create mat-elevation-z8" color="primary" mat-stroked-button>CRIAR</button>
+      <button (click)="createPet()" class="button-create mat-elevation-z8" color="primary"
+        mat-stroked-button>CRIAR</button>
     </ng-template>
     <button (click)="closeForm()" class="mat-elevation-z8" mat-stroked-button color="basic">CANCELAR</button>
   </div>
