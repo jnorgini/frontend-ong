@@ -5,19 +5,19 @@
 
   <div class="rowe">
     <mat-form-field appearance="outline">
-      <mat-label for="validationDefault01">Username</mat-label>
-      <input id="validationDefault01" value="username" required matInput type="text" [(ngModel)]="user.username">
+      <mat-label>Username</mat-label>
+      <input id="username" value="username" required matInput type="text" [(ngModel)]="user.username">
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label for="validationDefault02">Password</mat-label>
-      <input id="validationDefault02" value="password" required matInput type="password" [(ngModel)]="user.password">
+      <mat-label>Password</mat-label>
+      <input id="password" value="password" required matInput type="password" [(ngModel)]="user.password">
     </mat-form-field>
   </div>
 
   <div class="rowe">
     <mat-form-field appearance="outline">
-      <mat-label for="validationDefault02">Permissão</mat-label>
-      <mat-select id="validationDefault02" required [(ngModel)]="user.role">
+      <mat-label>Permissão</mat-label>
+      <mat-select id="role" required [(ngModel)]="user.role">
         <mat-option value="USER">Usuário</mat-option>
         <mat-option value="ADMIN">Administrador</mat-option>
       </mat-select>
