@@ -53,14 +53,14 @@ export class UserDialogComponent {
   }
 
   updateUser() {
-    if (!this.user.username || this.user.username.trim() === '') {
-      return;
-    }
-
     this.service.putUser(this.user)
       .pipe(
         catchError((error) => {
-            this.toastr.error('Erro ao tentar editar usuário. Verifique sua conexão com a internet e tente novamente.');
+          if (error.status === 400) {
+            this.toastr.warning('Erro. Certifique-se de preencher corretamente o formulário.');
+           } else {
+            this.toastr.error('Erro ao tentar editar novo usuário. Verifique sua conexão com a internet e tente novamente.');
+           }
           throw error;
         }),
         tap(() => {
