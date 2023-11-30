@@ -39,13 +39,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { UsersComponent } from './pages/users/users.component';
-import { TopWidgetsComponent } from './charts/top-widgets/top-widgets.component';
-import { MonthsComponent } from './charts/months/months.component';
-import { CategoryComponent } from './charts/category/category.component';
 import { ChartModule } from 'angular-highcharts';
 import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.component';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
 
 
 @NgModule({
@@ -58,12 +56,10 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     AgeFormatPipe,
     PetsComponent,
     UsersComponent,
-    TopWidgetsComponent,
-    MonthsComponent,
-    CategoryComponent,
     DashboardLayoutComponent,
     UserDialogComponent,
     ConfirmationDialogComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
