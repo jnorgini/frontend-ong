@@ -47,7 +47,7 @@ export class PetDialogComponent implements OnInit {
     validateFields(): boolean {
         if (!this.pet.name || !this.pet.species || !this.pet.gender || !this.pet.ageInMonths ||
             !this.pet.breed || !this.pet.size || !this.pet.weight || !this.pet.microchip ||
-            (this.pet.microchip.toString().length !== 15)) {
+            this.pet.microchip.toString().length !== 15) {
             this.toastr.warning('Erro. Certifique-se de preencher corretamente o formulário.');
             return false;
         }
