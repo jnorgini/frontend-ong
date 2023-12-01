@@ -1,7 +1,3 @@
-<div>
-
-  <mat-progress-spinner *ngIf="isLoading$ | async" class="spinner" mode="indeterminate" color="primary"></mat-progress-spinner>
-
 <mat-form-field>
   <mat-label>Filtrar Pets</mat-label>
   <mat-select [(ngModel)]="selectedOption" (ngModelChange)="onOptionChange()">
@@ -22,6 +18,9 @@
     </div>
     
   <div class="mat-elevation-z8 content-table">
+
+    <mat-spinner  class="spinner" color="primary" *ngIf="loading"></mat-spinner>
+    
     <table class="table" mat-table [dataSource]="dataSource" matSort matSortActive="posteddate" matSortDirection="asc">
   
       <ng-container matColumnDef="id">
@@ -105,5 +104,3 @@
   
   </div>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-
-</div>

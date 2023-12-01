@@ -16,7 +16,7 @@ import { ConfirmationDialogComponent } from 'src/app/confirmation-dialog/confirm
   styleUrls: ['./pets.component.css']
 })
 export class PetsComponent implements OnInit {
-  isLoading$: Observable<boolean>;
+  loading = false; 
   dataSource = new MatTableDataSource<Pet>();
   displayedColumns: string[] =
     ['id', 'name', 'species', 'gender', 'age', 'breed', 'size',
@@ -35,7 +35,6 @@ export class PetsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.isLoading$ = this.service.loading$;
     this.showAllPets();
     this.paginator._intl.itemsPerPageLabel = 'Itens por página';
     this.paginator._intl.nextPageLabel = 'Próxima';
@@ -54,12 +53,20 @@ export class PetsComponent implements OnInit {
   }
 
   private listPets(status?: string) {
-    this.service.getPets(status).subscribe(res => {
-      this.dataSource.data = res;
-      this.dataSource.paginator = this.paginator;
+    this.loading = true;
+    this.service.getPets(status).subscribe({
+      next: res => {
+        this.dataSource.data = res;
+        this.dataSource.paginator = this.paginator;
+        this.loading = false; 
+      },
+      error: err => {
+        this.loading = false; 
+        console.error('Ocorreu um erro ao buscar os pets:', err);
+      }
     });
   }
-
+  
   showAllPets() {
     this.listPets();
     this.isAvailablePets = true;

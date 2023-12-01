@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Observable, catchError, tap, delay } from 'rxjs';
+import { catchError, tap } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 import { UserDialogComponent } from 'src/app/user-dialog/user-dialog.component';
@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit {
     this.setupUserList();
     this.setupUserUpdateListener();
   }
-
+ 
   private setupUserList() {
     this.loading = true;
 
