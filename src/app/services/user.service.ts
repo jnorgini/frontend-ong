@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, finalize } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/User';
 
@@ -11,7 +12,6 @@ const USERS_API_URL = `${environment.API_URL}/users`;
 })
 export class UserService {
   private loadingSubject = new BehaviorSubject<boolean>(false);
-
   private updateListener = new Subject<void>();
 
   constructor(private http: HttpClient) { }
@@ -24,19 +24,14 @@ export class UserService {
     this.loadingSubject.next(true);
     return this.http.get<User[]>(USERS_API_URL).pipe(
       finalize(() => {
-        this.loadingSubject.next(false); 
+        this.loadingSubject.next(false);
       })
     );
   }
 
   getUser(userId: number): Observable<User> {
-    this.loadingSubject.next(true);
     const url = `${USERS_API_URL}/${userId}`;
-    return this.http.get<User>(url).pipe(
-      finalize(() => {
-        this.loadingSubject.next(false); 
-      })
-    );
+    return this.http.get<User>(url);
   }
 
   postUser(user: User): Observable<any> {
@@ -44,18 +39,20 @@ export class UserService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<any>(USERS_API_URL, user, { headers }).pipe(
       finalize(() => {
-        this.loadingSubject.next(false); 
+        this.loadingSubject.next(false);
+        this.updateListener.next();
       })
     );
-  }  
-  
+  }
+
   putUser(updatedUser: User): Observable<User> {
     this.loadingSubject.next(true);
     const url = `${USERS_API_URL}/${updatedUser.id}`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.put<User>(url, updatedUser, { headers }).pipe(
       finalize(() => {
-        this.loadingSubject.next(false); 
+        this.loadingSubject.next(false);
+        this.updateListener.next();
       })
     );
   }
@@ -65,11 +62,12 @@ export class UserService {
     const url = `${USERS_API_URL}/${userId}`;
     return this.http.delete<void>(url).pipe(
       finalize(() => {
-        this.loadingSubject.next(false); 
+        this.loadingSubject.next(false);
+        this.updateListener.next();
       })
     );
   }
-  
+
   emitUpdate() {
     this.updateListener.next();
   }
@@ -77,5 +75,4 @@ export class UserService {
   onUpdate() {
     return this.updateListener.asObservable();
   }
-
 }

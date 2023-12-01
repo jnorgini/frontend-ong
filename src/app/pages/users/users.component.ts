@@ -14,10 +14,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  isLoading$: Observable<boolean>;
   dataSource = new MatTableDataSource<User>();
   displayedColumns: string[] = ['id', 'username', 'role', 'acoes'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  loading = false; 
 
   constructor(
     private userService: UserService,
@@ -26,15 +26,17 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.isLoading$ = this.userService.loading$;
     this.setupUserList();
     this.setupUserUpdateListener();
   }
 
   private setupUserList() {
+    this.loading = true;
+
     this.userService.getUsers().subscribe(data => {
       this.dataSource.data = data;
       this.setupPaginator();
+      this.loading = false;
     });
   }
 
@@ -109,7 +111,7 @@ export class UsersComponent implements OnInit {
       .subscribe(() => {
         this.userService.emitUpdate();
       });
-      
+
   }
 
 }

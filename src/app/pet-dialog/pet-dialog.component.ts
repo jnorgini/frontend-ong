@@ -51,7 +51,6 @@ export class PetDialogComponent implements OnInit {
             this.toastr.warning('Erro. Certifique-se de preencher corretamente o formulário.');
             return false;
         }
-
         return true;
     }
 
@@ -59,9 +58,7 @@ export class PetDialogComponent implements OnInit {
         if (!this.validateFields()) {
             return {} as Pet;
         }
-
         this.loading = true;
-
         this.service.addPet(this.pet)
             .pipe(
                 catchError((error) => {
@@ -69,7 +66,7 @@ export class PetDialogComponent implements OnInit {
                     throw error;
                 }),
                 finalize(() => {
-                  this.loading = false; 
+                    this.loading = false;
                 }), tap(() => {
                     this.toastr.success('Pet adicionado com sucesso!')
                 })
@@ -83,17 +80,15 @@ export class PetDialogComponent implements OnInit {
         if (!this.validateFields()) {
             return {} as Pet;
         }
-
         this.loading = true;
-
         this.service.updatePet(pet)
             .pipe(
                 catchError((error) => {
-                        this.toastr.error('Erro ao alterar o Pet.');
+                    this.toastr.error('Erro ao alterar o Pet.');
                     throw error;
                 }),
                 finalize(() => {
-                  this.loading = false; 
+                    this.loading = false;
                 }), tap(() => {
                     this.toastr.success('Pet alterado com sucesso!')
                 })

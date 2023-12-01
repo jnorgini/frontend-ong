@@ -11,9 +11,9 @@ import { catchError, finalize, tap } from 'rxjs';
   styleUrls: ['./user-dialog.component.css']
 })
 export class UserDialogComponent {
-  loading: boolean = false;
   user: User = <User>{};
   editMode = false;
+  loading = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) data: User,
@@ -58,16 +58,14 @@ export class UserDialogComponent {
         finalize(() => {
           this.loading = false;
         }), tap(() => {
-          this.toastr.success('Novo usuário criado com sucesso!');
-          this.service.emitUpdate();
-          this.closeForm();
+          this.toastr.success('Usuário criado com sucesso!')
         })
       ).subscribe(() => {
         this.closeForm();
-      })
+      });
+
     return this.user;
   }
-
 
   updateUser() {
     if (!this.validateFields()) {
@@ -75,6 +73,7 @@ export class UserDialogComponent {
     }
 
     this.loading = true;
+
     this.service.putUser(this.user)
       .pipe(
         catchError((error) => {
@@ -84,16 +83,13 @@ export class UserDialogComponent {
         finalize(() => {
           this.loading = false;
         }), tap(() => {
-          this.toastr.success('Usuário editado com sucesso!');
-          this.service.emitUpdate();
-          this.closeForm();
+          this.toastr.success('Usuário modificado com sucesso!')
         })
       ).subscribe(() => {
         this.closeForm();
       })
     return this.user;
   }
-
 
   closeForm() {
     this.dialog.closeAll();
