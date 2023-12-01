@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { catchError, tap } from 'rxjs';
+import { Observable, catchError, tap, delay } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 import { UserDialogComponent } from 'src/app/user-dialog/user-dialog.component';
@@ -14,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  isLoading$: Observable<boolean>;
   dataSource = new MatTableDataSource<User>();
   displayedColumns: string[] = ['id', 'username', 'role', 'acoes'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -25,39 +26,39 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.isLoading$ = this.userService.loading$;
+    this.setupUserList();
+    this.setupUserUpdateListener();
+  }
+
+  private setupUserList() {
     this.userService.getUsers().subscribe(data => {
       this.dataSource.data = data;
       this.setupPaginator();
-      this.setupUserUpdateListener();
     });
   }
 
   private setupUserUpdateListener() {
     this.userService.onUpdate().subscribe(() => {
-      this.userService.getUsers().subscribe(data => {
-        this.dataSource.data = data;
-      });
+      this.setupUserList();
     });
   }
-  private setupPaginator() {
-    this.userService.getUsers().subscribe(data => {
-      this.dataSource.data = data;
-      this.paginator._intl.itemsPerPageLabel = 'Itens por página';
-      this.paginator._intl.nextPageLabel = 'Próxima';
-      this.paginator._intl.previousPageLabel = 'Anterior';
-      this.paginator._intl.firstPageLabel = 'Primeira página';
-      this.paginator._intl.lastPageLabel = 'Última página';
-      this.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
-        if (length == 0 || pageSize == 0) {
-          return `0 de ${length}`;
-        }
-        length = Math.max(length, 0);
-        const startIndex = page * pageSize;
-        const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
-        return `${startIndex + 1} - ${endIndex} de ${length}`;
 
-      };
-    });
+  private setupPaginator() {
+    this.paginator._intl.itemsPerPageLabel = 'Itens por página';
+    this.paginator._intl.nextPageLabel = 'Próxima';
+    this.paginator._intl.previousPageLabel = 'Anterior';
+    this.paginator._intl.firstPageLabel = 'Primeira página';
+    this.paginator._intl.lastPageLabel = 'Última página';
+    this.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
+      if (length == 0 || pageSize == 0) {
+        return `0 de ${length}`;
+      }
+      length = Math.max(length, 0);
+      const startIndex = page * pageSize;
+      const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
+      return `${startIndex + 1} - ${endIndex} de ${length}`;
+    };
   }
 
   showCreateUserForm() {
@@ -69,9 +70,7 @@ export class UsersComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: User) => {
       if (result) {
         this.userService.postUser(result).subscribe(() => {
-          this.userService.getUsers().subscribe(data => {
-            this.dataSource.data = data;
-          });
+          this.setupUserList();
         });
       }
     });
@@ -104,7 +103,7 @@ export class UsersComponent implements OnInit {
           throw error;
         }),
         tap(() => {
-          this.toastr.success('Usuário removido com sucesso.');
+          this.toastr.warning('Usuário permanentemente removido.')
         })
       )
       .subscribe(() => {

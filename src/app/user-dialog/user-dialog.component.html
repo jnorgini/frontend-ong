@@ -25,9 +25,16 @@
   </div>
 
   <div mat-dialog-actions class="action">
+    <ng-container *ngIf="!loading; else processingState">
     <button (click)="saveUser()" class="mat-elevation-z8" mat-stroked-button color="primary">
       {{ editMode ? 'EDITAR' : 'CRIAR' }}
     </button>
+  </ng-container>
+
+  <ng-template #processingState>
+    <button class="button-create mat-elevation-z8" color="primary" mat-stroked-button>Processando...</button>
+  </ng-template>
+  
     <button (click)="closeForm()" class="mat-elevation-z8" mat-stroked-button color="basic">CANCELAR</button>
   </div>
 </div>

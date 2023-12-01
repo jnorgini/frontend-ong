@@ -3,7 +3,7 @@ import { User } from '../models/User';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { UserService } from '../services/user.service';
 import { ToastrService } from 'ngx-toastr';
-import { catchError, tap } from 'rxjs';
+import { catchError, finalize, tap } from 'rxjs';
 
 @Component({
   selector: 'app-user-dialog',
@@ -11,6 +11,7 @@ import { catchError, tap } from 'rxjs';
   styleUrls: ['./user-dialog.component.css']
 })
 export class UserDialogComponent {
+  loading: boolean = false;
   user: User = <User>{};
   editMode = false;
 
@@ -45,13 +46,18 @@ export class UserDialogComponent {
     if (!this.validateFields()) {
       return {} as User;
     }
+
+    this.loading = true;
+
     this.service.postUser(this.user)
       .pipe(
         catchError((error) => {
           this.toastr.error('Erro ao tentar criar novo usuário. Verifique sua conexão com a internet e tente novamente.');
           throw error;
         }),
-        tap(() => {
+        finalize(() => {
+          this.loading = false;
+        }), tap(() => {
           this.toastr.success('Novo usuário criado com sucesso!');
           this.service.emitUpdate();
           this.closeForm();
@@ -64,13 +70,20 @@ export class UserDialogComponent {
 
 
   updateUser() {
+    if (!this.validateFields()) {
+      return {} as User;
+    }
+
+    this.loading = true;
     this.service.putUser(this.user)
       .pipe(
         catchError((error) => {
           this.toastr.error('Erro ao tentar editar novo usuário. Verifique sua conexão com a internet e tente novamente.');
           throw error;
         }),
-        tap(() => {
+        finalize(() => {
+          this.loading = false;
+        }), tap(() => {
           this.toastr.success('Usuário editado com sucesso!');
           this.service.emitUpdate();
           this.closeForm();

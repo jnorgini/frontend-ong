@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { catchError, tap } from "rxjs";
+import { Observable, catchError, tap } from "rxjs";
 import { ToastrService } from 'ngx-toastr';
 import { Pet } from 'src/app/models/Pet';
 import { PetService } from 'src/app/services/pet.service';
@@ -16,6 +16,7 @@ import { ConfirmationDialogComponent } from 'src/app/confirmation-dialog/confirm
   styleUrls: ['./pets.component.css']
 })
 export class PetsComponent implements OnInit {
+  isLoading$: Observable<boolean>;
   dataSource = new MatTableDataSource<Pet>();
   displayedColumns: string[] =
     ['id', 'name', 'species', 'gender', 'age', 'breed', 'size',
@@ -34,6 +35,7 @@ export class PetsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isLoading$ = this.service.loading$;
     this.showAllPets();
     this.paginator._intl.itemsPerPageLabel = 'Itens por página';
     this.paginator._intl.nextPageLabel = 'Próxima';

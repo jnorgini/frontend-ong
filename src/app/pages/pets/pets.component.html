@@ -1,3 +1,7 @@
+<div>
+
+  <mat-progress-spinner *ngIf="isLoading$ | async" class="spinner" mode="indeterminate" color="primary"></mat-progress-spinner>
+
 <mat-form-field>
   <mat-label>Filtrar Pets</mat-label>
   <mat-select [(ngModel)]="selectedOption" (ngModelChange)="onOptionChange()">
@@ -102,3 +106,4 @@
   </div>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
+</div>

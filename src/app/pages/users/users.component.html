@@ -1,3 +1,7 @@
+<div>
+
+  <mat-progress-spinner *ngIf="isLoading$ | async" class="spinner" mode="indeterminate" color="primary"></mat-progress-spinner>
+
 <button class="button mat-elevation-z8" mat-raised-button color="primary" (click)="showCreateUserForm()">Adicionar
   Usuário</button>
 
@@ -43,4 +47,6 @@
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+</div>
+
 </div>

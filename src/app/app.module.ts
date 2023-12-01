@@ -44,6 +44,7 @@ import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.co
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
 
 
 @NgModule({
@@ -90,6 +91,7 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
     MatSlideToggleModule,
     MatSnackBarModule,
     ChartModule,
+    MatProgressSpinnerModule,
     ToastrModule.forRoot({
       "closeButton": true,
       "newestOnTop": false,
