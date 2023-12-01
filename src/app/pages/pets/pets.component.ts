@@ -205,10 +205,6 @@ export class PetsComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-
-    if (key === '') {
-      this.listPets();
-    }
   }
 
   onOptionChange() {

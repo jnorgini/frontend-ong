@@ -32,15 +32,23 @@ export class UserDialogComponent {
     }
   }
 
+  validateFields(): boolean {
+    if (!this.user.username || !this.user.password || !this.user.role) {
+      this.toastr.warning('Erro. Certifique-se de preencher corretamente o formulário.');
+      return false;
+    }
+
+    return true;
+  }
+
   createUser() {
+    if (!this.validateFields()) {
+      return {} as User;
+    }
     this.service.postUser(this.user)
       .pipe(
         catchError((error) => {
-          if (error.status === 400) {
-            this.toastr.warning('Erro. Certifique-se de preencher corretamente o formulário.');
-           } else {
-            this.toastr.error('Erro ao tentar criar novo usuário. Verifique sua conexão com a internet e tente novamente.');
-           }
+          this.toastr.error('Erro ao tentar criar novo usuário. Verifique sua conexão com a internet e tente novamente.');
           throw error;
         }),
         tap(() => {
@@ -48,19 +56,18 @@ export class UserDialogComponent {
           this.service.emitUpdate();
           this.closeForm();
         })
-      )
-      .subscribe();
+      ).subscribe(() => {
+        this.closeForm();
+      })
+    return this.user;
   }
+
 
   updateUser() {
     this.service.putUser(this.user)
       .pipe(
         catchError((error) => {
-          if (error.status === 400) {
-            this.toastr.warning('Erro. Certifique-se de preencher corretamente o formulário.');
-           } else {
-            this.toastr.error('Erro ao tentar editar novo usuário. Verifique sua conexão com a internet e tente novamente.');
-           }
+          this.toastr.error('Erro ao tentar editar novo usuário. Verifique sua conexão com a internet e tente novamente.');
           throw error;
         }),
         tap(() => {
@@ -68,9 +75,12 @@ export class UserDialogComponent {
           this.service.emitUpdate();
           this.closeForm();
         })
-      )
-      .subscribe();
+      ).subscribe(() => {
+        this.closeForm();
+      })
+    return this.user;
   }
+
 
   closeForm() {
     this.dialog.closeAll();

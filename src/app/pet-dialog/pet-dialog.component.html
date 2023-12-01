@@ -5,23 +5,22 @@
 
   <div class="rowe">
     <mat-form-field appearance="outline">
-      <mat-label>Nome
-      </mat-label>
-      <input id="name" value="name" required matInput type="text" [(ngModel)]="pet.name">
+      <mat-label>Nome</mat-label>
+      <input value="name" required matInput type="text" [(ngModel)]="pet.name">
     </mat-form-field>
   </div>
 
   <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label>Espécie</mat-label>
-      <mat-select id="species" required [(ngModel)]="pet.species">
+      <mat-select required [(ngModel)]="pet.species">
         <mat-option value="DOG">Cachorro</mat-option>
         <mat-option value="CAT">Gato</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Gênero</mat-label>
-      <mat-select id="gender" required [(ngModel)]="pet.gender">
+      <mat-select required [(ngModel)]="pet.gender">
         <mat-option value="FEMALE">Fêmea</mat-option>
         <mat-option value="MALE">Macho</mat-option>
       </mat-select>
@@ -31,13 +30,13 @@
   <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label>Idade</mat-label>
-      <input [(ngModel)]="inputAge" type="number" id="inputAge" min="0" max="99" value="1"
+      <input [(ngModel)]="inputAge" type="number" min="0" max="99" value="1"
         (change)="calculateAgeInMonths()" required matInput>
       <input type="hidden" [(ngModel)]="pet.ageInMonths" />
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Meses/Anos</mat-label>
-      <mat-select id="unitSelect" [(ngModel)]="selectedUnit" (selectionChange)="calculateAgeInMonths()">
+      <mat-select [(ngModel)]="selectedUnit" (selectionChange)="calculateAgeInMonths()">
         <mat-option value="months">Meses</mat-option>
         <mat-option value="years">Anos</mat-option>
       </mat-select>
@@ -47,11 +46,11 @@
   <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label>Raça</mat-label>
-      <input id="breed" required matInput type="text" [(ngModel)]="pet.breed">
+      <input required matInput type="text" [(ngModel)]="pet.breed">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Porte</mat-label>
-      <mat-select id="size" required [(ngModel)]="pet.size">
+      <mat-select required [(ngModel)]="pet.size">
         <mat-option value="SMALL">Pequeno</mat-option>
         <mat-option value="MEDIUM">Médio</mat-option>
         <mat-option value="LARGE">Grande</mat-option>
@@ -62,7 +61,7 @@
   <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label>Peso</mat-label>
-      <input id="weight" required matInput type="number" [(ngModel)]="pet.weight">
+      <input required matInput type="number" [(ngModel)]="pet.weight">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Castrado</mat-label>

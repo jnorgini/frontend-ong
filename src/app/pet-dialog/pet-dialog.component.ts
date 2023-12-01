@@ -39,39 +39,48 @@ export class PetDialogComponent implements OnInit {
 
     ngOnInit() {
         this.router.events
-          .subscribe(() => {
-              this.dialog.closeAll();
-          });
+            .subscribe(() => {
+                this.dialog.closeAll();
+            });
+    }
+
+    validateFields(): boolean {
+        if (!this.pet.name || !this.pet.species || !this.pet.gender || !this.pet.ageInMonths ||
+            !this.pet.breed || !this.pet.size || !this.pet.weight || !this.pet.microchip ||
+            (this.pet.microchip.toString().length !== 15)) {
+            this.toastr.warning('Erro. Certifique-se de preencher corretamente o formulário.');
+            return false;
+        }
+
+        return true;
     }
 
     createPet(): Pet {
+        if (!this.validateFields()) {
+            return {} as Pet;
+        }
         this.service.addPet(this.pet)
             .pipe(
                 catchError((error) => {
-                   if (error.status === 400) {
-                    this.toastr.warning('Erro. Certifique-se de preencher corretamente o formulário.');
-                   } else {
                     this.toastr.error('Erro ao tentar adicionar novo Pet. Verifique sua conexão com a internet e tente novamente.');
-                   }
                     throw error;
                 }), tap(() => {
                     this.toastr.success('Pet adicionado com sucesso!')
                 })
             ).subscribe(() => {
-              this.closeForm();
+                this.closeForm();
             })
         return this.pet;
     }
 
     editPet(pet: Pet): Pet {
+        if (!this.validateFields()) {
+            return {} as Pet;
+        }
         this.service.updatePet(pet)
             .pipe(
                 catchError((error) => {
-                    if (error.status === 400) {
-                        this.toastr.warning('Erro. Certifique-se de preencher corretamente o formulário.');
-                       } else {
                         this.toastr.error('Erro ao alterar o Pet. Verifique sua conexão com a internet e tente novamente.');
-                       }
                     throw error;
                 }), tap(() => {
                     this.toastr.success('Pet alterado com sucesso!')
@@ -84,7 +93,7 @@ export class PetDialogComponent implements OnInit {
     }
 
     closeForm() {
-      this.dialog.closeAll();
+        this.dialog.closeAll();
     }
 
     setInputAge(): void {
