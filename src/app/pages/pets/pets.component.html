@@ -19,7 +19,11 @@
     
   <div class="mat-elevation-z8 content-table">
 
-    <mat-spinner  class="spinner" color="primary" *ngIf="loading"></mat-spinner>
+    <!-- <mat-spinner  class="spinner" color="primary" *ngIf="loading"></mat-spinner> -->
+    <div class="overlay" *ngIf="loading">
+      <img src="/assets/logo.png" alt="Pata do pet" class="rotating-paw">
+    </div>
+    
     
     <table class="table" mat-table [dataSource]="dataSource" matSort matSortActive="posteddate" matSortDirection="asc">
   

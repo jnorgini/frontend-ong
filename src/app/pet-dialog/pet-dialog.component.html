@@ -113,7 +113,10 @@
     </ng-container>
 
     <ng-template #processingState>
-      <button class="button-create mat-elevation-z8" color="primary" mat-stroked-button>Processando...</button>
+      <button class="button-create mat-elevation-z8" color="primary" mat-stroked-button>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Salvando...
+      </button>
     </ng-template>
 
     <button (click)="closeForm()" class="mat-elevation-z8" mat-stroked-button color="basic">CANCELAR</button>

@@ -3,7 +3,9 @@
 
 <div class="mat-elevation-z8 content-table">
 
-  <mat-spinner  class="spinner" color="primary" *ngIf="loading"></mat-spinner>
+  <div class="overlay" *ngIf="loading">
+    <mat-spinner class="spinner" color="primary"></mat-spinner>
+  </div>
 
   <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
@@ -30,7 +32,7 @@
         {{ user.role === 'USER' ? 'Usuário' : user.role === 'ADMIN' ? 'Administrador' : user.role }}
       </mat-cell>
     </ng-container>
-    
+
 
     <ng-container matColumnDef="acoes">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Ações </mat-header-cell>
