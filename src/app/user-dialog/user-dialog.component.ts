@@ -34,8 +34,15 @@ export class UserDialogComponent {
   }
 
   validateFields(): boolean {
-    if (!this.user.username || !this.user.password || !this.user.role) {
+    const { username, password, role } = this.user;
+
+    if (!username || !password || !role) {
       this.toastr.warning('Erro. Certifique-se de preencher corretamente o formulário.');
+      return false;
+    }
+
+    if (password.length < 8 || password.length > 16 || /\s/.test(password)) {
+      this.toastr.warning('Erro na senha. Certifique-se de que tenha entre 8 e 16 caracteres e não contenha espaços.');
       return false;
     }
 

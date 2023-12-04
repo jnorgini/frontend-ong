@@ -3,9 +3,7 @@
 
 <div class="mat-elevation-z8 content-table">
 
-  <div class="overlay" *ngIf="loading">
-    <mat-spinner class="spinner" color="primary"></mat-spinner>
-  </div>
+    <mat-spinner class="spinner" color="primary" *ngIf="loading"></mat-spinner>
 
   <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
