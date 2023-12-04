@@ -41,6 +41,11 @@ export class UserDialogComponent {
       return false;
     }
 
+    if (/\s/.test(username)) {
+      this.toastr.warning('Erro em usuário. Não pode haver espaço entre os caracteres.')
+      return false;
+    }
+
     if (password.length < 8 || password.length > 16 || /\s/.test(password)) {
       this.toastr.warning('Erro na senha. Certifique-se de que tenha entre 8 e 16 caracteres e não contenha espaços.');
       return false;

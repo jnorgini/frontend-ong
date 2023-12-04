@@ -3,26 +3,20 @@
 
 <div class="mat-elevation-z8 content-table">
 
-    <mat-spinner class="spinner" color="primary" *ngIf="loading"></mat-spinner>
+  <mat-spinner class="spinner" color="primary" *ngIf="loading"></mat-spinner>
 
-  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" matSortActive="posteddate"
+    matSortDirection="asc">
 
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
       <mat-cell *matCellDef="let user"> {{ user.id }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="username">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Username </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Usuário </mat-header-cell>
       <mat-cell *matCellDef="let user"> {{ user.username }} </mat-cell>
     </ng-container>
-
-    <!-- <ng-container matColumnDef="password">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Password </mat-header-cell>
-      <mat-cell *matCellDef="let user">
-        {{ formatPassword(user.password) }}
-      </mat-cell>
-    </ng-container> -->
 
     <ng-container matColumnDef="role">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Permissão </mat-header-cell>
@@ -30,7 +24,6 @@
         {{ user.role === 'USER' ? 'Usuário' : user.role === 'ADMIN' ? 'Administrador' : user.role }}
       </mat-cell>
     </ng-container>
-
 
     <ng-container matColumnDef="acoes">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Ações </mat-header-cell>
