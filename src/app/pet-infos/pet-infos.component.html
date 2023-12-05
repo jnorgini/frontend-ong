@@ -1,0 +1,82 @@
+<div mat-dialog-title id="formModal">
+  <h1 class="title-h1">Pet Form</h1>
+</div>
+<div mat-dialog-content class="content">
+
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input value="Mark" required matInput type="text" placeholder="Ex. Totó"
+        [(ngModel)]="pet.name" readonly>
+    </mat-form-field>
+  </div>
+
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>Espécie</mat-label>
+      <input matInput type="text" placeholder="Ex. Cachorro"
+        [value]="pet.species === 'DOG' ? 'Cachorro' : pet.species === 'CAT' ? 'Gato' : 'Desconhecido'" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label >Gênero</mat-label>
+      <input matInput type="text" placeholder="Ex. Macho"
+        [value]="pet.gender === 'MALE' ? 'Macho' : pet.gender === 'FEMALE' ? 'Fêmea' : 'Desconhecido'" readonly>
+    </mat-form-field>
+  </div>
+
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label >Idade</mat-label>
+      <input matInput type="number" placeholder="Ex. 2" [(ngModel)]="pet.ageInMonths"  readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Raça</mat-label>
+      <input matInput type="text" placeholder="Ex. pitbull" [(ngModel)]="pet.breed" readonly>
+    </mat-form-field>
+  </div>
+
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>Porte</mat-label>
+      <input matInput type="text" placeholder="Ex. Pequeno"
+        [value]="pet.size === 'SMALL' ? 'Pequeno' : pet.size === 'MEDIUM' ? 'Médio' : pet.size === 'LARGE' ? 'Grande' : 'Desconhecido'" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Peso</mat-label>
+      <input matInput type="number" placeholder="Ex. 25" [(ngModel)]="pet.weight" readonly>
+    </mat-form-field>
+  </div>
+
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>Castrado</mat-label>
+      <input matInput type="text" placeholder="Ex. Sim ou Não"
+        [value]="pet.neutered === true ? 'Sim' : pet.neutered === false ? 'Não' : 'Desconhecido'" readonly>
+    </mat-form-field>
+  </div>
+
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>Microchip</mat-label>
+      <input matInput type="text" placeholder="Ex. 123A" [(ngModel)]="pet.microchip" readonly>
+    </mat-form-field>
+  </div>
+
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>Vacinação</mat-label>
+      <input matInput type="text" placeholder="Ex. 1ª dose vacina 'x'" [(ngModel)]="pet.vaccination" readonly>
+    </mat-form-field>
+  </div>
+
+  <div class="rowe">
+    <mat-form-field>
+      <mat-label>Descrição</mat-label>
+      <textarea matInput placeholder="Ex. agitado" [(ngModel)]="pet.description" readonly></textarea>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions class="action">
+    <button (click)="closeForm()" class="mat-elevation-z8" mat-stroked-button color="basic">FECHAR</button>
+  </div>
+</div>

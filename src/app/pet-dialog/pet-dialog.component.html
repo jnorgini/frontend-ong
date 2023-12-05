@@ -1,0 +1,124 @@
+<div mat-dialog-title id="formModal">
+  <h1 class="title-h1">Formulário de Pet</h1>
+</div>
+<div mat-dialog-content class="content">
+
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input value="name" required matInput type="text" [(ngModel)]="pet.name">
+    </mat-form-field>
+  </div>
+
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>Espécie</mat-label>
+      <mat-select required [(ngModel)]="pet.species">
+        <mat-option value="DOG">Cachorro</mat-option>
+        <mat-option value="CAT">Gato</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Gênero</mat-label>
+      <mat-select required [(ngModel)]="pet.gender">
+        <mat-option value="FEMALE">Fêmea</mat-option>
+        <mat-option value="MALE">Macho</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>Idade</mat-label>
+      <input [(ngModel)]="inputAge" type="number" min="0" max="99" value="1" (change)="calculateAgeInMonths()" required
+        matInput>
+      <input type="hidden" [(ngModel)]="pet.ageInMonths" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Meses/Anos</mat-label>
+      <mat-select [(ngModel)]="selectedUnit" (selectionChange)="calculateAgeInMonths()">
+        <mat-option value="months">Meses</mat-option>
+        <mat-option value="years">Anos</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>Raça</mat-label>
+      <input required matInput type="text" [(ngModel)]="pet.breed">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Porte</mat-label>
+      <mat-select required [(ngModel)]="pet.size">
+        <mat-option value="SMALL">Pequeno</mat-option>
+        <mat-option value="MEDIUM">Médio</mat-option>
+        <mat-option value="LARGE">Grande</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>Peso</mat-label>
+      <input required matInput type="number" [(ngModel)]="pet.weight">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Castrado</mat-label>
+      <mat-select [(ngModel)]="pet.neutered">
+        <mat-option value=true>Sim</mat-option>
+        <mat-option value=false>Não</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>
+        Microchip
+        <span *ngIf="microchip.touched && microchip.invalid">
+          (Necessário 15 dígitos)
+        </span>
+      </mat-label>
+      <input matInput type="number" [(ngModel)]="pet.microchip" #microchip="ngModel" pattern="[0-9]{15}" ngModel>
+      <mat-error *ngIf="microchip.touched && microchip.invalid">
+      </mat-error>
+    </mat-form-field>
+
+  </div>
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>Vacinação</mat-label>
+      <input matInput type="text" [(ngModel)]="pet.vaccination">
+    </mat-form-field>
+  </div>
+
+  <div class="rowe">
+    <mat-form-field>
+      <mat-label>Descrição</mat-label>
+      <textarea matInput [(ngModel)]="pet.description"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions class="action">
+    <ng-container *ngIf="!loading; else processingState">
+      <ng-template [ngIf]="editMode" [ngIfElse]="createMode">
+        <button (click)="editPet(pet)" class="mat-elevation-z8" mat-stroked-button color="primary">EDITAR
+        </button>
+      </ng-template>
+      <ng-template #createMode>
+        <button (click)="createPet()" class="button-create mat-elevation-z8" color="primary" mat-stroked-button>CRIAR
+        </button>
+      </ng-template>
+    </ng-container>
+
+    <ng-template #processingState>
+      <button class="button-create mat-elevation-z8" color="primary" mat-stroked-button>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Salvando...
+      </button>
+    </ng-template>
+
+    <button (click)="closeForm()" class="mat-elevation-z8" mat-stroked-button color="basic">CANCELAR</button>
+  </div>
+</div>

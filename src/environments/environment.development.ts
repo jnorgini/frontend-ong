@@ -1,3 +1,3 @@
 export const environment = {
-    apiUrl: "http://localhost:8080"
+    API_URL: "https://app-t2ho.onrender.com"
 };

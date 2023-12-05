@@ -1,41 +1,83 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, finalize } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Pet } from '../models/Pet';
+import { PetModel } from '../models/PetModel';
+import { environment } from 'src/environments/environment';
+
+const PETS_API_URL = `${environment.API_URL}/pets`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class PetService {
+  private loadingSubject = new BehaviorSubject<boolean>(false);
 
-  // URL da API
-  private url: string = 'http://localhost:8080/pets';
-
-  // Construtor
   constructor(private http: HttpClient) { }
 
-  // Método para selecionar todos 
-  selecionar(): Observable<Pet[]> {
-    return this.http.get<Pet[]>(this.url);
+  get loading$(): Observable<boolean> {
+    return this.loadingSubject.asObservable();
   }
 
-  // Método para cadastrar 
-  cadastrar(obj: Pet): Observable<Pet> {
-    return this.http.post<Pet>(this.url, obj);
+  getPets(status?: string): Observable<PetModel[]> {
+    this.loadingSubject.next(true);
+    const url = status ? `${PETS_API_URL}?status=${status}` : PETS_API_URL;
+    return this.http.get<PetModel[]>(url).pipe(
+      finalize(() => {
+        this.loadingSubject.next(false); 
+      })
+    );
   }
 
-  // Método para editar 
-  editar(obj: Pet): Observable<Pet> {
-    // Use a URL completa para o recurso específico que você deseja atualizar
-    const editUrl = `${this.url}/${obj.id}`;
-
-    // Envie o objeto 'obj' no corpo da solicitação PUT
-    return this.http.put<Pet>(editUrl, obj);
+  addPet(pet: Pet): Observable<Pet> {
+    this.loadingSubject.next(true);
+    return this.http.post<Pet>(PETS_API_URL, pet).pipe(
+      finalize(() => {
+        this.loadingSubject.next(false); 
+      })
+    );
   }
 
-  // Método para remover
-  remover(id: number): Observable<void> {
-    return this.http.delete<void>(this.url + '/' + id)
+  updatePet(pet: Pet): Observable<Pet> {
+    this.loadingSubject.next(true);
+    return this.http.put<Pet>(`${PETS_API_URL}/${pet.id}`, pet).pipe(
+      finalize(() => {
+        this.loadingSubject.next(false); 
+      })
+    );
+  }
+
+  deletePet(id: number): Observable<Pet> {
+    this.loadingSubject.next(true);
+    return this.http.delete<Pet>(`${PETS_API_URL}/${id}`).pipe(
+      finalize(() => {
+        this.loadingSubject.next(false); 
+      })
+    );
+  }
+
+  private _listners = new Subject<any>();
+  listen(): Observable<any>{
+    return this._listners.asObservable();
+  }
+
+  turnAvailable(id: number): Observable<Pet> {
+    this.loadingSubject.next(true);
+    return this.http.put<Pet>(`${PETS_API_URL}/${id}/available`, {}).pipe(
+      finalize(() => {
+        this.loadingSubject.next(false); 
+      })
+    );
+  }
+
+  turnUnavailable(id: number): Observable<Pet> {
+    this.loadingSubject.next(true);
+    return this.http.delete<Pet>(`${PETS_API_URL}/${id}/available`, {}).pipe(
+      finalize(() => {
+        this.loadingSubject.next(false); 
+      })
+    );
   }
 
 }

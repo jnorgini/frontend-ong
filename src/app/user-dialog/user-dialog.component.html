@@ -1,0 +1,43 @@
+<div mat-dialog-title id="formModal">
+  <h1 class="title-h1">Cadastro de Usuário</h1>
+</div>
+<div mat-dialog-content class="content">
+
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>Usuário</mat-label>
+      <input id="username" value="username" required matInput type="text" [(ngModel)]="user.username">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input id="password" value="password" required matInput type="password" [(ngModel)]="user.password">
+    </mat-form-field>
+  </div>
+
+  <div class="rowe">
+    <mat-form-field appearance="outline">
+      <mat-label>Permissão</mat-label>
+      <mat-select id="role" required [(ngModel)]="user.role">
+        <mat-option value="USER">Usuário</mat-option>
+        <mat-option value="ADMIN">Administrador</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions class="action">
+    <ng-container *ngIf="!loading; else processingState">
+      <button (click)="saveUser()" class="mat-elevation-z8" mat-stroked-button color="primary">
+        {{ editMode ? 'EDITAR' : 'CRIAR' }}
+      </button>
+    </ng-container>
+
+    <ng-template #processingState>
+      <button class="button-create mat-elevation-z8" color="primary" mat-stroked-button>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Salvando...
+      </button>
+    </ng-template>
+
+    <button (click)="closeForm()" class="mat-elevation-z8" mat-stroked-button color="basic">CANCELAR</button>
+  </div>
+</div>

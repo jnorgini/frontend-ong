@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": ["rfdc"],
             "outputPath": "dist/api-front",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -26,6 +27,7 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/ngx-toastr/toastr.css",
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css"
             ],
@@ -96,6 +98,7 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/ngx-toastr/toastr.css",
               "src/styles.css"
             ],
             "scripts": []

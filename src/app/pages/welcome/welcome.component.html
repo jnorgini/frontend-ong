@@ -1,0 +1,31 @@
+<div style="display: flex; flex-direction: column; align-items: center;">
+    <mat-card style="width: 100%; height: 50vh;">
+        <mat-card-header>
+            <mat-card-title>Bem-vindo!</mat-card-title>
+            <mat-card-subtitle>Seja bem-vindo ao Pet Control, aplicação para controle e gerenciamento de Pets!</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="assets/welcome.jpg" alt="Imagem de boas-vindas"
+            style="width: 100%; height: 100%; object-fit: cover;">
+    </mat-card>
+
+    <div class="balao-container" style="width: 80%; margin: 37px auto;">
+        <div style="display: flex; justify-content: center;">
+            <div class="balao" style="width: 60%; margin-bottom: 20px;">
+                <div style="position: relative; padding: 15px; border-radius: 10px; background-color: #f2f2f2; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                    <p style="margin-bottom: 5px; text-align: center;"><i>"Nossos animais de estimação têm vida tão curta e, ainda assim, passam a maior parte do tempo esperando que voltemos para casa todos os dias. É impressionante quanto amor e alegria eles trazem para nossas vidas, e quanto nos aproximamos uns dos outros por causa deles."</i></p>
+                    <p style="font-size: 12px; text-align: right; color: #777;">- Marley e Eu</p>
+                </div>
+                <div class="triangulo" style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-style: solid; border-width: 0 15px 15px 0; border-color: transparent #f2f2f2 transparent transparent;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Estilos para dispositivos menores */
+@media screen and (max-width: 600px) {
+    .balao-container {
+        display: none; /* Esconder o contêiner do balão */
+    }
+}
+</style>

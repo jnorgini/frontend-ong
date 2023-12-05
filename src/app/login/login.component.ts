@@ -1,47 +1,57 @@
-import { Component } from '@angular/core';
-import { Login } from '../models/login';
-import { Register } from '../models/register';
-import { JwtAuth } from '../models/jwtAuth';
-import { AuthenticationService } from '../services/authentication.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-
+import { catchError, tap } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { Login } from '../models/login';
+import { AuthService } from '../services/auth.service';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  title = 'api-front';
-  loginDto = new Login();
-  registerDto = new Register();
-  jwtDto = new JwtAuth();
-  isLogin: boolean = true;
+export class LoginComponent implements OnInit {
+  loginDto: Login = new Login();
+  formSubmitted = false;
 
   constructor(
-    private authService: AuthenticationService,
-    private router: Router
-  ) { }
+    private authService: AuthService,
+    private toastr: ToastrService,
+    private router: Router,
+    private tokenStorage: TokenStorageService
+  ) {}
 
-  register(registerDto: Register) {
-    this.authService.register(registerDto).subscribe();
-    this.router.navigate(['/login'])
-    this.registerDto = new Register();
-   
+  ngOnInit(): void {
+    if (this.tokenStorage.getAccessToken()) {
+      this.router.navigate(['/home']).then(() => {});
+    }
   }
-  
 
   login(loginDto: Login) {
-    this.authService.login(loginDto).subscribe((jwtDto => {
-      localStorage.setItem('jwtToken', jwtDto.token);
-      this.router.navigate(['/pets']);
-      this.loginDto = new Login();
+    this.formSubmitted = true;
+    if (loginDto.username === '' || loginDto.password === '') {
+     
+        this.toastr.warning('Por favor, preencha todos os campos.');
       
-    }));
+      return; 
+    }
+
+    this.authService.login(loginDto)
+      .pipe(
+        catchError((error) => {
+          this.toastr.error('Erro ao tentar fazer o login. Verifique o usuário/senha e tente novamente.');
+          throw error;
+        }),
+        tap(() => {
+          this.toastr.success('Login bem-sucedido!')
+        })
+      )
+      .subscribe((jwtDto => {
+        this.tokenStorage.saveAccessToken(jwtDto.accessToken);
+        this.tokenStorage.saveRefreshToken(jwtDto.refreshToken);
+        window.location.reload();
+      }));
   }
 
-  toggleForm() {
-    this.isLogin = !this.isLogin;
-  }
 }

@@ -1,0 +1,42 @@
+<button class="button mat-elevation-z8" mat-raised-button color="primary" (click)="showCreateUserForm()">Adicionar
+  Usuário</button>
+
+<div class="mat-elevation-z8 content-table">
+
+  <mat-spinner class="spinner" color="primary" *ngIf="loading"></mat-spinner>
+
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" matSortActive="posteddate"
+    matSortDirection="asc">
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{ user.id }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Usuário </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{ user.username }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Permissão </mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        {{ user.role === 'USER' ? 'Usuário' : user.role === 'ADMIN' ? 'Administrador' : user.role }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ações </mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <mat-icon class="icon-edit" fontIcon="edit" color="primary" (click)="showUpdateUserForm(user)">
+        </mat-icon>
+        <mat-icon class="icon-delete" fontIcon="delete" (click)="removeUser(user.id)">
+        </mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+</div>
