@@ -26,5 +26,18 @@ mat-form-field {
 .action button {
     flex: 1;
 }
-  
-.disabledsel {pointer-events: none;}
+
+@media screen and (max-width: 600px) {
+    .action {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .mat-elevation-z8 {
+        padding: 12px 24px; 
+        font-size: 14px; 
+        width: calc(100% - 20px); 
+        margin: 0 auto; 
+    }
+}

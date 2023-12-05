@@ -9,6 +9,7 @@ import { PetService } from 'src/app/services/pet.service';
 import { PetDialogComponent } from 'src/app/pet-dialog/pet-dialog.component';
 import { PetInfosComponent } from 'src/app/pet-infos/pet-infos.component';
 import { ConfirmationDialogComponent } from 'src/app/confirmation-dialog/confirmation-dialog.component';
+import { DeleteConfirmationDialogComponent } from 'src/app/delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 @Component({
   selector: 'app-pets',
@@ -124,7 +125,7 @@ export class PetsComponent implements OnInit {
   openConfirmationDialog(id: number) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       closeOnNavigation: true,
-      data: 'Você deseja mover o pet para adotados ou excluí-lo permanentemente?'
+      data: 'Deseja mover o pet para a lista de adotados?'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -143,6 +144,49 @@ export class PetsComponent implements OnInit {
       }
     });
   }
+
+  deleteConfirmationDialog(id: number) {
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+      closeOnNavigation: true,
+      data: 'Deseja remover permanentemente o pet?'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'turnUnavailable') {
+        this.removePet(id);
+      } 
+
+      if (this.selectedOption === 'showAll') {
+        this.showAllPets();
+      } else if (this.selectedOption === 'showAvailable') {
+        this.showAvailablePets();
+      } else if (this.selectedOption === 'showUnavailable') {
+        this.showUnavailablePets();
+      }
+    });
+  }
+
+  restoreConfirmationDialog(id: number) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      closeOnNavigation: true,
+      data: 'Deseja restaurar o pet para a lista de disponíveis?'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'turnUnavailable') {
+        this.turnAvailable(id);
+      } 
+
+      if (this.selectedOption === 'showAll') {
+        this.showAllPets();
+      } else if (this.selectedOption === 'showAvailable') {
+        this.showAvailablePets();
+      } else if (this.selectedOption === 'showUnavailable') {
+        this.showUnavailablePets();
+      }
+    });
+  }
+
 
   turnUnavailable(id: number) {
     this.service.turnUnavailable(id)

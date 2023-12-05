@@ -1,8 +1,8 @@
 <div mat-dialog-content class="content">
-    <h1>Confirmação</h1>
-    <p>{{ data }}</p>
+    <p>Confirmação</p>
+    <h2>{{ data }}</h2>
     <div mat-dialog-actions class="action">
-    <button class="mat-elevation-z8" mat-stroked-button color="primary" (click)="onConfirm('turnUnavailable')">Mover para Adotados</button>
-    <button class="mat-elevation-z8" mat-stroked-button color="warn" (click)="onConfirm('deletePermanently')">Excluir permanentemente</button>
+    <button class="mat-elevation-z8"  mat-raised-button color="primary" (click)="onConfirm('turnUnavailable')">SIM</button>
+    <button class="mat-elevation-z8"  mat-raised-button color="primary"(click)="onClose()">NÃO</button>
 </div>
 </div>

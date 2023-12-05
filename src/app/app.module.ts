@@ -44,7 +44,8 @@ import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.co
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component'; 
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     UserDialogComponent,
     ConfirmationDialogComponent,
     WelcomeComponent,
+    DeleteConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,

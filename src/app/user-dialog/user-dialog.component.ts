@@ -89,7 +89,7 @@ export class UserDialogComponent {
     this.service.putUser(this.user)
       .pipe(
         catchError((error) => {
-          this.toastr.error('Erro ao tentar editar novo usuário. Verifique sua conexão com a internet e tente novamente.');
+          this.toastr.error('Erro ao tentar editar usuário. Verifique sua conexão com a internet e tente novamente.');
           throw error;
         }),
         finalize(() => {

@@ -9,21 +9,31 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './pet-infos.component.html',
   styleUrls: ['./pet-infos.component.css']
 })
-export class PetInfosComponent  {
+export class PetInfosComponent {
   pet = <Pet>{};
+  selectedUnit: string = 'months';
 
   constructor(
-      @Inject(MAT_DIALOG_DATA) data: Pet,
-      private dialog: MatDialog,
-      private service: PetService
+    @Inject(MAT_DIALOG_DATA) data: Pet,
+    private dialog: MatDialog,
+    private service: PetService
   ) {
-      this.service.listen().subscribe((m: any) => {
-          console.log(m);
-      });
+    this.service.listen().subscribe((m: any) => {
+      console.log(m);
+    });
 
-      if (data.id !== 0) {
-          this.pet = data;
-      }
+    if (data.id !== 0) {
+      this.pet = data;
+      this.selectedUnit = this.pet.ageInMonths >= 12 ? 'years' : 'months';
+    }
+  }
+
+  getFormattedAge(): string {
+    if (this.selectedUnit === 'years') {
+      return this.pet ? Math.floor(this.pet.ageInMonths / 12) + ' anos' : '';
+    } else {
+      return this.pet ? this.pet.ageInMonths + ' meses' : '';
+    }
   }
 
   closeForm() {

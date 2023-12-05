@@ -84,13 +84,13 @@ export class PetDialogComponent implements OnInit {
         this.service.updatePet(pet)
             .pipe(
                 catchError((error) => {
-                    this.toastr.error('Erro ao alterar o Pet.');
+                    this.toastr.error('Erro ao tentar editar o Pet.');
                     throw error;
                 }),
                 finalize(() => {
                     this.loading = false;
                 }), tap(() => {
-                    this.toastr.success('Pet alterado com sucesso!')
+                    this.toastr.success('Pet modificado com sucesso!')
                 })
             )
             .subscribe(() => {
