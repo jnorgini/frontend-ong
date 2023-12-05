@@ -200,8 +200,6 @@ export class PetsComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        this.dataSource.data = this.dataSource.data.filter(pet => pet.id !== id);
-        this.paginator._changePageSize(this.paginator.pageSize);
         if (this.selectedOption === 'showAll') {
           this.showAllPets();
         } else if (this.selectedOption === 'showAvailable') {
@@ -209,7 +207,7 @@ export class PetsComponent implements OnInit {
         } else if (this.selectedOption === 'showUnavailable') {
           this.showUnavailablePets();
         }
-      })
+      });
   }
 
   removePet(id: number) {
