@@ -11,4 +11,5 @@ export class Pet {
     microchip: number = 0;
     vaccination: string = '';
     description: string = '';
+    status: string = '';
   }
