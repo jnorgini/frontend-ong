@@ -70,9 +70,9 @@
       <td mat-cell *matCellDef="let pet">{{ pet.neutered ? 'Sim' : 'Não' }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="microchip">
-      <th mat-header-cell *matHeaderCellDef> Microchip </th>
-      <td mat-cell *matCellDef="let pet"> {{ pet.microchip }} </td>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let pet"> {{ pet.status === 'AVAILABLE' ? 'Disponível' : 'Adotado' }} </td>
     </ng-container>
 
     <ng-container matColumnDef="vaccination">
@@ -91,13 +91,13 @@
 
         <mat-icon class="icon-info" fontIcon="visibilityoutlined"
           (click)="showMoreInfo(pet)">visibilityoutlined</mat-icon>
-        <mat-icon *ngIf="isAvailablePets" class="icon-edit" fontIcon="edit" color="primary"
+        <mat-icon *ngIf="pet.status == 'AVAILABLE'" class="icon-edit" fontIcon="edit" color="primary"
           (click)="showEditPetForm(pet)">edit</mat-icon>
-        <mat-icon *ngIf="isAvailablePets" class="icon-home" fontIcon="home" color="primary"
+        <mat-icon *ngIf="pet.status == 'AVAILABLE'" class="icon-home" fontIcon="home" color="primary"
           (click)="openConfirmationDialog(pet.id)">adotados</mat-icon>
-        <mat-icon *ngIf="isAvailablePets" class="icon-delete" fontIcon="delete" color="primary"
+        <mat-icon *ngIf="pet.status == 'AVAILABLE'" class="icon-delete" fontIcon="delete" color="primary"
           (click)="deleteConfirmationDialog(pet.id)">delete</mat-icon>
-        <mat-icon *ngIf="!isAvailablePets" class="icon-restore" fontIcon="restore"
+        <mat-icon *ngIf="pet.status == 'UNAVAILABLE'" class="icon-restore" fontIcon="restore"
           (click)="restoreConfirmationDialog(pet.id)">restore</mat-icon>
 
       </td>

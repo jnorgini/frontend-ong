@@ -21,7 +21,7 @@ export class PetsComponent implements OnInit {
   dataSource = new MatTableDataSource<Pet>();
   displayedColumns: string[] =
     ['id', 'name', 'species', 'gender', 'age', 'breed', 'size',
-      'weight', 'microchip', 'acoes'];
+      'weight', 'status', 'acoes'];
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
@@ -246,7 +246,13 @@ export class PetsComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        this.showUnavailablePets();
+        if (this.selectedOption === 'showAll') {
+          this.showAllPets();
+        } else if (this.selectedOption === 'showAvailable') {
+          this.showAvailablePets();
+        } else if (this.selectedOption === 'showUnavailable') {
+          this.showUnavailablePets();
+        }
       });
   }
 
