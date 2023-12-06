@@ -12,8 +12,8 @@ import { PetService } from 'src/app/services/pet.service';
     styleUrls: ['./pet-dialog.component.css']
 })
 export class PetDialogComponent implements OnInit {
-    loading: boolean = false;
     pet: Pet = <Pet>{};
+    loading: boolean = false;
     editMode: boolean = false;
     inputAge: number = 0;
     selectedUnit: string | undefined;

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Observable, catchError, tap } from "rxjs";
+import { catchError, tap } from "rxjs";
 import { ToastrService } from 'ngx-toastr';
 import { Pet } from 'src/app/models/Pet';
 import { PetService } from 'src/app/services/pet.service';
@@ -17,7 +17,6 @@ import { DeleteConfirmationDialogComponent } from 'src/app/delete-confirmation-d
   styleUrls: ['./pets.component.css']
 })
 export class PetsComponent implements OnInit {
-  loading = false; 
   dataSource = new MatTableDataSource<Pet>();
   displayedColumns: string[] =
     ['id', 'name', 'species', 'gender', 'age', 'breed', 'size',
@@ -25,8 +24,8 @@ export class PetsComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
+  loading = false;
   searchTerm: string = '';
-  isAvailablePets = true;
   selectedOption: string = 'showAll';
 
   constructor(
@@ -59,29 +58,26 @@ export class PetsComponent implements OnInit {
       next: res => {
         this.dataSource.data = res;
         this.dataSource.paginator = this.paginator;
-        this.loading = false; 
+        this.loading = false;
       },
       error: err => {
-        this.loading = false; 
+        this.loading = false;
         console.error('Ocorreu um erro ao buscar os pets:', err);
       }
     });
   }
-  
+
   showAllPets() {
     this.listPets();
-    this.isAvailablePets = true;
     this.dataSource.paginator = this.paginator;
   }
 
   showAvailablePets() {
     this.listPets('available');
-    this.isAvailablePets = true;
   }
 
   showUnavailablePets() {
     this.listPets('unavailable');
-    this.isAvailablePets = false;
   }
 
   showMoreInfo(pet: Pet) {
@@ -129,10 +125,8 @@ export class PetsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'turnUnavailable') {
+      if (result === 'yes') {
         this.turnUnavailable(id);
-      } else if (result === 'deletePermanently') {
-        this.removePet(id);
       }
 
       if (this.selectedOption === 'showAll') {
@@ -152,9 +146,9 @@ export class PetsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'turnUnavailable') {
+      if (result === 'yes') {
         this.removePet(id);
-      } 
+      }
 
       if (this.selectedOption === 'showAll') {
         this.showAllPets();
@@ -173,9 +167,9 @@ export class PetsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'turnUnavailable') {
+      if (result === 'yes') {
         this.turnAvailable(id);
-      } 
+      }
 
       if (this.selectedOption === 'showAll') {
         this.showAllPets();
@@ -186,7 +180,6 @@ export class PetsComponent implements OnInit {
       }
     });
   }
-
 
   turnUnavailable(id: number) {
     this.service.turnUnavailable(id)

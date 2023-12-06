@@ -27,10 +27,6 @@ mat-form-field {
     flex: 1;
 }
 
-/* .button-create.mat-elevation-z8 {
-    color: green;
-} */
-
 .form-control[type=file]:not(:disabled):not([readonly]) {
     position: relative;
     bottom: 10px;

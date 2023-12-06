@@ -26,5 +26,3 @@ mat-form-field {
 .action button {
     flex: 1;
 }
-  
-.disabledsel {pointer-events: none;}

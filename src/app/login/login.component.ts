@@ -20,21 +20,21 @@ export class LoginComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private tokenStorage: TokenStorageService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getAccessToken()) {
-      this.router.navigate(['/home']).then(() => {});
+      this.router.navigate(['/home']).then(() => { });
     }
   }
 
   login(loginDto: Login) {
     this.formSubmitted = true;
     if (loginDto.username === '' || loginDto.password === '') {
-     
-        this.toastr.warning('Por favor, preencha todos os campos.');
-      
-      return; 
+
+      this.toastr.warning('Por favor, preencha todos os campos.');
+
+      return;
     }
 
     this.authService.login(loginDto)
