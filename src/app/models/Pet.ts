@@ -8,7 +8,7 @@ export class Pet {
     size: string = '';
     weight: number = 0.0; 
     neutered: boolean = false;
-    microchip: number = 0;
+    microchip: string = "";
     vaccination: string = '';
     description: string = '';
     status: string = '';
