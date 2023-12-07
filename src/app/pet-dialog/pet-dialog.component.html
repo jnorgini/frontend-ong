@@ -60,8 +60,8 @@
 
   <div class="rowe">
     <mat-form-field appearance="outline">
-      <mat-label>Peso</mat-label>
-      <input required matInput type="number" [(ngModel)]="pet.weight">
+      <mat-label>Peso (kg)</mat-label>
+      <input required matInput type="number" min="0" max="99" [(ngModel)]="pet.weight">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Castrado</mat-label>
