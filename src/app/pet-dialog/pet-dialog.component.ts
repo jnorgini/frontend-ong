@@ -80,6 +80,11 @@ export class PetDialogComponent implements OnInit {
         if (!this.validateFields()) {
             return {} as Pet;
         }
+
+        if (pet.microchip === null) {
+            pet.microchip = "";
+        }
+        
         this.loading = true;
         this.service.updatePet(pet)
             .pipe(
