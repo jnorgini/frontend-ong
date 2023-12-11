@@ -15,7 +15,7 @@
     <div class="wrapper">
         <div class="login-form">
             <form (ngSubmit)="login(loginDto)">
-                <h1>Login</h1>
+                <h1>Pet Control</h1>
                 <div class="input-box">
                     <input type="text" id="username" name="username" placeholder="Usuário"
                         [(ngModel)]="loginDto.username" required
@@ -31,7 +31,7 @@
                 <!--<div class="remember-forgot">
                     <label><input type="checkbox">Lembrar de mim</label>
                 </div>-->
-                <button class="btn" type="button" (click)="login(loginDto)">Login</button>
+                <button class="btn" type="button" (click)="login(loginDto)">Entrar</button>
 
             </form>
         </div>
