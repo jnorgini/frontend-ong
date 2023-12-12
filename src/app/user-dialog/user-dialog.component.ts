@@ -14,6 +14,8 @@ export class UserDialogComponent {
   user: User = <User>{};
   editMode = false;
   loading = false;
+  existingUsername = false;
+  existingUsernames: string[] = [];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) data: User,
@@ -34,7 +36,7 @@ export class UserDialogComponent {
   }
 
   validateFields(): boolean {
-    const { username, password, role } = this.user;
+    const { username, password, role, confirmPassword } = this.user;
 
     if (!username || !password || !role) {
       this.toastr.warning('Erro. Certifique-se de preencher corretamente o formulário.');
@@ -51,6 +53,11 @@ export class UserDialogComponent {
       return false;
     }
 
+    if (password !== confirmPassword) {
+      this.toastr.warning('As senhas não coincidem. Por favor, confirme a senha corretamente.');
+      return false;
+    }
+  
     return true;
   }
 
@@ -64,7 +71,11 @@ export class UserDialogComponent {
     this.service.postUser(this.user)
       .pipe(
         catchError((error) => {
-          this.toastr.error('Erro ao tentar criar novo usuário. Verifique sua conexão com a internet e tente novamente.');
+          if (error.status === 400) {
+            this.toastr.warning('Nome de usuário já existe. Escolha um nome de usuário diferente.');
+          } else {
+            this.toastr.error('Erro ao tentar criar novo usuário. Verifique sua conexão com a internet e tente novamente.');
+          }
           throw error;
         }),
         finalize(() => {

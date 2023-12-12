@@ -8,9 +8,16 @@
       <mat-label>Usuário</mat-label>
       <input id="username" value="username" required matInput type="text" [(ngModel)]="user.username">
     </mat-form-field>
+  </div>
+
+  <div class="rowe">
     <mat-form-field appearance="outline">
       <mat-label>Senha</mat-label>
       <input id="password" value="password" required matInput type="password" [(ngModel)]="user.password">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Confirme a senha</mat-label>
+      <input id="confirmPassword" required matInput type="password" [(ngModel)]="user.confirmPassword">
     </mat-form-field>
   </div>
 
