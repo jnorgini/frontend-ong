@@ -17,11 +17,11 @@
   <i class="fas fa-search search-icon"></i>
 </div>
 
-<div class="mat-elevation-z8 content-table">
+<div class="mat-elevation-z8 content-table"> 
 
   <mat-spinner class="spinner" color="primary" *ngIf="loading"></mat-spinner>
 
-  <table class="table" mat-table [dataSource]="dataSource" matSort matSortActive="posteddate" matSortDirection="asc">
+  <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" matSort matSortActive="posteddate" matSortDirection="asc">
 
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> # </th>
@@ -109,5 +109,4 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-</div>
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
