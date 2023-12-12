@@ -76,6 +76,7 @@ export class UserDialogComponent {
           } else {
             this.toastr.error('Erro ao tentar criar novo usuário. Verifique sua conexão com a internet e tente novamente.');
           }
+          this.closeForm();
           throw error;
         }),
         finalize(() => {
@@ -101,6 +102,7 @@ export class UserDialogComponent {
       .pipe(
         catchError((error) => {
           this.toastr.error('Erro ao tentar editar usuário. Verifique sua conexão com a internet e tente novamente.');
+          this.closeForm();
           throw error;
         }),
         finalize(() => {
