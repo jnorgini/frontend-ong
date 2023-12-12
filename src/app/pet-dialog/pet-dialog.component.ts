@@ -63,6 +63,7 @@ export class PetDialogComponent implements OnInit {
             .pipe(
                 catchError((error) => {
                     this.toastr.error('Erro ao tentar adicionar novo Pet.');
+                     this.closeForm();
                     throw error;
                 }),
                 finalize(() => {
@@ -90,6 +91,7 @@ export class PetDialogComponent implements OnInit {
             .pipe(
                 catchError((error) => {
                     this.toastr.error('Erro ao tentar editar o Pet.');
+                    this.closeForm();
                     throw error;
                 }),
                 finalize(() => {
