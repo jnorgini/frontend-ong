@@ -1,3 +1,3 @@
 export const environment = {
-    API_URL: "https://app-t2ho.onrender.com" 
+    API_URL: "https://petcontrol-api.onrender.com"
 };
