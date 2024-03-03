@@ -123,3 +123,23 @@ html, body {
 .input-box input.empty:invalid {
     border: 1px solid red;
 }
+
+.wrapper .btn:hover {
+  background-color: #c6c6c6;
+}
+
+.wrapper .btn:active {
+  position: relative;
+  top: 1px;
+}
+
+.btn {
+  position: relative;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
