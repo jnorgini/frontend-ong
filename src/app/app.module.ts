@@ -22,7 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { HomeComponent } from './pages/home/home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -45,8 +45,6 @@ import { UserDialogComponent } from './user-dialog/user-dialog.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component'; 
-
 
 @NgModule({
   declarations: [
@@ -62,7 +60,6 @@ import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/
     UserDialogComponent,
     ConfirmationDialogComponent,
     WelcomeComponent,
-    DeleteConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,

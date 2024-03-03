@@ -9,7 +9,6 @@ import { PetService } from 'src/app/services/pet.service';
 import { PetDialogComponent } from 'src/app/pet-dialog/pet-dialog.component';
 import { PetInfosComponent } from 'src/app/pet-infos/pet-infos.component';
 import { ConfirmationDialogComponent } from 'src/app/confirmation-dialog/confirmation-dialog.component';
-import { DeleteConfirmationDialogComponent } from 'src/app/delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 @Component({
   selector: 'app-pets',
@@ -140,7 +139,7 @@ export class PetsComponent implements OnInit {
   }
 
   deleteConfirmationDialog(id: number) {
-    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       closeOnNavigation: true,
       data: 'Deseja remover permanentemente o pet?'
     });
