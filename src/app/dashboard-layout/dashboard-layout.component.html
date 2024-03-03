@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar [ngClass]="{'dark-mode': darkModeEnabled}">
     <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
         <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
         <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
@@ -11,14 +11,14 @@
         </button>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
+
         <a href="https://web.whatsapp.com/" target="_blank"><i class="fa fa-whatsapp"></i></a>
         <a href="https://www.instagram.com/ongpatinhasquebrilham/" target="_blank"><i class="fa fa-instagram"></i></a>
         <a href="https://www.facebook.com/ongpatinhasquebrilham" target="_blank"><i class="fa fa-facebook-square"></i></a>
     </div>
 </mat-toolbar>
 <mat-sidenav-container>
-    <mat-sidenav #sidenav="matSidenav">
+    <mat-sidenav #sidenav="matSidenav" [ngClass]="{'dark-mode': darkModeEnabled}">
 
         <img class="avatar mat-elevation-z8" src="assets/logo.png" />
 

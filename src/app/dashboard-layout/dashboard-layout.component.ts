@@ -30,7 +30,7 @@ export class DashboardLayoutComponent implements OnInit {
 
   logout() {
     this.tokenStorageService.signOut();
-    this.router.navigate(['/login']).then(() => {});
+    this.router.navigate(['/login']).then(() => { });
     this.toastr.info('Sessão encerrada.')
   }
 
@@ -43,12 +43,16 @@ export class DashboardLayoutComponent implements OnInit {
 
   toggleDarkMode() {
     this.darkModeEnabled = !this.darkModeEnabled;
+
     const container = document.querySelector('.mat-sidenav-container');
+    const body = document.querySelector('body');
 
     if (this.darkModeEnabled) {
-      container?.classList.add('dark-mode');
+      container?.classList.add('darkMode');
+      body?.classList.add('darkMode');
     } else {
-      container?.classList.remove('dark-mode');
+      container?.classList.remove('darkMode');
+      body?.classList.remove('darkMode');
     }
   }
 
@@ -58,10 +62,10 @@ export class DashboardLayoutComponent implements OnInit {
       .subscribe((res) => {
         if (res.matches) {
           this.sidenav.mode = "over";
-          this.sidenav.close().then(() => {});
+          this.sidenav.close().then(() => { });
         } else {
           this.sidenav.mode = "side";
-          this.sidenav.open().then(() => {});
+          this.sidenav.open().then(() => { });
         }
       });
 
@@ -72,7 +76,7 @@ export class DashboardLayoutComponent implements OnInit {
       )
       .subscribe(() => {
         if (this.sidenav.mode === 'over') {
-          this.sidenav.close().then(() => {});
+          this.sidenav.close().then(() => { });
         }
       })
   }
