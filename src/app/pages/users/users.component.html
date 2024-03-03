@@ -31,7 +31,7 @@
       <mat-cell *matCellDef="let user">
         <mat-icon class="icon-edit" fontIcon="edit" color="primary" (click)="showUpdateUserForm(user)">
         </mat-icon>
-        <mat-icon class="icon-delete" fontIcon="delete" (click)="removeUser(user.id)">
+        <mat-icon class="icon-delete" fontIcon="delete" (click)="deleteConfirmationDialog(user.id)">
         </mat-icon>
       </mat-cell>
     </ng-container>

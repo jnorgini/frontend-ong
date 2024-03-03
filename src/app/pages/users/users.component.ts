@@ -7,6 +7,7 @@ import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 import { UserDialogComponent } from 'src/app/user-dialog/user-dialog.component';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmationDialogComponent } from 'src/app/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-users',
@@ -17,7 +18,7 @@ export class UsersComponent implements OnInit {
   dataSource = new MatTableDataSource<User>();
   displayedColumns: string[] = ['id', 'username', 'role', 'acoes'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  loading = false; 
+  loading = false;
 
   constructor(
     private userService: UserService,
@@ -43,7 +44,7 @@ export class UsersComponent implements OnInit {
       return `${startIndex + 1} - ${endIndex} de ${length}`;
     };
   }
- 
+
   private setupUserList() {
     this.loading = true;
 
@@ -111,7 +112,20 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  removeUser(id: number) {
+  deleteConfirmationDialog(id: number) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      closeOnNavigation: true,
+      data: 'Deseja remover permanentemente o usuário?'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'yes') {
+        this.remove(id);
+      }
+    });
+  }
+
+  remove(id: number) {
     this.userService.deleteUser(id)
       .pipe(
         catchError((error) => {
@@ -119,13 +133,12 @@ export class UsersComponent implements OnInit {
           throw error;
         }),
         tap(() => {
-          this.toastr.warning('Usuário permanentemente removido.')
+          this.toastr.success('Usuário removido com sucesso.');
         })
       )
       .subscribe(() => {
         this.userService.emitUpdate();
       });
-
   }
 
 }
