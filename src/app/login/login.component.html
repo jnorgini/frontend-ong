@@ -2,40 +2,45 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login/Register</title>
-    <link rel="" href="">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login/Register</title>
+  <link rel="" href="">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
 
-    <div class="wrapper">
-        <div class="login-form">
-            <form (ngSubmit)="login(loginDto)">
-                <h1>Pet Control</h1>
-                <div class="input-box">
-                    <input type="text" id="username" name="username" placeholder="Usuário"
-                        [(ngModel)]="loginDto.username" required
-                        [ngClass]="{ 'empty': formSubmitted && !loginDto.username }">
-                    <i class='bx bxs-user'></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" id="password" name="password" placeholder="Senha"
-                        [(ngModel)]="loginDto.password" required
-                        [ngClass]="{ 'empty': formSubmitted && !loginDto.password }">
-                    <i class='bx bxs-lock-alt'></i>
-                </div>
-                <!--<div class="remember-forgot">
+  <div class="wrapper">
+    <div class="login-form">
+      <form (ngSubmit)="login(loginDto)">
+        <h1>Pet Control</h1>
+        <div class="input-box">
+          <input type="text" id="username" name="username" placeholder="Usuário" [(ngModel)]="loginDto.username"
+            required [ngClass]="{ 'empty': formSubmitted && !loginDto.username }">
+          <i class='bx bxs-user'></i>
+        </div>
+        <div class="input-box">
+          <input [type]="hide ? 'password' : 'text'" name="password" placeholder="Senha" [(ngModel)]="loginDto.password"
+            required [ngClass]="{ 'empty': formSubmitted && !loginDto.password }">
+          <i class="bx" [ngClass]="hide ? 'bxs-hide' : 'bxs-show'" (click)="hide = !hide"
+            [attr.aria-label]="hide ? 'Show password' : 'Hide password'" [attr.aria-pressed]="!hide">
+          </i>
+        </div>
+        <!--<div class="remember-forgot">
                     <label><input type="checkbox">Lembrar de mim</label>
                 </div>-->
-                <button class="btn" type="button" (click)="login(loginDto)">Entrar</button>
+        <button class="btn" type="button" [disabled]="loading" (click)="login(loginDto)">
+          <mat-spinner class="spinner" diameter="20" color="primary" *ngIf="loading"></mat-spinner>
+          <ng-container *ngIf="!loading">
+            Entrar
+          </ng-container>
+        </button>
 
-            </form>
-        </div>
+      </form>
     </div>
+  </div>
 </body>
 
 </html>
