@@ -14,6 +14,8 @@ import { TokenStorageService } from '../services/token-storage.service';
 export class LoginComponent implements OnInit {
   loginDto: Login = new Login();
   formSubmitted = false;
+  loading = false;
+  hide = true;
 
   constructor(
     private authService: AuthService,
@@ -31,12 +33,11 @@ export class LoginComponent implements OnInit {
   login(loginDto: Login) {
     this.formSubmitted = true;
     if (loginDto.username === '' || loginDto.password === '') {
-
       this.toastr.warning('Por favor, preencha todos os campos.');
-
       return;
     }
-
+    this.loading = true;
+    const tempoEmMilissegundos = 120000;
     this.authService.login(loginDto)
       .pipe(
         catchError((error) => {
@@ -51,6 +52,9 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.saveAccessToken(jwtDto.accessToken);
         this.tokenStorage.saveRefreshToken(jwtDto.refreshToken);
         window.location.reload();
+        setTimeout(() => {
+          this.loading = false;
+        }, tempoEmMilissegundos);
       }));
   }
 
