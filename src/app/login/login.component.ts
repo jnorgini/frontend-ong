@@ -52,9 +52,7 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.saveAccessToken(jwtDto.accessToken);
         this.tokenStorage.saveRefreshToken(jwtDto.refreshToken);
         window.location.reload();
-        setTimeout(() => {
-          this.loading = false;
-        }, tempoEmMilissegundos);
+        this.loading = false;
       }));
   }
 
